@@ -28,8 +28,20 @@ return {
           return vim.tbl_contains(folder_skip, name)
         end,
       },
+
+      float = {
+        max_width = 0.8,
+        max_height = 0.8,
+      },
     })
 
     vim.keymap.set("n", "<leader>fo", "<CMD>Oil<CR>", { desc = "Open parent directory in current window" })
+
+    vim.keymap.set(
+      "n",
+      "<leader>fO",
+      require("oil").toggle_float,
+      { desc = "Open parent directory in floating window" }
+    )
   end,
 }
