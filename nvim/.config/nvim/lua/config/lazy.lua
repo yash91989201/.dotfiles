@@ -39,6 +39,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.editor.refactoring" },
     { import = "lazyvim.plugins.extras.util.dot" },
+    { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "plugins" },
   },
   defaults = {
