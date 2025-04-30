@@ -15,4 +15,5 @@ keymap.set("n", "-", "<C-x>")
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
-keymap.set("n", "<leader>m", ":wqa!<Return>", { desc = "Save and quit all", noremap = true, silent = true })
+keymap.set("n", "<leader>mq", ":wqa!<Return>", { desc = "Save and quit all", noremap = true, silent = true })
+keymap.set("n", "<leader>ms", ":wa!<Return>", { desc = "Save all", noremap = true, silent = true })
