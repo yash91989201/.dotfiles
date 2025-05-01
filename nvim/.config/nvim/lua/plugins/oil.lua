@@ -17,14 +17,17 @@ return {
         ["<C-k>"] = false,
         ["<C-j>"] = false,
         ["<M-h>"] = "actions.select_split",
+        ["h"] = "actions.parent",
+        ["l"] = "actions.select",
       },
       win_options = {
         winbar = "%{v:lua.CustomOilBar()}",
+        wrap = true,
       },
       view_options = {
         show_hidden = true,
         is_always_hidden = function(name, _)
-          local folder_skip = { ".next", "node_modules", "dev-tools.locks", "dune.lock", "_build" }
+          local folder_skip = { ".next", "node_modules", "dev-tools.locks", "dune.lock", "_build", ".git", ".." }
           return vim.tbl_contains(folder_skip, name)
         end,
       },
