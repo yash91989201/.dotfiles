@@ -12,10 +12,10 @@ return {
     navbuddy.setup({
       window = {
         border = "single",
-        size = "60%",
+        size = "75%",
         position = "50%",
         sections = {
-          left = { size = "20%" },
+          left = { size = "30%" },
           mid = { size = "40%" },
           right = { preview = "leaf" },
         },
@@ -85,15 +85,6 @@ return {
         ["s"] = actions.toggle_preview(),
         ["<C-v>"] = actions.vsplit(),
         ["<C-s>"] = actions.hsplit(),
-        ["t"] = actions.telescope({
-          layout_config = {
-            height = 0.60,
-            width = 0.60,
-            prompt_position = "top",
-            preview_width = 0.50,
-          },
-          layout_strategy = "horizontal",
-        }),
         ["g?"] = actions.help(),
       },
       lsp = {
