@@ -16,7 +16,7 @@ return {
         ["<C-l>"] = false,
         ["<C-k>"] = false,
         ["<C-j>"] = false,
-        ["<M-h>"] = "actions.select_split",
+        ["<M-h>"] = false,
         ["h"] = "actions.parent",
         ["l"] = "actions.select",
       },
