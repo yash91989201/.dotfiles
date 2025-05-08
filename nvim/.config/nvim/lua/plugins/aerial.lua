@@ -1,5 +1,6 @@
 return {
   "stevearc/aerial.nvim",
+  event = "LspAttach",
   opts = {
     layout = {
       max_width = 50,

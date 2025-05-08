@@ -1,6 +1,7 @@
 return {
   "razak17/tailwind-fold.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  opts = {},
   dependencies = { "nvim-treesitter/nvim-treesitter" },
-  event = "VeryLazy",
-  ft = { "html", "typescriptreact" },
+  ft = { "html", "svelte", "astro", "vue", "typescriptreact", "php", "blade" },
 }
