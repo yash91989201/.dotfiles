@@ -1,7 +1,7 @@
 return {
   "mason-org/mason.nvim",
-  opts = function(_, opts)
-    vim.list_extend(opts.ensure_installed, {
+  opts = {
+    ensure_installed = {
       "luacheck",
       "shellcheck",
       "shfmt",
@@ -13,13 +13,13 @@ return {
       "yaml-language-server",
       "dockerfile-language-server",
       "ansible-language-server",
-      "terraform-lsp",
+      "sqlls",
+      "tflint",
       "helm-ls",
-      "sql-language-server",
       "prettier",
       "eslint_d",
       "black",
       "ruff-lsp",
-    })
-  end,
+    },
+  },
 }
