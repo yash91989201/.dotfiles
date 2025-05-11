@@ -17,4 +17,13 @@ return {
     link_tree_to_folds = true,
     autojump = true,
   },
+  keys = {
+    {
+      "<leader>cp",
+      function()
+        require("aerial").snacks_picker()
+      end,
+      desc = "Aerial (Symbols) Picker",
+    },
+  },
 }
