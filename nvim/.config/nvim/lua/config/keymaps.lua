@@ -13,7 +13,3 @@ keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 keymap.set("n", "<leader>mq", ":wqa!<Return>", { desc = "Save and quit all", noremap = true, silent = true })
 keymap.set("n", "<leader>ms", ":wa!<Return>", { desc = "Save all", noremap = true, silent = true })
-
-keymap.set("n", "<leader>cn", function()
-  require("nvim-navbuddy").open()
-end, { desc = "Navbuddy Open" })
