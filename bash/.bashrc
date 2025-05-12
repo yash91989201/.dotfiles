@@ -72,10 +72,10 @@ xterm* | rxvt*)
 esac
 
 # Load bash aliases if available
-[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+if [ -f "$HOME/.bash_aliases" ]; then source "$HOME/.bash_aliases"; fi
 
 # Load personal secrets if available
-[ -f "$HOME/.bash_secrets" ] && source "$HOME/.bash_secrets"
+if [ -f "$HOME/.bash_secrets" ]; then source "$HOME/.bash_secrets"; fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
