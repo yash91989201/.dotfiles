@@ -19,7 +19,8 @@ return {
       "prettier",
       "eslint_d",
       "black",
-      "ruff-lsp",
+      "ruff",
+      "emmet-language-server",
     },
   },
 }

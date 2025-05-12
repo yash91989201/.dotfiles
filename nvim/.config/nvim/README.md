@@ -1,4 +1,4 @@
-WINDOWS
+# WINDOWS
 
 1. windows terminal
 2. zen browser
@@ -8,7 +8,7 @@ WINDOWS
 6. latest nvidia
 7. Latest Microsoft Visual C++ Redistributable for running android vcs
 
-WSL UBUNTU
+## WSL UBUNTU
 
 1. go
 2. starship terminal
@@ -35,7 +35,7 @@ WSL UBUNTU
 23. protoc-gen-go-grpc (installed using go)
 24. buf (lint, format protobuf files, installed using go)
 
-Packages to install for working with proto
+### Packages to install for working with proto
 
 1. github.com/bufbuild/buf/cmd/buf@latest
 2. github.com/fullstorydev/grpcurl/cmd/grpcurl@latest

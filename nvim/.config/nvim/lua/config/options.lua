@@ -32,3 +32,4 @@ vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
 
 vim.opt.formatoptions:append({ "r" })
+vim.opt.laststatus = 3
