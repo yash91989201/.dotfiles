@@ -71,6 +71,8 @@ xterm* | rxvt*)
 *) ;;
 esac
 
+export MANPAGER="nvim +Man!"
+
 # Load bash aliases if available
 if [ -f "$HOME/.bash_aliases" ]; then source "$HOME/.bash_aliases"; fi
 
