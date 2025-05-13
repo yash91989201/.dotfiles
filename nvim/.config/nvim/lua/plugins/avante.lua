@@ -27,7 +27,6 @@ return {
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "hrsh7th/nvim-cmp",
     "echasnovski/mini.icons",
     "folke/snacks.nvim",
     {
