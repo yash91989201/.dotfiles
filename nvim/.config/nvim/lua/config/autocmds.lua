@@ -14,3 +14,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.relativenumber = true
   end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+  end,
+})
