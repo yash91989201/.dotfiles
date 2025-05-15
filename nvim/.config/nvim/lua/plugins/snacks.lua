@@ -20,6 +20,8 @@ return {
         position = "float",
         wo = {
           winbar = "",
+          number = true,
+          relativenumber = true,
         },
       },
     },
