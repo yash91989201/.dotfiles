@@ -17,6 +17,7 @@ return {
     },
     terminal = {
       win = {
+        position = "float",
         wo = {
           winbar = "",
         },

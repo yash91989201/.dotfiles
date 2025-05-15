@@ -16,9 +16,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "*",
-  callback = function()
-    vim.wo.number = true
-    vim.wo.relativenumber = true
+  pattern = "term://*",
+  callback = function(args)
+    local bufname = vim.api.nvim_buf_get_name(args.buf)
+    local is_snacks = bufname:match("bash") ~= nil
+
+    if is_snacks then
+      vim.wo.number = true
+      vim.wo.relativenumber = true
+    end
   end,
 })
