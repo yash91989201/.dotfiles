@@ -2,25 +2,6 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
-  opts = {
-    provider = "deepseek",
-    vendors = {
-      deepseek = {
-        __inherited_from = "openai",
-        api_key_name = "DEEPSEEK_API_KEY",
-        endpoint = "https://api.deepseek.com",
-        model = "deepseek-coder",
-        max_tokens = 8192,
-      },
-    },
-    selector = {
-      provider = "snacks",
-    },
-    windows = {
-      position = "bottom",
-      height = 30,
-    },
-  },
   build = "make",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
@@ -36,6 +17,27 @@ return {
         file_types = { "markdown", "Avante" },
       },
       ft = { "markdown", "Avante" },
+    },
+  },
+  opts = {
+    provider = "gemini",
+    behaviour = {
+      auto_suggestions = false,
+      auto_set_highlight_group = true,
+      auto_set_keymaps = true,
+      auto_apply_diff_after_generation = false,
+      support_paste_from_clipboard = true,
+    },
+    gemini = {
+      model = "gemini-2.0-flash",
+      temperature = 0,
+      max_tokens = 4096,
+    },
+    selector = {
+      provider = "snacks",
+    },
+    windows = {
+      width = 25,
     },
   },
 }
