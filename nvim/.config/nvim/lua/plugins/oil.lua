@@ -1,50 +1,35 @@
 return {
   "stevearc/oil.nvim",
   dependencies = { "echasnovski/mini.icons" },
-  config = function()
-    CustomOilBar = function()
-      local path = vim.fn.expand("%")
-      path = path:gsub("oil://", "")
-
-      return "  " .. vim.fn.fnamemodify(path, ":.")
-    end
-
-    require("oil").setup({
-      columns = { "icon" },
-      keymaps = {
-        ["<C-h>"] = false,
-        ["<C-l>"] = false,
-        ["<C-k>"] = false,
-        ["<C-j>"] = false,
-        ["<M-h>"] = false,
-        ["h"] = "actions.parent",
-        ["l"] = "actions.select",
-      },
-      win_options = {
-        winbar = "%{v:lua.CustomOilBar()}",
-        wrap = true,
-      },
-      view_options = {
-        show_hidden = true,
-        is_always_hidden = function(name, _)
-          local folder_skip = { ".next", "node_modules", "dev-tools.locks", "dune.lock", "_build", ".git", ".." }
-          return vim.tbl_contains(folder_skip, name)
-        end,
-      },
-
-      float = {
-        max_width = 0.8,
-        max_height = 0.8,
-      },
-    })
-
-    vim.keymap.set("n", "<leader>oo", "<CMD>Oil<CR>", { desc = "Open parent directory in current window" })
-
-    vim.keymap.set(
-      "n",
-      "<leader>of",
-      require("oil").toggle_float,
-      { desc = "Open parent directory in floating window" }
-    )
-  end,
+  opts = {
+    keymaps = {
+      ["<CR>"] = false,
+      ["<C-t>"] = false,
+      ["<C-s>"] = false,
+      ["<C-h>"] = false,
+      ["-"] = false,
+      ["gs"] = false,
+      ["gx"] = false,
+      ["<M-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open file in vertical split" },
+      ["<M-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open file in horizontal split" },
+      ["q"] = "actions.close",
+      ["h"] = "actions.parent",
+      ["l"] = "actions.select",
+    },
+    view_options = {
+      show_hidden = true,
+      is_always_hidden = function(name, _)
+        local folder_skip = { ".next", "node_modules", "dev-tools.locks", "dune.lock", "_build", ".git", ".." }
+        return vim.tbl_contains(folder_skip, name)
+      end,
+    },
+    float = {
+      max_width = 0.75,
+      max_height = 0.75,
+    },
+  },
+  keys = {
+    { "<leader>fO", "<CMD>Oil<CR>", desc = "Open Oil Explorer" },
+    { "<leader>fo", "<CMD>Oil --float<CR>", desc = "Open Oil Explorer (floating)" },
+  },
 }
