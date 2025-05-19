@@ -1,7 +1,7 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  version = false, -- Never set this value to "*"! Never!
+  version = false,
   build = "make",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
@@ -11,7 +11,6 @@ return {
     "echasnovski/mini.icons",
     "folke/snacks.nvim",
     {
-      -- Make sure to set this up properly if you have lazy=true
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
