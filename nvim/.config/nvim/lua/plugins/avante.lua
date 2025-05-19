@@ -22,7 +22,7 @@ return {
   opts = {
     provider = "gemini",
     behaviour = {
-      auto_suggestions = false,
+      auto_suggestions = true,
       auto_set_highlight_group = true,
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
@@ -37,7 +37,8 @@ return {
       provider = "snacks",
     },
     windows = {
-      width = 25,
+      position = "bottom",
+      height = 35,
     },
   },
 }
