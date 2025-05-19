@@ -44,7 +44,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.aerial" },
     { import = "lazyvim.plugins.extras.editor.mini-move" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    { import = "lazyvim.plugins.extras.util.octo" },
     { import = "lazyvim.plugins.extras.util.rest" },
     { import = "plugins" },
   },
