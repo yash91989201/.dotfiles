@@ -26,10 +26,14 @@ return {
     float = {
       max_width = 0.75,
       max_height = 0.75,
+      win_options = {
+        number = true,
+        relativenumber = true,
+      },
     },
   },
   keys = {
-    { "<leader>fO", "<CMD>Oil<CR>", desc = "Open Oil Explorer" },
-    { "<leader>fo", "<CMD>Oil --float<CR>", desc = "Open Oil Explorer (floating)" },
+    { "<leader>fO", "<CMD>Oil --preview<CR>", desc = "Open Oil Explorer" },
+    { "<leader>fo", "<CMD>Oil --float --preview<CR>", desc = "Open Oil Explorer (floating)" },
   },
 }

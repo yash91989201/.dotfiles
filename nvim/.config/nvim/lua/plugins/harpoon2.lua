@@ -13,7 +13,11 @@ return {
         "<leader>h",
         function()
           local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
+          harpoon.ui:toggle_quick_menu(harpoon:list(), {
+            ui_width_ratio = 0.75,
+            border = "rounded",
+            height_in_lines = 25,
+          })
         end,
         desc = "Harpoon Quick Menu",
       },
