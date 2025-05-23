@@ -8,6 +8,8 @@
 6. latest nvidia
 7. Latest Microsoft Visual C++ Redistributable for running android vcs
 
+Windows terminal settings.json path: /mnt/c/Users/yashr/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+
 ## WSL UBUNTU
 
 1. go
@@ -34,6 +36,9 @@
 22. protoc-gen-go (installed using go)
 23. protoc-gen-go-grpc (installed using go)
 24. buf (lint, format protobuf files, installed using go)
+25. github cli
+26. pnpm
+27. bun
 
 ### Packages to install for working with proto
 
