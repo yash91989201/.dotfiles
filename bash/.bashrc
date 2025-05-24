@@ -90,8 +90,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR=~/.local/bin/nvim
-export VISUAL=~/.local/bin/nvim
+export EDITOR=/opt/nvim-linux-x86_64/bin/nvim
+export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
 
 # starship config
 eval "$(starship init bash)"
@@ -110,7 +110,6 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-. "$HOME/.cargo/env"
 
 # add Pulumi to the PATH
 export PATH=$PATH:/home/yash/.pulumi/bin
