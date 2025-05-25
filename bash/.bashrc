@@ -71,8 +71,6 @@ xterm* | rxvt*)
 *) ;;
 esac
 
-export MANPAGER="nvim +Man!"
-
 # Load bash aliases if available
 if [ -f "$HOME/.bash_aliases" ]; then source "$HOME/.bash_aliases"; fi
 
@@ -90,10 +88,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR=/opt/nvim-linux-x86_64/bin/nvim
-export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
-
-# starship config
+# starship init
 eval "$(starship init bash)"
 
 # golang config
@@ -101,6 +96,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 # nvm config
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
@@ -110,9 +106,6 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-# add Pulumi to the PATH
-export PATH=$PATH:/home/yash/.pulumi/bin
 
 GO_BIN="$(go env GOPATH)/bin"
 export PATH="$PATH:$GO_BIN"
@@ -124,16 +117,12 @@ case ":$PATH:" in
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-#
+
 export COMPOSE_BAKE=true
 
-# encore
-export ENCORE_INSTALL="/home/yash/.encore"
-export PATH="$ENCORE_INSTALL/bin:$PATH"
+# set default editor
+export EDITOR=/opt/nvim-linux-x86_64/bin/nvim
+export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
 
-# Setup for expo
-export ANDROID_HOME=/mnt/c/Users/yashr/AppData/Local/Android/Sdk
-
-export WSLENV=ANDROID_HOME
-
-export PATH=/home/yash/.local/bin:$PATH
+# set nvim as man page viewer
+export MANPAGER="nvim +Man!"
