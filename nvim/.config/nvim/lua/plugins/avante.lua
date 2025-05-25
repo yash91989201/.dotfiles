@@ -41,4 +41,7 @@ return {
       height = 40,
     },
   },
+  keys = {
+    { "<leader>aC", "<cmd>AvanteClear<cr>", desc = "avante: clear" },
+  },
 }
