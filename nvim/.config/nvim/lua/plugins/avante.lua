@@ -28,7 +28,8 @@ return {
       support_paste_from_clipboard = true,
     },
     gemini = {
-      model = "gemini-2.0-flash",
+      -- model = "gemini-2.0-flash",
+      model = "gemini-2.5-pro-preview-05-06",
       temperature = 0,
       max_tokens = 4096,
     },
@@ -37,7 +38,7 @@ return {
     },
     windows = {
       position = "bottom",
-      height = 35,
+      height = 40,
     },
   },
 }
