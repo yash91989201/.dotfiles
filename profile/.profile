@@ -26,13 +26,3 @@ if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 . "$HOME/.cargo/env"
-
-# Run fastfetch only once per WSL session
-if command -v fastfetch &>/dev/null; then
-  # Avoid rerunning in the same session (e.g., nested shells)
-  FLAG_FILE="/tmp/.fastfetch_ran"
-  if [ ! -f "$FLAG_FILE" ]; then
-    fastfetch
-    touch "$FLAG_FILE"
-  fi
-fi
