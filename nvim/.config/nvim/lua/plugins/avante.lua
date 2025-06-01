@@ -29,7 +29,9 @@ return {
     },
     gemini = {
       -- model = "gemini-2.0-flash",
-      model = "gemini-2.5-pro-preview-05-06",
+      -- model = "gemini-2.0-flash-lite",
+      -- model = "gemini-2.5-pro-preview-05-06",
+      model = "gemini-2.5-flash-preview-05-20",
       temperature = 0,
       max_tokens = 4096,
     },
@@ -37,8 +39,7 @@ return {
       provider = "snacks",
     },
     windows = {
-      position = "bottom",
-      height = 40,
+      width = 36,
     },
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()
