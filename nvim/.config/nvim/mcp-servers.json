@@ -1,22 +1,26 @@
 {
   "mcpServers": {
-    "sequential-thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
-    },
     "memory": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git"]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     },
     "context7": {
       "url": "https://mcp.context7.com/mcp"
     },
     "github": {
-      "disabled": true,
-      "command": "docker",
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       },
+      "disabled": false,
+      "command": "docker",
       "args": [
         "run",
         "-i",
@@ -27,11 +31,8 @@
         "github-mcp-server",
         "ghcr.io/github/github-mcp-server"
       ]
-    },
-    "git": {
-      "command": "uvx",
-      "args": ["mcp-server-git"]
     }
   },
   "nativeMCPServers": []
 }
+
