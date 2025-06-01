@@ -9,6 +9,6 @@ return {
     config = vim.fn.expand("~/.config/nvim/mcp-servers.json"),
   },
   keys = {
-    { "<leader>ch", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
+    { "<leader>cM", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
   },
 }
