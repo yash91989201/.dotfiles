@@ -40,6 +40,14 @@ return {
       position = "bottom",
       height = 40,
     },
+    rag_service = {
+      enabled = false,
+      provider = "openai",
+      llm_model = "gpt-3.5-turbo",
+      embed_model = "text-embedding-3-small",
+      endpoint = "https://api.openai.com/v1",
+      host_mount = os.getenv("HOME"),
+    },
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()
       return hub and hub:get_active_servers_prompt() or ""
