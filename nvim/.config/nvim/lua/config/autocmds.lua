@@ -19,9 +19,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "term://*",
   callback = function(args)
     local bufname = vim.api.nvim_buf_get_name(args.buf)
-    local is_snacks = bufname:match("bash") ~= nil
+    local is_bash_shell = bufname:match("bash") ~= nil
 
-    if is_snacks then
+    if is_bash_shell then
       vim.wo.number = true
       vim.wo.relativenumber = true
     end

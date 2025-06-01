@@ -7,11 +7,6 @@ return {
   opts = {
     port = 23456,
     config = vim.fn.expand("~/.config/nvim/mcp-servers.json"),
-    extensions = {
-      avante = {
-        make_slash_commands = true,
-      },
-    },
   },
   keys = {
     { "<leader>ch", "<cmd>MCPHub<cr>", desc = "MCP Hub" },

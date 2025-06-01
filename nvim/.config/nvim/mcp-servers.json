@@ -4,6 +4,20 @@
       "command": "uvx",
       "args": ["mcp-server-git"]
     },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    },
     "context7": {
       "url": "https://mcp.context7.com/mcp"
     },
@@ -14,14 +28,6 @@
     "sequential-thinking": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
-    }
-  },
-  "nativeMCPServers": {
-    "mcphub": {
-      "disabled": false
-    },
-    "neovim": {
-      "disabled": false
     }
   }
 }
