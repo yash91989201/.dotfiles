@@ -9,6 +9,6 @@ return {
     config = "/home/yash/.config/nvim/mcp-servers.json",
   },
   keys = {
-    { "<leader>cM", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
+    { "<leader>cH", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
   },
 }
