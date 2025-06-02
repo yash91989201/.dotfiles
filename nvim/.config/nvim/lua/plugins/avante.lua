@@ -52,6 +52,6 @@ return {
     end,
   },
   keys = {
-    { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear" },
+    { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear chat" },
   },
 }
