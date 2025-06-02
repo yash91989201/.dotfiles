@@ -27,7 +27,7 @@
       "env": {
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
       },
-      "args": ["-y", "shadcn", "registry:mcp"],
+      "args": ["-y", "shadcn@canary", "registry:mcp"],
       "command": "npx"
     },
     "git": {
@@ -41,4 +41,3 @@
   },
   "nativeMCPServers": []
 }
-
