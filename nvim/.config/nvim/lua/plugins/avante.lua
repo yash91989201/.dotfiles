@@ -20,26 +20,21 @@ return {
   },
   opts = {
     provider = "gemini",
+    providers = {
+      gemini = {
+        model = "gemini-2.5-pro-preview-05-06",
+        extra_request_body = {
+          temperature = 0,
+          max_tokens = 8000,
+        },
+      },
+    },
     behaviour = {
       auto_suggestions = false,
       auto_set_highlight_group = true,
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = true,
-    },
-    gemini = {
-      -- model = "gemini-2.0-flash",
-      -- model = "gemini-2.0-flash-lite",
-      -- model = "gemini-2.5-pro-preview-05-06",
-      model = "gemini-2.5-flash-preview-05-20",
-      temperature = 0,
-      max_tokens = 4096,
-    },
-    selector = {
-      provider = "snacks",
-    },
-    windows = {
-      width = 36,
     },
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()
@@ -50,6 +45,12 @@ return {
         require("mcphub.extensions.avante").mcp_tool(),
       }
     end,
+    selector = {
+      provider = "snacks",
+    },
+    windows = {
+      width = 40,
+    },
   },
   keys = {
     { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear chat" },

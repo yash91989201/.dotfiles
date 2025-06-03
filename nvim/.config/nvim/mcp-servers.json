@@ -1,16 +1,98 @@
 {
   "mcpServers": {
+    "shadcn": {
+      "autoApprove": ["init", "get_items", "get_item", "add_item"],
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      },
+      "args": ["-y", "shadcn@canary", "registry:mcp"],
+      "disabled": false,
+      "command": "npx"
+    },
+    "context7": {
+      "autoApprove": ["resolve-library-id", "get-library-docs"],
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "git": {
+      "autoApprove": [
+        "git_status",
+        "git_diff_unstaged",
+        "git_diff_staged",
+        "git_diff",
+        "git_commit",
+        "git_add",
+        "git_reset",
+        "git_log",
+        "git_create_branch",
+        "git_checkout",
+        "git_show"
+      ],
+      "command": "uvx",
+      "args": ["mcp-server-git"]
+    },
     "sequential-thinking": {
+      "autoApprove": ["sequentialthinking"],
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     },
-    "context7": {
-      "url": "https://mcp.context7.com/mcp"
-    },
     "github": {
+      "autoApprove": [
+        "add_issue_comment",
+        "add_pull_request_review_comment_to_pending_review",
+        "assign_copilot_to_issue",
+        "create_and_submit_pull_request_review",
+        "create_branch",
+        "create_issue",
+        "create_or_update_file",
+        "create_pending_pull_request_review",
+        "create_pull_request",
+        "create_repository",
+        "delete_file",
+        "delete_pending_pull_request_review",
+        "dismiss_notification",
+        "fork_repository",
+        "get_code_scanning_alert",
+        "get_commit",
+        "get_file_contents",
+        "get_issue",
+        "get_issue_comments",
+        "get_me",
+        "get_notification_details",
+        "get_pull_request",
+        "get_pull_request_comments",
+        "get_pull_request_diff",
+        "get_pull_request_files",
+        "get_pull_request_reviews",
+        "get_pull_request_status",
+        "get_secret_scanning_alert",
+        "get_tag",
+        "list_branches",
+        "list_code_scanning_alerts",
+        "list_commits",
+        "list_issues",
+        "list_notifications",
+        "list_pull_requests",
+        "list_secret_scanning_alerts",
+        "list_tags",
+        "manage_notification_subscription",
+        "manage_repository_notification_subscription",
+        "mark_all_notifications_read",
+        "merge_pull_request",
+        "push_files",
+        "request_copilot_review",
+        "search_code",
+        "search_issues",
+        "search_repositories",
+        "search_users",
+        "submit_pending_pull_request_review",
+        "update_issue",
+        "update_pull_request",
+        "update_pull_request_branch"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       },
+      "command": "docker",
       "args": [
         "run",
         "-i",
@@ -20,24 +102,40 @@
         "--name",
         "github-mcp-server",
         "ghcr.io/github/github-mcp-server"
-      ],
-      "command": "docker"
-    },
-    "shadcn": {
-      "env": {
-        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      },
-      "args": ["-y", "shadcn@canary", "registry:mcp"],
-      "command": "npx"
-    },
-    "git": {
-      "command": "uvx",
-      "args": ["mcp-server-git"]
+      ]
     },
     "memory": {
+      "autoApprove": [
+        "create_entities",
+        "create_relations",
+        "add_observations",
+        "delete_entities",
+        "delete_observations",
+        "delete_relations",
+        "read_graph",
+        "search_nodes",
+        "open_nodes"
+      ],
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   },
-  "nativeMCPServers": []
+  "nativeMCPServers": {
+    "neovim": {
+      "autoApprove": [
+        "execute_lua",
+        "execute_command",
+        "read_file",
+        "delete_item",
+        "move_item",
+        "find_files",
+        "list_directory",
+        "write_file",
+        "replace_in_file"
+      ]
+    },
+    "mcphub": {
+      "autoApprove": ["get_current_servers", "toggle_mcp_server"]
+    }
+  }
 }
