@@ -22,10 +22,10 @@ return {
     provider = "gemini",
     providers = {
       gemini = {
-        model = "gemini-2.5-pro-preview-05-06",
+        model = "gemini-2.5-flash-preview-05-20",
+        -- model = "gemini-2.5-pro-preview-05-06",
         extra_request_body = {
-          temperature = 0,
-          max_tokens = 8000,
+          temperature = 0.1,
         },
       },
     },
