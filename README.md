@@ -40,6 +40,7 @@ Windows terminal settings.json path: /mnt/c/Users/yashr/AppData/Local/Packages/M
 26. pnpm
 27. bun
 28. python
+29. uv
 
 ### Packages to install for working with proto
 
