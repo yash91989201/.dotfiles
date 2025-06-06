@@ -1,6 +1,0 @@
-{"type":"entity","entityType":"process","name":"shadcn installation","observations":["Always use -y flag for shadcn installation to auto-approve."]}
-{"type":"entity","entityType":"test","name":"TestEntity1","observations":["Initial observation for TestEntity1"]}
-{"type":"entity","entityType":"test","name":"TestEntity2","observations":["Initial observation for TestEntity2"]}
-{"type":"entity","entityType":"Concept","name":"DummyEntity","observations":["This is a test entity for demonstrating memory MCP server tools."]}
-{"type":"entity","entityType":"Concept","name":"AnotherDummyEntity","observations":["This is another test entity."]}
-{"type":"entity","entityType":"Concept","name":"MyFirstEntity","observations":["This is a test entity created by the agent.","It demonstrates the use of the memory MCP server."]}

@@ -25,7 +25,7 @@ return {
         model = "gemini-2.5-flash-preview-05-20",
         -- model = "gemini-2.5-pro-preview-05-06",
         extra_request_body = {
-          temperature = 0.1,
+          temperature = 0,
         },
       },
     },

@@ -14,68 +14,36 @@
       ]
     },
     "mcphub": {
-      "autoApprove": [
-        "get_current_servers",
-        "toggle_mcp_server"
-      ]
+      "autoApprove": ["get_current_servers", "toggle_mcp_server"]
     }
   },
   "mcpServers": {
     "context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "autoApprove": [
-        "resolve-library-id",
-        "get-library-docs"
-      ]
+      "autoApprove": ["resolve-library-id", "get-library-docs"],
+      "url": "https://mcp.context7.com/mcp"
     },
     "shadcn": {
-      "autoApprove": [
-        "init",
-        "get_items",
-        "get_item",
-        "add_item"
-      ],
-      "args": [
-        "-y",
-        "shadcn@canary",
-        "registry:mcp"
-      ],
+      "command": "npx",
+      "disabled": true,
+      "args": ["-y", "shadcn@canary", "registry:mcp"],
+      "autoApprove": ["init", "get_items", "get_item", "add_item"],
       "env": {
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      },
-      "command": "npx",
-      "disabled": false
-    },
-    "git": {
-      "autoApprove": [
-        "git_status",
-        "git_diff_unstaged",
-        "git_diff_staged",
-        "git_diff",
-        "git_commit",
-        "git_add",
-        "git_reset",
-        "git_log",
-        "git_create_branch",
-        "git_checkout",
-        "git_show"
-      ],
-      "args": [
-        "mcp-server-git"
-      ],
-      "command": "uvx"
-    },
-    "sequential-thinking": {
-      "autoApprove": [
-        "sequentialthinking"
-      ],
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "command": "npx"
+      }
     },
     "github": {
+      "command": "docker",
+      "disabled": false,
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "--name",
+        "github-mcp-server",
+        "ghcr.io/github/github-mcp-server"
+      ],
       "autoApprove": [
         "add_issue_comment",
         "add_pull_request_review_comment_to_pending_review",
@@ -129,23 +97,14 @@
         "update_pull_request",
         "update_pull_request_branch"
       ],
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "GITHUB_PERSONAL_ACCESS_TOKEN",
-        "--name",
-        "github-mcp-server",
-        "ghcr.io/github/github-mcp-server"
-      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
-      },
-      "command": "docker",
-      "disabled": true
+      }
     },
     "memory": {
+      "command": "npx",
+      "disabled": false,
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
       "autoApprove": [
         "create_entities",
         "create_relations",
@@ -156,16 +115,31 @@
         "read_graph",
         "search_nodes",
         "open_nodes"
-      ],
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
-      "env": {
-        "MEMORY_FILE_PATH": "/home/yash/.config/nvim/mcp/memory.jsonl"
-      },
+      ]
+    },
+    "sequential-thinking": {
       "command": "npx",
-      "disabled": false
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "autoApprove": ["sequentialthinking"],
+      "disabled": true
+    },
+    "git": {
+      "args": ["mcp-server-git"],
+      "autoApprove": [
+        "git_status",
+        "git_diff_unstaged",
+        "git_diff_staged",
+        "git_diff",
+        "git_commit",
+        "git_add",
+        "git_reset",
+        "git_log",
+        "git_create_branch",
+        "git_checkout",
+        "git_show"
+      ],
+      "command": "uvx"
     }
   }
 }
+
