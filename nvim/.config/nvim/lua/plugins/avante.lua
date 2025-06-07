@@ -5,10 +5,8 @@ return {
   build = "make",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "echasnovski/mini.icons",
     "folke/snacks.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
@@ -22,11 +20,27 @@ return {
     provider = "gemini",
     providers = {
       gemini = {
-        model = "gemini-2.5-flash-preview-05-20",
-        -- model = "gemini-2.5-pro-preview-05-06",
+        model = "gemini-2.5-pro-preview-06-05",
+        -- model = "gemini-2.5-flash-preview-05-20",
         extra_request_body = {
           temperature = 0,
         },
+      },
+    },
+    rag_service = {
+      enabled = true,
+      host_mount = os.getenv("HOME"),
+      llm = {
+        provider = "ollama",
+        model = "deepseek-r1:8b",
+        api_key = "OLLAMA_DEEPSEEK_API_KEY",
+        endpoint = "https://ollama-api.yashraj-jaiswal.site",
+      },
+      embed = {
+        provider = "ollama",
+        model = "nomic-embed-text:v1.5",
+        api_key = "OLLAMA_DEEPSEEK_API_KEY",
+        endpoint = "https://ollama-api.yashraj-jaiswal.site",
       },
     },
     behaviour = {
@@ -49,7 +63,7 @@ return {
       provider = "snacks",
     },
     windows = {
-      width = 40,
+      width = 34,
     },
   },
   keys = {
