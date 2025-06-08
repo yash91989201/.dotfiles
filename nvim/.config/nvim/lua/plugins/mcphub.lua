@@ -5,8 +5,7 @@ return {
   },
   build = "npm install -g mcp-hub@latest",
   opts = {
-    port = 32658,
-    config = vim.fn.expand("~/.dotfiles/nvim/.config/nvim/mcp/servers.json"),
+    config = "/home/yash/.config/nvim/mcp/servers.json",
     auto_approve = true,
   },
   keys = {

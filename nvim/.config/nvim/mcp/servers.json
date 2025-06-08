@@ -1,15 +1,71 @@
 {
+  "nativeMCPServers": {
+    "neovim": {
+      "autoApprove": [
+        "execute_lua",
+        "execute_command",
+        "read_file",
+        "delete_item",
+        "move_item",
+        "find_files",
+        "list_directory",
+        "write_file",
+        "replace_in_file"
+      ]
+    },
+    "mcphub": {
+      "autoApprove": [
+        "get_current_servers",
+        "toggle_mcp_server"
+      ]
+    }
+  },
   "mcpServers": {
     "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
       "env": {
         "MEMORY_FILE_PATH": "/home/yash/.dotfiles/nvim/.config/nvim/mcp/memory.json"
-      }
+      },
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory@latest"
+      ],
+      "command": "npx"
+    },
+    "sequential-thinking": {
+      "disabled": false,
+      "autoApprove": [
+        "sequentialthinking"
+      ],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx"
     },
     "context7": {
-      "autoApprove": ["resolve-library-id", "get-library-docs"],
-      "url": "https://mcp.context7.com/mcp"
+      "url": "https://mcp.context7.com/mcp",
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ]
+    },
+    "shadcn": {
+      "disabled": false,
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      },
+      "autoApprove": [
+        "init",
+        "get_items",
+        "get_item",
+        "add_item"
+      ],
+      "args": [
+        "-y",
+        "shadcn@canary",
+        "registry:mcp"
+      ],
+      "command": "npx"
     },
     "git": {
       "autoApprove": [
@@ -25,10 +81,13 @@
         "git_checkout",
         "git_show"
       ],
-      "args": ["mcp-server-git"],
+      "args": [
+        "mcp-server-git"
+      ],
       "command": "uvx"
     },
     "github": {
+      "disabled": false,
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       },
@@ -95,42 +154,7 @@
         "github-mcp-server",
         "ghcr.io/github/github-mcp-server"
       ],
-      "command": "docker",
-      "disabled": false
-    },
-    "shadcn": {
-      "env": {
-        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      },
-      "autoApprove": ["init", "get_items", "get_item", "add_item"],
-      "args": ["-y", "shadcn@canary", "registry:mcp"],
-      "command": "npx",
-      "disabled": false
-    },
-    "sequential-thinking": {
-      "autoApprove": ["sequentialthinking"],
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "command": "npx",
-      "disabled": false
-    }
-  },
-  "nativeMCPServers": {
-    "mcphub": {
-      "autoApprove": ["get_current_servers", "toggle_mcp_server"]
-    },
-    "neovim": {
-      "autoApprove": [
-        "execute_lua",
-        "execute_command",
-        "read_file",
-        "delete_item",
-        "move_item",
-        "find_files",
-        "list_directory",
-        "write_file",
-        "replace_in_file"
-      ]
+      "command": "docker"
     }
   }
 }
-
