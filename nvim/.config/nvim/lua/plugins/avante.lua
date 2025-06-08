@@ -27,28 +27,12 @@ return {
         },
       },
     },
-    rag_service = {
-      enabled = true,
-      host_mount = os.getenv("HOME"),
-      llm = {
-        provider = "ollama",
-        model = "deepseek-r1:8b",
-        api_key = "OLLAMA_DEEPSEEK_API_KEY",
-        endpoint = "https://ollama-api.yashraj-jaiswal.site",
-      },
-      embed = {
-        provider = "ollama",
-        model = "nomic-embed-text:v1.5",
-        api_key = "OLLAMA_DEEPSEEK_API_KEY",
-        endpoint = "https://ollama-api.yashraj-jaiswal.site",
-      },
-    },
     behaviour = {
+      auto_set_keymaps = true,
       auto_suggestions = false,
       auto_set_highlight_group = true,
-      auto_set_keymaps = true,
-      auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = true,
+      auto_apply_diff_after_generation = false,
     },
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()
