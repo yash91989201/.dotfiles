@@ -1,32 +1,5 @@
 {
   "mcpServers": {
-    "@21st-dev/magic": {
-      "args": [
-        "-y",
-        "@21st-dev/magic@latest"
-      ],
-      "env": {
-        "API_KEY": "$MAGIC_UI_API_KEY"
-      },
-      "autoApprove": [
-        "21st_magic_component_builder",
-        "logo_search",
-        "21st_magic_component_inspiration",
-        "21st_magic_component_refiner"
-      ],
-      "command": "npx"
-    },
-    "sequential-thinking": {
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "command": "npx",
-      "autoApprove": [
-        "sequentialthinking"
-      ],
-      "disabled": false
-    },
     "github": {
       "args": [
         "run",
@@ -97,6 +70,59 @@
         "update_pull_request_branch"
       ]
     },
+    "taskmanager": {
+      "args": [
+        "-y",
+        "@kazuph/mcp-taskmanager@latest"
+      ],
+      "command": "npx",
+      "autoApprove": [
+        "request_planning",
+        "get_next_task",
+        "mark_task_done",
+        "approve_task_completion",
+        "approve_request_completion",
+        "open_task_details",
+        "list_requests",
+        "add_tasks_to_request",
+        "update_task",
+        "delete_task"
+      ]
+    },
+    "@21st-dev/magic": {
+      "env": {
+        "API_KEY": "$MAGIC_UI_API_KEY"
+      },
+      "args": [
+        "-y",
+        "@21st-dev/magic@latest"
+      ],
+      "command": "npx",
+      "autoApprove": [
+        "21st_magic_component_builder",
+        "logo_search",
+        "21st_magic_component_inspiration",
+        "21st_magic_component_refiner"
+      ]
+    },
+    "sequential-thinking": {
+      "disabled": false,
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx",
+      "autoApprove": [
+        "sequentialthinking"
+      ]
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ]
+    },
     "shadcn": {
       "args": [
         "-y",
@@ -115,17 +141,11 @@
         "add_item"
       ]
     },
-    "context7": {
-      "autoApprove": [
-        "resolve-library-id",
-        "get-library-docs"
-      ],
-      "url": "https://mcp.context7.com/mcp"
-    },
     "git": {
       "args": [
         "mcp-server-git"
       ],
+      "command": "uvx",
       "autoApprove": [
         "git_status",
         "git_diff_unstaged",
@@ -138,8 +158,7 @@
         "git_create_branch",
         "git_checkout",
         "git_show"
-      ],
-      "command": "uvx"
+      ]
     },
     "memory": {
       "args": [
@@ -153,6 +172,12 @@
     }
   },
   "nativeMCPServers": {
+    "mcphub": {
+      "autoApprove": [
+        "get_current_servers",
+        "toggle_mcp_server"
+      ]
+    },
     "neovim": {
       "autoApprove": [
         "execute_lua",
@@ -164,12 +189,6 @@
         "list_directory",
         "write_file",
         "replace_in_file"
-      ]
-    },
-    "mcphub": {
-      "autoApprove": [
-        "get_current_servers",
-        "toggle_mcp_server"
       ]
     }
   }

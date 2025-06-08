@@ -20,8 +20,8 @@ return {
     provider = "gemini",
     providers = {
       gemini = {
-        model = "gemini-2.5-flash-preview-05-20",
-        -- model = "gemini-2.5-pro-preview-05-06",
+        -- model = "gemini-2.5-flash-preview-05-20",
+        model = "gemini-2.5-pro-preview-05-06",
         extra_request_body = {
           temperature = 0,
         },
@@ -145,7 +145,6 @@ For all programming or software development tasks, enhance your performance by u
     },
   },
   keys = {
-
     { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear chat" },
   },
 }
