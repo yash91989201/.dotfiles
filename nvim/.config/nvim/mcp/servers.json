@@ -1,10 +1,14 @@
 {
   "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "/home/yash/.dotfiles/nvim/.config/nvim/mcp/memory.json"
+      }
+    },
     "context7": {
-      "autoApprove": [
-        "resolve-library-id",
-        "get-library-docs"
-      ],
+      "autoApprove": ["resolve-library-id", "get-library-docs"],
       "url": "https://mcp.context7.com/mcp"
     },
     "git": {
@@ -21,9 +25,7 @@
         "git_checkout",
         "git_show"
       ],
-      "args": [
-        "mcp-server-git"
-      ],
+      "args": ["mcp-server-git"],
       "command": "uvx"
     },
     "github": {
@@ -100,38 +102,21 @@
       "env": {
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
       },
-      "autoApprove": [
-        "init",
-        "get_items",
-        "get_item",
-        "add_item"
-      ],
-      "args": [
-        "-y",
-        "shadcn@canary",
-        "registry:mcp"
-      ],
+      "autoApprove": ["init", "get_items", "get_item", "add_item"],
+      "args": ["-y", "shadcn@canary", "registry:mcp"],
       "command": "npx",
       "disabled": false
     },
     "sequential-thinking": {
-      "autoApprove": [
-        "sequentialthinking"
-      ],
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
+      "autoApprove": ["sequentialthinking"],
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
       "command": "npx",
       "disabled": false
     }
   },
   "nativeMCPServers": {
     "mcphub": {
-      "autoApprove": [
-        "get_current_servers",
-        "toggle_mcp_server"
-      ]
+      "autoApprove": ["get_current_servers", "toggle_mcp_server"]
     },
     "neovim": {
       "autoApprove": [
@@ -148,3 +133,4 @@
     }
   }
 }
+
