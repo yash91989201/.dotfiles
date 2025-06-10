@@ -43,11 +43,14 @@ return {
         require("mcphub.extensions.avante").mcp_tool(),
       }
     end,
+    input = {
+      provider = "snacks",
+    },
     selector = {
       provider = "snacks",
     },
     windows = {
-      width = 34,
+      width = 38,
     },
   },
   keys = {
