@@ -1,0 +1,212 @@
+{
+  "requests": [
+    {
+      "requestId": "req-2",
+      "originalRequest": "Enhance the UI of ExtractionConfigCard component by adding a 3-dot menu with Edit and Delete actions, reading the extraction config Zod schema, and displaying fields using a Shadcn Accordion.",
+      "splitDetails": "Enhance the UI of ExtractionConfigCard component by adding a 3-dot menu with Edit and Delete actions, reading the extraction config Zod schema, and displaying fields using a Shadcn Accordion.",
+      "tasks": [
+        {
+          "id": "task-4",
+          "title": "Integrate Shadcn Dropdown Menu for 3-dot menu",
+          "description": "Add a 3-dot menu to the top right of the ExtractionConfigCard using Shadcn Dropdown Menu, with Edit and Delete actions.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-5",
+          "title": "Find and read ExtractionConfigType Zod schema",
+          "description": "Locate the Zod schema definition for ExtractionConfigType and read its content to understand the data structure.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-6",
+          "title": "Integrate Shadcn Accordion for fields display",
+          "description": "Display the fields from the config prop using the Shadcn Accordion component, showing field details in each accordion item.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    },
+    {
+      "requestId": "req-3",
+      "originalRequest": "Enhance the UI of ExtractionConfigCard. Create a 3-dot menu with edit/delete actions and display field details using a shadcn UI accordion.",
+      "splitDetails": "Enhance the UI of ExtractionConfigCard. Create a 3-dot menu with edit/delete actions and display field details using a shadcn UI accordion.",
+      "tasks": [
+        {
+          "id": "task-7",
+          "title": "Review ExtractionConfigCard",
+          "description": "Understand the current structure of src/components/extraction-config-card/index.tsx.",
+          "done": true,
+          "approved": false,
+          "completedDetails": "Reviewed `src/components/extraction-config-card/index.tsx` and understand its structure."
+        },
+        {
+          "id": "task-8",
+          "title": "Implement DropdownMenu",
+          "description": "Add a 3-dot menu (DropdownMenu) with 'Edit' and 'Delete' actions to the ExtractionConfigCard.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-9",
+          "title": "Read ExtractionConfigSchema",
+          "description": "Examine src/lib/extraction-config/schema.ts to understand the data structure for fields.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-10",
+          "title": "Implement Accordion for Fields",
+          "description": "Replace the existing field list with a shadcn UI Accordion, displaying detailed field information within each AccordionItem.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    },
+    {
+      "requestId": "req-4",
+      "originalRequest": "Improve the ui of ExtractionConfigCard. Use task manager mcp to organize and perform the following tasks. \n\n- remove the delete button.\n- use shacdn Accordion component to show the field details. (use context7 mcp to get details about the accordion component)\n- Use shadcn dropdown menu to show 2 actions at the top right corner of the card which will be edit and delete, use apropriate icons for both button from the lucide-react library. \n\nRemember to use the desktop-commander mcp to perform file operations everytime.",
+      "splitDetails": "Improve the ui of ExtractionConfigCard. Use task manager mcp to organize and perform the following tasks. \n\n- remove the delete button.\n- use shacdn Accordion component to show the field details. (use context7 mcp to get details about the accordion component)\n- Use shadcn dropdown menu to show 2 actions at the top right corner of the card which will be edit and delete, use apropriate icons for both button from the lucide-react library. \n\nRemember to use the desktop-commander mcp to perform file operations everytime.",
+      "tasks": [
+        {
+          "id": "task-11",
+          "title": "Remove Delete Button",
+          "description": "Remove the existing delete button from the `ExtractionConfigCard` component.",
+          "done": true,
+          "approved": false,
+          "completedDetails": "The delete button has been successfully removed from the ExtractionConfigCard component."
+        },
+        {
+          "id": "task-12",
+          "title": "Implement Accordion for Field Details",
+          "description": "Integrate the ShadCN Accordion component to display the field details within the `ExtractionConfigCard`. This will involve fetching accordion component details using the context7 MCP.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-13",
+          "title": "Add Dropdown Menu for Actions",
+          "description": "Add a ShadCN Dropdown Menu to the top-right corner of the `ExtractionConfigCard`. The dropdown will contain 'Edit' and 'Delete' options, each with an appropriate icon from `lucide-react`.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    },
+    {
+      "requestId": "req-5",
+      "originalRequest": "Improve the ui of ExtractionConfigCard. Use task manager mcp to organize and perform the following tasks. \n \n- remove the delete button.\n- use shacdn Accordion component to show the field details. (use context7 mcp to get details about the accordion component)\n- Use shadcn dropdown menu to show 2 actions at the top right corner of the card which will be edit and delete, use apropriate icons for both button from the lucide-react library. \n",
+      "splitDetails": "Improve the ui of ExtractionConfigCard. Use task manager mcp to organize and perform the following tasks. \n \n- remove the delete button.\n- use shacdn Accordion component to show the field details. (use context7 mcp to get details about the accordion component)\n- Use shadcn dropdown menu to show 2 actions at the top right corner of the card which will be edit and delete, use apropriate icons for both button from the lucide-react library. \n",
+      "tasks": [
+        {
+          "id": "task-14",
+          "title": "Remove delete button",
+          "description": "Remove the delete button from the ExtractionConfigCard component.",
+          "done": true,
+          "approved": false,
+          "completedDetails": "Removed the delete button and related code from the ExtractionConfigCard component."
+        },
+        {
+          "id": "task-15",
+          "title": "Use Accordion for field details",
+          "description": "Use shacdn Accordion component to show the field details. This will involve fetching details about the accordion component from context7 mcp.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-16",
+          "title": "Add DropdownMenu for actions",
+          "description": "Use shadcn dropdown menu to show 2 actions at the top right corner of the card which will be edit and delete, use apropriate icons for both button from the lucide-react library.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    },
+    {
+      "requestId": "req-6",
+      "originalRequest": "Update the ui of the ExtractionConfigCard. Use the taskmanager to organize and perform the following tasks for improving the ui of ExtractionConfigCard.\n \nMentioned shadcn components, lucide-react library are already installed\n \n1. Refer to the extraction config schema and show the fields in shadcn accordion component.\n2. Add a shadcn dropdown menu with 2 actions i.e edit and delete with icons at the left side from lucide react\n3. when performing tasks guided by the taskmanager, donot remove un-necessary code until all tasks are complete, also remember  this as an observation in your memory.\n",
+      "splitDetails": "Update the ui of the ExtractionConfigCard. Use the taskmanager to organize and perform the following tasks for improving the ui of ExtractionConfigCard.\n \nMentioned shadcn components, lucide-react library are already installed\n \n1. Refer to the extraction config schema and show the fields in shadcn accordion component.\n2. Add a shadcn dropdown menu with 2 actions i.e edit and delete with icons at the left side from lucide react\n3. when performing tasks guided by the taskmanager, donot remove un-necessary code until all tasks are complete, also remember  this as an observation in your memory.\n",
+      "tasks": [
+        {
+          "id": "task-17",
+          "title": "Show Fields in Accordion",
+          "description": "Refer to the extraction config schema and show the fields in shadcn accordion component.",
+          "done": true,
+          "approved": false,
+          "completedDetails": "I have added the accordion component to the card."
+        },
+        {
+          "id": "task-18",
+          "title": "Add Dropdown Menu",
+          "description": "Add a shadcn dropdown menu with 2 actions i.e edit and delete with icons at the left side from lucide react",
+          "done": true,
+          "approved": false,
+          "completedDetails": "I have added the dropdown menu to the card."
+        },
+        {
+          "id": "task-19",
+          "title": "Code Cleanup",
+          "description": "when performing tasks guided by the taskmanager, donot remove un-necessary code until all tasks are complete",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    },
+    {
+      "requestId": "req-7",
+      "originalRequest": "Breakdown the given prompt into easily executable tasks then use the taskmanager mcp to organize and perform the tasks, when performing each task use sequential thinking mcp to perform the task properly. To get documentation information for required libraries use the context7 mcp. Also use your memory in the process.\n\nuse extraction config schema to improve the ui for V1fieldConfigDetails component.",
+      "splitDetails": "Breakdown the given prompt into easily executable tasks then use the taskmanager mcp to organize and perform the tasks, when performing each task use sequential thinking mcp to perform the task properly. To get documentation information for required libraries use the context7 mcp. Also use your memory in the process.\n\nuse extraction config schema to improve the ui for V1fieldConfigDetails component.",
+      "tasks": [
+        {
+          "id": "task-20",
+          "title": "Analyze V1 Extraction Config Schema",
+          "description": "Analyze the `ExtractionConfigV1Schema` and `FieldConfigSchema` in `src/lib/extraction-config/schema.ts` to understand all the possible fields and their types for a V1 extraction configuration.",
+          "done": true,
+          "approved": true,
+          "completedDetails": "I have analyzed the `ExtractionConfigV1Schema` and `FieldConfigSchema` in `src/lib/extraction-config/schema.ts`. I have identified all the possible fields and their types for a V1 extraction configuration. The key fields are `description`, `note`, `required`, `default_value`, `detection_schema`, `validation_schema`, `sanitization_schema`, and `output_schema`."
+        },
+        {
+          "id": "task-21",
+          "title": "Examine V1FieldConfigDetails Component",
+          "description": "Examine the current `V1FieldConfigDetails` component in `src/components/extraction-config-card/index.tsx` to see what it currently displays.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-22",
+          "title": "Identify Missing Information",
+          "description": "Compare the schema with the current component to identify what fields are not being displayed.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-23",
+          "title": "Enhance V1FieldConfigDetails Component",
+          "description": "Update the `V1FieldConfigDetails` component to display all the relevant information from the schema in a clear and organized way.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    }
+  ]
+}
