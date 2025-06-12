@@ -126,3 +126,8 @@ export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
 
 # set nvim as man page viewer
 export MANPAGER="nvim +Man!"
+
+# set locale
+export LANG=en_IN.UTF-8
+export LANGUAGE=en_IN.UTF-8
+export LC_ALL=en_IN.UTF-8
