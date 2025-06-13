@@ -23,6 +23,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias e='nvim'
 
+alias ec='cd ~/.dotfiles && nvim'
 alias ee='cd ~/.dotfiles/nvim/.config/nvim && nvim'
 
 alias lg="lazygit"
