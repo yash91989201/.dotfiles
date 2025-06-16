@@ -61,7 +61,7 @@ transparent_background = false
 file_preview_width = 0
 #
 # The length of the sidebar. If you don't want to display the sidebar, you can input 0 directly. If you want to display the value, please place it in the range of 3-20.
-sidebar_width = 25
+sidebar_width = 20
 #
 # Border style
 # Make sure to add strings exactly one character wide. Use ' ' for borderless 
