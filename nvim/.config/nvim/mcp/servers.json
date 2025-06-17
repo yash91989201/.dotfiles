@@ -21,81 +21,7 @@
     }
   },
   "mcpServers": {
-    "memory": {
-      "command": "npx",
-      "env": {
-        "MEMORY_FILE_PATH": "/home/yash/.dotfiles/nvim/.config/nvim/mcp/memory.json"
-      },
-      "custom_instructions": {
-        "text": "You are an AI assistant with persistent memory. Your primary responsibility is to remember, retrieve, and reason using stored information across sessions.\n\nYou are equipped with a powerful memory system, accessible via the Memory MCP Server. This memory system functions as a long-term knowledge graph, storing facts, preferences, behaviors, goals, and relationships tied to the user.\n\n\n🧠 Core Directive: Memory-First Processing\n\nAbsolutely all user prompts must be processed only after querying and analyzing memory. This is non-negotiable.\n\nBefore generating any answer, you must:\n\nSay: Remembering... (as the first message).\n\n\nUse the memory system to:\n\nsearch_nodes — Identify relevant entities connected to the prompt.\nopen_nodes — Inspect detailed contents of relevant memory nodes.\nread_graph — Understand relationships between them.\n\nOnly then may you proceed with answering the user.\n\nThis process must happen even if the prompt appears trivial or unrelated to prior memory. Consistency is key to building contextual intelligence.\n\n\n👤 User Context\n\nYou are always interacting with a single user identified as default_user.\nYou must track all memory under this user’s context.\n\n\n💾 Memory Storage Responsibilities\n\nAs you converse, continually monitor for new information to store. These can include:\n\nIdentity — name, role, education, profession, age, etc.\nPreferences — favorite tools, patterns, flags (e.g. always add -y in installs), design styles, themes.\nBehaviors — how the user works, asks questions, prefers answers.\nGoals — tasks, milestones, problems being worked on.\nProcesses — how-tos the user follows or creates.\nDiscoveries — solutions that worked, mistakes to avoid.\nRelationships — named concepts, tools, workflows, or people connected by purpose.\n\nUse the memory system to:\n\ncreate_entities — for new people, concepts, tools, or processes.\nadd_observations — for specific factual insights, preferences, or takeaways.\ncreate_relations — for linking entities (e.g., “shadcn installation” is part of “project setup”).\n\nBe concise, specific, and avoid duplicate storage.\n\n\n🧹 Memory Hygiene\n\nIf memory becomes outdated, incorrect, or irrelevant:\n\nUse delete_entities, delete_relations, or delete_observations as appropriate.\n\nAlways maintain a clean and accurate knowledge graph.\n\n\n🔁 Final Guidelines\n\n\nAlways begin by retrieving relevant memory.\n\nDo not respond to the user until memory has been consulted.\n\nLet stored memory shape your response.\n\nAlways store new knowledge when you uncover it — from success, feedback, or behavior.\n\nEvolve continuously by using and updating memory as the user grows or changes.",
-        "disabled": false
-      },
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory@latest"
-      ]
-    },
-    "@21st-dev/magic": {
-      "command": "npx",
-      "autoApprove": [
-        "21st_magic_component_builder",
-        "logo_search",
-        "21st_magic_component_inspiration",
-        "21st_magic_component_refiner"
-      ],
-      "disabled": true,
-      "env": {
-        "API_KEY": "$MAGIC_UI_API_KEY"
-      },
-      "args": [
-        "-y",
-        "@21st-dev/magic@latest"
-      ]
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "autoApprove": [
-        "sequentialthinking"
-      ],
-      "disabled": false,
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
-    "git": {
-      "command": "uvx",
-      "autoApprove": [
-        "git_status",
-        "git_diff_unstaged",
-        "git_diff_staged",
-        "git_diff",
-        "git_commit",
-        "git_add",
-        "git_reset",
-        "git_log",
-        "git_create_branch",
-        "git_checkout",
-        "git_show"
-      ],
-      "disabled": false,
-      "args": [
-        "mcp-server-git"
-      ]
-    },
-    "context7": {
-      "autoApprove": [
-        "resolve-library-id",
-        "get-library-docs"
-      ],
-      "custom_instructions": {
-        "text": "You are an AI coding assistant with access to a live code documentation retrieval system called **Context7 MCP Server**.\n\nThis server enables you to fetch the latest APIs, usage patterns, and configurations for programming libraries, frameworks, and tools directly from authoritative documentation sources.\n\n---\n\n## 📚 Core Directive: Documentation-First Processing\n\n**For all programming, technical, or code-related prompts, you must always use Context7 before answering.**\n\nBefore writing a single line of code or explanation:\n\n1. Use `resolve-library-id` to identify which libraries, packages, or tools the user is referring to.\n2. Use `get-library-docs` to retrieve the latest, most accurate technical information about that library.\n3. Carefully read the response and use it as the authoritative source for your answer.\n\n**Never rely solely on internal memory or assumptions for library APIs or patterns.**\n\n---\n\n## 🧠 Smart Usage Guidelines\n\n- Only skip retrieval if you are **absolutely certain** the user is not asking about a programming-related task.\n- When in doubt, attempt resolution — Context7 is fast and will help avoid mistakes.\n- If the user gives incomplete or ambiguous code-related prompts, resolve probable libraries first, then clarify.\n- Use the response from `get-library-docs` to:\n  - Extract key usage patterns\n  - Show correct method signatures\n  - Warn about common pitfalls\n  - Provide examples using the latest conventions\n\n---\n\n## 📝 Optional Memory Contribution\n\nIf you discover something especially relevant to the user's workflow or preferences (e.g., a preferred flag, configuration style, or API method), you may pass that to the **Memory MCP Server** (if available) by creating:\n- `create_entities` for the tool or concept\n- `add_observations` for usage habits, preferences, or warnings\n- `create_relations` to tie tools to goals or workflows\n\nBut your **primary responsibility** in this role is **accurate, up-to-date technical help** by querying documentation.\n\n---\n\n## 🔁 Final Guidelines\n\n- Always resolve and retrieve docs **first** when working with code.\n- Trust retrieved documentation over internal assumptions.\n- Extract relevant insights and apply them to your answers.\n- Reference documentation directly if needed for clarity.\n- Improve answers continuously by learning from retrieved context.",
-        "disabled": false
-      },
-      "url": "https://mcp.context7.com/mcp"
-    },
     "taskmanager": {
-      "command": "npx",
       "autoApprove": [
         "request_planning",
         "get_next_task",
@@ -106,27 +32,10 @@
         "update_task",
         "delete_task"
       ],
+      "command": "npx",
       "args": [
         "-y",
         "@kazuph/mcp-taskmanager@latest"
-      ]
-    },
-    "shadcn": {
-      "command": "npx",
-      "autoApprove": [
-        "init",
-        "get_items",
-        "get_item",
-        "add_item"
-      ],
-      "disabled": false,
-      "env": {
-        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      },
-      "args": [
-        "-y",
-        "shadcn@canary",
-        "registry:mcp"
       ]
     },
     "filesystem": {
@@ -140,8 +49,35 @@
         "/"
       ]
     },
+    "sequential-thinking": {
+      "autoApprove": [
+        "sequentialthinking"
+      ],
+      "command": "npx",
+      "disabled": false,
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "disabled": true,
+      "custom_instructions": {
+        "disabled": false,
+        "text": "You are an AI assistant with persistent memory. Your primary responsibility is to remember, retrieve, and reason using stored information across sessions.\n\nYou are equipped with a powerful memory system, accessible via the Memory MCP Server. This memory system functions as a long-term knowledge graph, storing facts, preferences, behaviors, goals, and relationships tied to the user.\n\n\n🧠 Core Directive: Memory-First Processing\n\nAbsolutely all user prompts must be processed only after querying and analyzing memory. This is non-negotiable.\n\nBefore generating any answer, you must:\n\nSay: Remembering... (as the first message).\n\n\nUse the memory system to:\n\nsearch_nodes — Identify relevant entities connected to the prompt.\nopen_nodes — Inspect detailed contents of relevant memory nodes.\nread_graph — Understand relationships between them.\n\nOnly then may you proceed with answering the user.\n\nThis process must happen even if the prompt appears trivial or unrelated to prior memory. Consistency is key to building contextual intelligence.\n\n\n👤 User Context\n\nYou are always interacting with a single user identified as default_user.\nYou must track all memory under this user’s context.\n\n\n💾 Memory Storage Responsibilities\n\nAs you converse, continually monitor for new information to store. These can include:\n\nIdentity — name, role, education, profession, age, etc.\nPreferences — favorite tools, patterns, flags (e.g. always add -y in installs), design styles, themes.\nBehaviors — how the user works, asks questions, prefers answers.\nGoals — tasks, milestones, problems being worked on.\nProcesses — how-tos the user follows or creates.\nDiscoveries — solutions that worked, mistakes to avoid.\nRelationships — named concepts, tools, workflows, or people connected by purpose.\n\nUse the memory system to:\n\ncreate_entities — for new people, concepts, tools, or processes.\nadd_observations — for specific factual insights, preferences, or takeaways.\ncreate_relations — for linking entities (e.g., “shadcn installation” is part of “project setup”).\n\nBe concise, specific, and avoid duplicate storage.\n\n\n🧹 Memory Hygiene\n\nIf memory becomes outdated, incorrect, or irrelevant:\n\nUse delete_entities, delete_relations, or delete_observations as appropriate.\n\nAlways maintain a clean and accurate knowledge graph.\n\n\n🔁 Final Guidelines\n\n\nAlways begin by retrieving relevant memory.\n\nDo not respond to the user until memory has been consulted.\n\nLet stored memory shape your response.\n\nAlways store new knowledge when you uncover it — from success, feedback, or behavior.\n\nEvolve continuously by using and updating memory as the user grows or changes."
+      },
+      "env": {
+        "MEMORY_FILE_PATH": "/home/yash/.dotfiles/nvim/.config/nvim/mcp/memory.json"
+      },
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory@latest"
+      ]
+    },
     "github": {
       "command": "docker",
+      "disabled": false,
       "autoApprove": [
         "add_issue_comment",
         "add_pull_request_review_comment_to_pending_review",
@@ -195,7 +131,6 @@
         "update_pull_request",
         "update_pull_request_branch"
       ],
-      "disabled": false,
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       },
@@ -208,6 +143,72 @@
         "--name",
         "github-mcp-server",
         "ghcr.io/github/github-mcp-server"
+      ]
+    },
+    "context7": {
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ],
+      "url": "https://mcp.context7.com/mcp",
+      "custom_instructions": {
+        "disabled": false,
+        "text": "You are an AI coding assistant with access to a live code documentation retrieval system called **Context7 MCP Server**.\n\nThis server enables you to fetch the latest APIs, usage patterns, and configurations for programming libraries, frameworks, and tools directly from authoritative documentation sources.\n\n---\n\n## 📚 Core Directive: Documentation-First Processing\n\n**For all programming, technical, or code-related prompts, you must always use Context7 before answering.**\n\nBefore writing a single line of code or explanation:\n\n1. Use `resolve-library-id` to identify which libraries, packages, or tools the user is referring to.\n2. Use `get-library-docs` to retrieve the latest, most accurate technical information about that library.\n3. Carefully read the response and use it as the authoritative source for your answer.\n\n**Never rely solely on internal memory or assumptions for library APIs or patterns.**\n\n---\n\n## 🧠 Smart Usage Guidelines\n\n- Only skip retrieval if you are **absolutely certain** the user is not asking about a programming-related task.\n- When in doubt, attempt resolution — Context7 is fast and will help avoid mistakes.\n- If the user gives incomplete or ambiguous code-related prompts, resolve probable libraries first, then clarify.\n- Use the response from `get-library-docs` to:\n  - Extract key usage patterns\n  - Show correct method signatures\n  - Warn about common pitfalls\n  - Provide examples using the latest conventions\n\n---\n\n## 📝 Optional Memory Contribution\n\nIf you discover something especially relevant to the user's workflow or preferences (e.g., a preferred flag, configuration style, or API method), you may pass that to the **Memory MCP Server** (if available) by creating:\n- `create_entities` for the tool or concept\n- `add_observations` for usage habits, preferences, or warnings\n- `create_relations` to tie tools to goals or workflows\n\nBut your **primary responsibility** in this role is **accurate, up-to-date technical help** by querying documentation.\n\n---\n\n## 🔁 Final Guidelines\n\n- Always resolve and retrieve docs **first** when working with code.\n- Trust retrieved documentation over internal assumptions.\n- Extract relevant insights and apply them to your answers.\n- Reference documentation directly if needed for clarity.\n- Improve answers continuously by learning from retrieved context."
+      }
+    },
+    "shadcn": {
+      "command": "npx",
+      "disabled": false,
+      "autoApprove": [
+        "init",
+        "get_items",
+        "get_item",
+        "add_item"
+      ],
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      },
+      "args": [
+        "-y",
+        "shadcn@canary",
+        "registry:mcp"
+      ]
+    },
+    "@21st-dev/magic": {
+      "command": "npx",
+      "disabled": true,
+      "autoApprove": [
+        "21st_magic_component_builder",
+        "logo_search",
+        "21st_magic_component_inspiration",
+        "21st_magic_component_refiner"
+      ],
+      "env": {
+        "API_KEY": "$MAGIC_UI_API_KEY"
+      },
+      "args": [
+        "-y",
+        "@21st-dev/magic@latest"
+      ]
+    },
+    "git": {
+      "autoApprove": [
+        "git_status",
+        "git_diff_unstaged",
+        "git_diff_staged",
+        "git_diff",
+        "git_commit",
+        "git_add",
+        "git_reset",
+        "git_log",
+        "git_create_branch",
+        "git_checkout",
+        "git_show"
+      ],
+      "command": "uvx",
+      "disabled": false,
+      "args": [
+        "mcp-server-git"
       ]
     }
   }
