@@ -19,12 +19,35 @@ return {
   opts = {
     provider = "gemini",
     providers = {
-      gemini = {
-        -- model = "gemini-2.5-flash",
+      gemini_pro = {
+        __inherited_from = "gemini",
         model = "gemini-2.5-pro",
         extra_request_body = {
           temperature = 0.25,
         },
+      },
+      gemini_flash = {
+        __inherited_from = "gemini",
+        model = "gemini-2.5-flash",
+        extra_request_body = {
+          temperature = 0.25,
+        },
+      },
+      gemini_flash_lite = {
+        __inherited_from = "gemini",
+        model = "gemini-2.5-flash-lite-preview-06-17",
+        extra_request_body = {
+          temperature = 0.25,
+        },
+      },
+      copilot = {
+        hide_in_model_selector = true,
+      },
+      vertex = {
+        hide_in_model_selector = true,
+      },
+      vertex_claude = {
+        hide_in_model_selector = true,
       },
     },
     behaviour = {
@@ -43,12 +66,6 @@ return {
         require("mcphub.extensions.avante").mcp_tool(),
       }
     end,
-    input = {
-      provider = "snacks",
-    },
-    selector = {
-      provider = "snacks",
-    },
     windows = {
       width = 38,
     },
