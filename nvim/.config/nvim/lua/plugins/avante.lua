@@ -69,6 +69,12 @@ return {
     windows = {
       width = 38,
     },
+    input = {
+      provider = "snacks",
+    },
+    selector = {
+      provider = "snacks",
+    },
   },
   keys = {
     { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear chat" },
