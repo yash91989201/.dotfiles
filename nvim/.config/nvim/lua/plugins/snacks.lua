@@ -4,6 +4,7 @@ return {
     picker = {
       sources = {
         explorer = {
+          include = { "*.env*" },
           win = {
             list = {
               wo = {
