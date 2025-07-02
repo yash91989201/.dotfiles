@@ -17,7 +17,7 @@ return {
     },
   },
   opts = {
-    provider = "gemini",
+    provider = "gemini_flash",
     providers = {
       gemini_pro = {
         __inherited_from = "gemini",
@@ -67,7 +67,10 @@ return {
       }
     end,
     windows = {
-      width = 38,
+      width = 42,
+      input = {
+        height = 12,
+      },
     },
     input = {
       provider = "snacks",
