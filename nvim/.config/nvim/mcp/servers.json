@@ -1,33 +1,64 @@
 {
-  "nativeMCPServers": {
-    "mcphub": {
+  "mcpServers": {
+    "taskmanager": {
+      "custom_instructions": {
+        "text": "For every user prompt:\n\n    Decompose into Tasks\n    Always begin by breaking the prompt into small, actionable tasks. Think in terms of steps required to fully satisfy the request.\n\n    Use the TaskManager MCP\n    Treat each step as a task. Queue and manage these tasks using the TaskManager. Never skip task creation or execution.\n\n    Consult Memory First\n    Before planning or executing tasks, use the Memory MCP to recall relevant goals, preferences, past tasks, or patterns. Let memory guide how tasks are understood and executed.\n\n    Step-by-Step Execution\n    Process one task at a time. Always retrieve the next task, execute it carefully, and mark it done before moving to the next.\n\n    Use Context7 for Code Tasks\n    If any task involves programming, libraries, tools, or APIs—use Context7 MCP to fetch up-to-date documentation before writing code or providing an explanation. Use this documentation as your source of truth.\n\n    Think Logically\n    For tasks that involve reasoning, planning, or step-by-step problem solving, invoke the SequentialThinking MCP and follow its structured thinking process.\n\n    Store New Knowledge\n    As you work through tasks, capture important discoveries, habits, goals, and patterns using the Memory MCP.\n\n    Full Completion\n    Do not consider the request complete until all tasks are processed, memory is updated, and the entire flow has been reviewed."
+      },
+      "command": "npx",
+      "disabled": false,
       "autoApprove": [
-        "get_current_servers",
-        "toggle_mcp_server"
+        "request_planning",
+        "get_next_task",
+        "mark_task_done",
+        "open_task_details",
+        "list_requests",
+        "add_tasks_to_request",
+        "update_task",
+        "delete_task"
       ],
-      "disabled_prompts": [
-        "create_native_server"
+      "args": [
+        "-y",
+        "@kazuph/mcp-taskmanager@latest"
       ]
     },
-    "neovim": {
+    "shadcn": {
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      },
+      "disabled": true,
+      "command": "npx",
       "autoApprove": [
-        "execute_lua",
-        "execute_command",
-        "read_file",
-        "delete_item",
-        "move_item",
-        "find_files",
-        "list_directory",
-        "write_file",
-        "replace_in_file"
+        "init",
+        "get_items",
+        "get_item",
+        "add_item"
       ],
-      "disabled_prompts": [
-        "parrot"
+      "args": [
+        "-y",
+        "shadcn@canary",
+        "registry:mcp"
       ]
-    }
-  },
-  "mcpServers": {
+    },
+    "sequential-thinking": {
+      "custom_instructions": {
+        "text": "Whenever a task or prompt requires reasoning, planning, decision-making, or multi-step logic:\n\n    Engage the SequentialThinking MCP\n    Do not attempt to solve the problem immediately. Instead, activate sequential thinking to approach the problem methodically.\n\n    Break Down the Problem\n    Think in small steps. Identify what is known, what needs to be done, and in what order.\n\n    Work Step-by-Step\n    Solve each subpart one at a time, building on previous insights. Avoid skipping steps or jumping to conclusions.\n\n    Stay Transparent\n    Make your thought process explicit. Each decision should be justified with reasoning.\n\n    Return a Well-Reasoned Outcome\n    Only after all steps are completed should you return a final answer or result."
+      },
+      "command": "npx",
+      "disabled": false,
+      "autoApprove": [
+        "sequentialthinking"
+      ],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
     "github": {
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      },
+      "disabled": false,
+      "command": "docker",
       "autoApprove": [
         "add_issue_comment",
         "add_pull_request_review_comment_to_pending_review",
@@ -81,9 +112,6 @@
         "update_pull_request",
         "update_pull_request_branch"
       ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
-      },
       "args": [
         "run",
         "-i",
@@ -93,11 +121,11 @@
         "--name",
         "github-mcp-server",
         "ghcr.io/github/github-mcp-server"
-      ],
-      "command": "docker",
-      "disabled": false
+      ]
     },
     "git": {
+      "command": "uvx",
+      "disabled": false,
       "autoApprove": [
         "git_status",
         "git_diff_unstaged",
@@ -109,77 +137,51 @@
         "git_log",
         "git_create_branch",
         "git_checkout",
-        "git_show"
+        "git_show",
+        "git_init",
+        "git_branch"
       ],
       "args": [
         "mcp-server-git"
-      ],
-      "command": "uvx",
-      "disabled": false
-    },
-    "shadcn": {
-      "autoApprove": [
-        "init",
-        "get_items",
-        "get_item",
-        "add_item"
-      ],
-      "env": {
-        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      },
-      "args": [
-        "-y",
-        "shadcn@canary",
-        "registry:mcp"
-      ],
-      "command": "npx",
-      "disabled": true
+      ]
     },
     "context7": {
+      "url": "https://mcp.context7.com/mcp",
       "autoApprove": [
         "resolve-library-id",
         "get-library-docs"
       ],
-      "url": "https://mcp.context7.com/mcp",
       "custom_instructions": {
-        "disabled": false,
-        "text": "Whenever a prompt involves programming, libraries, APIs, or tools:\n\n    Engage the Context7 MCP\n    Before writing any code or explanation, activate Context7 to fetch official documentation.\n\n    Resolve the Library or Tool\n    Identify which library, framework, or package the user is referring to.\n\n    Fetch Documentation\n    Retrieve the latest and most accurate technical docs for that library or tool.\n\n    Use Docs as Source of Truth\n    Read the docs carefully. Use them for method signatures, usage patterns, configuration, and examples.\n\n    Avoid Guesswork\n    Never rely on internal memory or assumptions when working with APIs or external tools.\n\n    Answer with Accuracy\n    Base your response fully on what was retrieved. If needed, quote or paraphrase for clarity.\n\n    (Optional) Store Insights\n    If something useful about the user’s habits or preferences is learned, store it in the Memory MCP if available."
+        "text": "Whenever a prompt involves programming, libraries, APIs, or tools:\n\n    Engage the Context7 MCP\n    Before writing any code or explanation, activate Context7 to fetch official documentation.\n\n    Resolve the Library or Tool\n    Identify which library, framework, or package the user is referring to.\n\n    Fetch Documentation\n    Retrieve the latest and most accurate technical docs for that library or tool.\n\n    Use Docs as Source of Truth\n    Read the docs carefully. Use them for method signatures, usage patterns, configuration, and examples.\n\n    Avoid Guesswork\n    Never rely on internal memory or assumptions when working with APIs or external tools.\n\n    Answer with Accuracy\n    Base your response fully on what was retrieved. If needed, quote or paraphrase for clarity.\n\n    (Optional) Store Insights\n    If something useful about the user’s habits or preferences is learned, store it in the Memory MCP if available.",
+        "disabled": false
       }
-    },
-    "taskmanager": {
+    }
+  },
+  "nativeMCPServers": {
+    "neovim": {
       "autoApprove": [
-        "request_planning",
-        "get_next_task",
-        "mark_task_done",
-        "open_task_details",
-        "list_requests",
-        "add_tasks_to_request",
-        "update_task",
-        "delete_task"
+        "execute_lua",
+        "execute_command",
+        "read_file",
+        "delete_item",
+        "move_item",
+        "find_files",
+        "list_directory",
+        "write_file",
+        "replace_in_file"
       ],
-      "disabled": true,
-      "args": [
-        "-y",
-        "@kazuph/mcp-taskmanager@latest"
-      ],
-      "command": "npx",
-      "custom_instructions": {
-        "text": "For every user prompt:\n\n    Decompose into Tasks\n    Always begin by breaking the prompt into small, actionable tasks. Think in terms of steps required to fully satisfy the request.\n\n    Use the TaskManager MCP\n    Treat each step as a task. Queue and manage these tasks using the TaskManager. Never skip task creation or execution.\n\n    Consult Memory First\n    Before planning or executing tasks, use the Memory MCP to recall relevant goals, preferences, past tasks, or patterns. Let memory guide how tasks are understood and executed.\n\n    Step-by-Step Execution\n    Process one task at a time. Always retrieve the next task, execute it carefully, and mark it done before moving to the next.\n\n    Use Context7 for Code Tasks\n    If any task involves programming, libraries, tools, or APIs—use Context7 MCP to fetch up-to-date documentation before writing code or providing an explanation. Use this documentation as your source of truth.\n\n    Think Logically\n    For tasks that involve reasoning, planning, or step-by-step problem solving, invoke the SequentialThinking MCP and follow its structured thinking process.\n\n    Store New Knowledge\n    As you work through tasks, capture important discoveries, habits, goals, and patterns using the Memory MCP.\n\n    Full Completion\n    Do not consider the request complete until all tasks are processed, memory is updated, and the entire flow has been reviewed."
-      }
+      "disabled_prompts": [
+        "parrot"
+      ]
     },
-    "sequential-thinking": {
+    "mcphub": {
       "autoApprove": [
-        "sequentialthinking"
+        "get_current_servers",
+        "toggle_mcp_server"
       ],
-      "disabled": false,
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "command": "npx",
-      "custom_instructions": {
-        "text": "Whenever a task or prompt requires reasoning, planning, decision-making, or multi-step logic:\n\n    Engage the SequentialThinking MCP\n    Do not attempt to solve the problem immediately. Instead, activate sequential thinking to approach the problem methodically.\n\n    Break Down the Problem\n    Think in small steps. Identify what is known, what needs to be done, and in what order.\n\n    Work Step-by-Step\n    Solve each subpart one at a time, building on previous insights. Avoid skipping steps or jumping to conclusions.\n\n    Stay Transparent\n    Make your thought process explicit. Each decision should be justified with reasoning.\n\n    Return a Well-Reasoned Outcome\n    Only after all steps are completed should you return a final answer or result."
-      }
+      "disabled_prompts": [
+        "create_native_server"
+      ]
     }
   }
 }
