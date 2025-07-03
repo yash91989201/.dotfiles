@@ -1,3 +1,36 @@
 {
-  "requests": []
+  "requests": [
+    {
+      "requestId": "req-1",
+      "originalRequest": "Test all taskmanager MCP tools.",
+      "splitDetails": "Test all taskmanager MCP tools.",
+      "tasks": [
+        {
+          "id": "task-1",
+          "title": "Initial Task 1",
+          "description": "This is the first task for testing.",
+          "done": true,
+          "approved": true,
+          "completedDetails": "Completed Initial Task 1 as part of testing."
+        },
+        {
+          "id": "task-2",
+          "title": "Updated Initial Task 2",
+          "description": "This task has been modified.",
+          "done": true,
+          "approved": true,
+          "completedDetails": "Completed Updated Initial Task 2."
+        },
+        {
+          "id": "task-3",
+          "title": "Added Task 1",
+          "description": "This is an additional task.",
+          "done": true,
+          "approved": true,
+          "completedDetails": "Completed Added Task 1."
+        }
+      ],
+      "completed": true
+    }
+  ]
 }
