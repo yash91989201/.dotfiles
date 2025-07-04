@@ -67,9 +67,9 @@ return {
       }
     end,
     windows = {
-      width = 42,
+      width = 34,
       input = {
-        height = 12,
+        height = 10,
       },
     },
     input = {
