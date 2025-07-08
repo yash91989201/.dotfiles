@@ -43,6 +43,12 @@ return {
         display_name = "copilot/gpt-4.1",
         hide_in_model_selector = false,
       },
+      ["gpt-4.1-mini"] = {
+        __inherited_from = "copilot",
+        model = "gpt-4.1-mini",
+        display_name = "copilot/gpt-4.1-mini",
+        hide_in_model_selector = false,
+      },
       ["gpt-4o"] = {
         __inherited_from = "copilot",
         model = "gpt-4o",
@@ -73,11 +79,6 @@ return {
         __inherited_from = "openai",
         model = "gpt-4.1",
         display_name = "openai/gpt-4.1",
-      },
-      ["openai-gpt-4-1-mini"] = {
-        __inherited_from = "openai",
-        model = "gpt-4.1-mini",
-        display_name = "openai/gpt-4.1-mini",
       },
       gemini_pro = {
         __inherited_from = "gemini",
