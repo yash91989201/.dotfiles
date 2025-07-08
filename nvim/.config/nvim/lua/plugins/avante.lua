@@ -17,7 +17,7 @@ return {
     },
   },
   opts = {
-    provider = "gemini_pro",
+    provider = "gpt-4.1",
     providers = {
       copilot = {
         hide_in_model_selector = true,
@@ -29,6 +29,12 @@ return {
         __inherited_from = "copilot",
         model = "claude-3.5-sonnet",
         display_name = "copilot/claude-3.5-sonnet",
+        hide_in_model_selector = false,
+      },
+      ["claude-3.7-sonnet"] = {
+        __inherited_from = "copilot",
+        model = "claude-3.7-sonnet",
+        display_name = "copilot/claude-3.7-sonnet",
         hide_in_model_selector = false,
       },
       ["gpt-4"] = {
