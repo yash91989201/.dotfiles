@@ -17,7 +17,7 @@ return {
     },
   },
   opts = {
-    provider = "claude-3.5-sonnet",
+    provider = "gemini_pro",
     providers = {
       copilot = {
         hide_in_model_selector = true,
@@ -68,6 +68,16 @@ return {
       ["openai-gpt-4o-mini"] = {
         model = "gpt-4o-mini",
         display_name = "openai/gpt-4o-mini",
+      },
+      ["openai-gpt-4-1"] = {
+        __inherited_from = "openai",
+        model = "gpt-4.1",
+        display_name = "openai/gpt-4.1",
+      },
+      ["openai-gpt-4-1-mini"] = {
+        __inherited_from = "openai",
+        model = "gpt-4.1-mini",
+        display_name = "openai/gpt-4.1-mini",
       },
       gemini_pro = {
         __inherited_from = "gemini",
