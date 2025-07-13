@@ -9,6 +9,6 @@ return {
     auto_approve = true,
   },
   keys = {
-    { "<leader>cH", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
+    { "<leader>ch", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
   },
 }
