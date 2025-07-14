@@ -1,12 +1,8 @@
 {
   "nativeMCPServers": {
     "mcphub": {
-      "disabled_resources": [
-        
-      ],
-      "disabled_tools": [
-        
-      ],
+      "disabled_resources": [],
+      "disabled_tools": [],
       "disabled": false,
       "disabled_prompts": [
         "create_native_server"
