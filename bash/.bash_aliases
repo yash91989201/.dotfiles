@@ -29,3 +29,5 @@ alias ee='cd ~/.dotfiles/nvim/.config/nvim && nvim'
 alias lg="lazygit"
 
 alias ld="lazydocker"
+
+alias oc="opencode"
