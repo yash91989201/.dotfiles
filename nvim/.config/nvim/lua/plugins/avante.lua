@@ -17,7 +17,7 @@ return {
     },
   },
   opts = {
-    provider = "gpt-4.1",
+    provider = "copilot-gpt-4.1",
     providers = {
       claude = {
         hide_in_model_selector = true,
@@ -34,67 +34,67 @@ return {
       vertex_claude = {
         hide_in_model_selector = true,
       },
-      claude_3_opus = {
+      ["claude-haiku-3.5"] = {
         __inherited_from = "claude",
-        model = "claude-3-opus-20240229",
-        display_name = "claude/claude-3-opus",
+        model = "claude-3-5-haiku-20241022",
+        display_name = "claude/claude-3.5-haiku",
         hide_in_model_selector = false,
       },
-      claude_sonnet_4 = {
+      ["claude-sonnet-4"] = {
         __inherited_from = "claude",
         model = "claude-sonnet-4-20250514",
         display_name = "claude/claude-sonnet-4",
         hide_in_model_selector = false,
       },
-      ["claude-3.5-sonnet"] = {
+      ["copilot-claude-3.5-sonnet"] = {
         __inherited_from = "copilot",
         model = "claude-3.5-sonnet",
         display_name = "copilot/claude-3.5-sonnet",
         hide_in_model_selector = false,
       },
-      ["claude-3.7-sonnet"] = {
+      ["copilot-claude-3.7-sonnet"] = {
         __inherited_from = "copilot",
         model = "claude-3.7-sonnet",
         display_name = "copilot/claude-3.7-sonnet",
         hide_in_model_selector = false,
       },
-      ["claude-sonnet-4"] = {
+      ["copilot-claude-sonnet-4"] = {
         __inherited_from = "copilot",
         model = "claude-sonnet-4",
         display_name = "copilot/claude-sonnet-4",
         hide_in_model_selector = false,
       },
-      ["gpt-4"] = {
+      ["copilot-gpt-4"] = {
         __inherited_from = "copilot",
         model = "gpt-4",
         display_name = "copilot/gpt-4",
         hide_in_model_selector = false,
       },
-      ["gpt-4.1"] = {
+      ["copilot-gpt-4.1"] = {
         __inherited_from = "copilot",
         model = "gpt-4.1",
         display_name = "copilot/gpt-4.1",
         hide_in_model_selector = false,
       },
-      ["gpt-4.1-mini"] = {
+      ["copilot-gpt-4.1-mini"] = {
         __inherited_from = "copilot",
         model = "gpt-4.1-mini",
         display_name = "copilot/gpt-4.1-mini",
         hide_in_model_selector = false,
       },
-      ["gpt-4o"] = {
+      ["copilot-gpt-4o"] = {
         __inherited_from = "copilot",
         model = "gpt-4o",
         display_name = "copilot/gpt-4o",
         hide_in_model_selector = false,
       },
-      ["gpt-4o-mini"] = {
+      ["copilot-gpt-4o-mini"] = {
         __inherited_from = "copilot",
         model = "gpt-4o-mini",
         display_name = "copilot/gpt-4o-mini",
         hide_in_model_selector = false,
       },
-      ["o3-mini"] = {
+      ["copilot-o3-mini"] = {
         __inherited_from = "copilot",
         model = "o3-mini",
         display_name = "copilot/o3-mini",
