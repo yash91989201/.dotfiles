@@ -19,11 +19,32 @@ return {
   opts = {
     provider = "gpt-4.1",
     providers = {
+      claude = {
+        hide_in_model_selector = true,
+      },
       copilot = {
         hide_in_model_selector = true,
       },
       gemini = {
         hide_in_model_selector = true,
+      },
+      vertex = {
+        hide_in_model_selector = true,
+      },
+      vertex_claude = {
+        hide_in_model_selector = true,
+      },
+      claude_3_opus = {
+        __inherited_from = "claude",
+        model = "claude-3-opus-20240229",
+        display_name = "claude/claude-3-opus",
+        hide_in_model_selector = false,
+      },
+      claude_sonnet_4 = {
+        __inherited_from = "claude",
+        model = "claude-sonnet-4-20250514",
+        display_name = "claude/claude-sonnet-4",
+        hide_in_model_selector = false,
       },
       ["claude-3.5-sonnet"] = {
         __inherited_from = "copilot",
@@ -35,6 +56,12 @@ return {
         __inherited_from = "copilot",
         model = "claude-3.7-sonnet",
         display_name = "copilot/claude-3.7-sonnet",
+        hide_in_model_selector = false,
+      },
+      ["claude-sonnet-4"] = {
+        __inherited_from = "copilot",
+        model = "claude-sonnet-4",
+        display_name = "copilot/claude-sonnet-4",
         hide_in_model_selector = false,
       },
       ["gpt-4"] = {
@@ -112,12 +139,6 @@ return {
         extra_request_body = {
           temperature = 0,
         },
-      },
-      vertex = {
-        hide_in_model_selector = true,
-      },
-      vertex_claude = {
-        hide_in_model_selector = true,
       },
     },
     behaviour = {

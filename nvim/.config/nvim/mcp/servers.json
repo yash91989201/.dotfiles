@@ -41,7 +41,7 @@
       },
       "url": "https://api.githubcopilot.com/mcp/"
     },
-    "sequential-thinking": {
+    "sequentialthinking": {
       "args": [
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
@@ -49,11 +49,7 @@
       "autoApprove": [
         "sequentialthinking"
       ],
-      "command": "npx",
-      "custom_instructions": {
-        "text": "Whenever a task or prompt requires reasoning, planning, decision-making, or multi-step logic:\n\n    Engage the SequentialThinking MCP\n    Do not attempt to solve the problem immediately. Instead, activate sequential thinking to approach the problem methodically.\n\n    Break Down the Problem\n    Think in small steps. Identify what is known, what needs to be done, and in what order.\n\n    Work Step-by-Step\n    Solve each subpart one at a time, building on previous insights. Avoid skipping steps or jumping to conclusions.\n\n    Stay Transparent\n    Make your thought process explicit. Each decision should be justified with reasoning.\n\n    Return a Well-Reasoned Outcome\n    Only after all steps are completed should you return a final answer or result."
-      },
-      "disabled": false
+      "command": "npx"
     },
     "taskmanager": {
       "args": [
