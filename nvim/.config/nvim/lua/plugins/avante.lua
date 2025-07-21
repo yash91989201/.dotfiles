@@ -148,7 +148,7 @@ return {
       auto_set_highlight_group = true,
       auto_apply_diff_after_generation = true,
       auto_approve_tool_permissions = true,
-      enable_fastapply = true,
+      enable_fastapply = false,
     },
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()
