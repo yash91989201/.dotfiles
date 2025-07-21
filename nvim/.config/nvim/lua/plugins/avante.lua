@@ -19,6 +19,9 @@ return {
   opts = {
     provider = "copilot-gpt-4.1",
     providers = {
+      morph = {
+        model = "morph-v3-fast",
+      },
       claude = {
         hide_in_model_selector = true,
       },
@@ -119,7 +122,7 @@ return {
         model = "gemini-2.5-pro",
         hide_in_model_selector = false,
         extra_request_body = {
-          temperature = 0,
+          temperature = 0.75,
         },
       },
       gemini_flash = {
@@ -128,7 +131,7 @@ return {
         model = "gemini-2.5-flash",
         hide_in_model_selector = false,
         extra_request_body = {
-          temperature = 0,
+          temperature = 0.75,
         },
       },
       gemini_flash_lite = {
@@ -137,16 +140,15 @@ return {
         model = "gemini-2.5-flash-lite-preview-06-17",
         hide_in_model_selector = false,
         extra_request_body = {
-          temperature = 0,
+          temperature = 0.75,
         },
       },
     },
     behaviour = {
-      auto_set_keymaps = true,
-      auto_suggestions = false,
       auto_set_highlight_group = true,
-      support_paste_from_clipboard = true,
-      auto_apply_diff_after_generation = false,
+      auto_apply_diff_after_generation = true,
+      auto_approve_tool_permissions = true,
+      enable_fastapply = true,
     },
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()

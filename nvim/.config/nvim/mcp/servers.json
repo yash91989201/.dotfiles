@@ -6,7 +6,7 @@
         "get-library-docs"
       ],
       "custom_instructions": {
-        "disabled": true,
+        "disabled": false,
         "text": "Whenever a prompt involves programming, libraries, APIs, or tools:\n\n    Engage the Context7 MCP\n    Before writing any code or explanation, activate Context7 to fetch official documentation.\n\n    Resolve the Library or Tool\n    Identify which library, framework, or package the user is referring to.\n\n    Fetch Documentation\n    Retrieve the latest and most accurate technical docs for that library or tool.\n\n    Use Docs as Source of Truth\n    Read the docs carefully. Use them for method signatures, usage patterns, configuration, and examples.\n\n    Avoid Guesswork\n    Never rely on internal memory or assumptions when working with APIs or external tools.\n\n    Answer with Accuracy\n    Base your response fully on what was retrieved. If needed, quote or paraphrase for clarity.\n\n    (Optional) Store Insights\n    If something useful about the user’s habits or preferences is learned, store it in the Memory MCP if available."
       },
       "disabled": false,
@@ -33,6 +33,9 @@
       ],
       "command": "uvx",
       "disabled": true
+    },
+    "grep": {
+      "url": "https://mcp.grep.app"
     },
     "github": {
       "disabled": true,
