@@ -31,3 +31,5 @@ alias lg="lazygit"
 alias ld="lazydocker"
 
 alias oc="opencode"
+
+alias claude="/home/yash/.claude/local/claude"

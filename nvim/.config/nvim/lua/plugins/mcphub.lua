@@ -1,7 +1,9 @@
 return {
   "ravitemer/mcphub.nvim",
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
   },
   build = "npm install -g mcp-hub@latest",
   opts = {

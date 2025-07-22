@@ -34,15 +34,16 @@
       "command": "uvx",
       "disabled": true
     },
-    "grep": {
-      "url": "https://mcp.grep.app"
-    },
     "github": {
       "disabled": true,
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
       "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "grep": {
+      "disabled": true,
+      "url": "https://mcp.grep.app"
     },
     "sequentialthinking": {
       "args": [
