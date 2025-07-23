@@ -159,6 +159,14 @@ return {
         require("mcphub.extensions.avante").mcp_tool(),
       }
     end,
+    shortcuts = {
+      {
+        name = "cnp",
+        description = "Commit and push all staged and unstaged changes in the current repository.",
+        details = "Automatically detects all modified files, summarizes the changes, generates a concise commit message, commits, and pushes to the remote repository (e.g., GitHub) in one step.",
+        prompt = "Detect all staged and unstaged changes in the current git repository. Summarize the changes and generate a descriptive commit message. Commit all the changes and push them to the remote repository.",
+      },
+    },
     windows = {
       width = 36,
       input = {
