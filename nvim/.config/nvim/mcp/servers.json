@@ -35,7 +35,7 @@
       "disabled": true
     },
     "github": {
-      "disabled": true,
+      "disabled": false,
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
@@ -53,7 +53,36 @@
       "autoApprove": [
         "sequentialthinking"
       ],
-      "command": "npx"
+      "command": "npx",
+      "disabled": false
+    },
+    "shadcn-theme": {
+      "args": [
+        "-y",
+        "shadcn@latest",
+        "registry:mcp"
+      ],
+      "autoApprove": [
+        "init",
+        "get_items",
+        "get_item",
+        "add_item"
+      ],
+      "command": "npx",
+      "disabled": false,
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      }
+    },
+    "shadcn-ui": {
+      "args": [
+        "@jpisnice/shadcn-ui-mcp-server"
+      ],
+      "command": "npx",
+      "disabled": true,
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
     },
     "taskmanager": {
       "args": [
