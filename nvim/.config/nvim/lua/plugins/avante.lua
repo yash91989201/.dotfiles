@@ -162,9 +162,9 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Commit and push all staged and unstaged changes in the current repository.",
-        details = "Automatically detects all modified files, summarizes the changes, generates a concise commit message, commits, and pushes to the remote repository (e.g., GitHub) in one step.",
-        prompt = "Detect all staged and unstaged changes in the current git repository. Summarize the changes and generate a descriptive commit message. Commit all the changes and push them to the remote repository.",
+        description = "Commit and push all staged and unstaged changes in the current Git repository.",
+        details = "Detects all file changes, summarizes them, generates a meaningful commit message, commits, and pushes to the remote repository in one step.",
+        prompt = "Detect all staged and unstaged changes in the current Git repository. Summarize the changes and generate a concise, descriptive commit message. Then commit and push all changes to the remote repository.",
       },
     },
     windows = {

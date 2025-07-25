@@ -32,10 +32,10 @@
         "git_branch"
       ],
       "command": "uvx",
-      "disabled": true
+      "disabled": false
     },
     "github": {
-      "disabled": false,
+      "disabled": true,
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
@@ -69,7 +69,7 @@
         "add_item"
       ],
       "command": "npx",
-      "disabled": false,
+      "disabled": true,
       "env": {
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
       }
