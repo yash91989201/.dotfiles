@@ -30,9 +30,10 @@ alias lg="lazygit"
 
 alias ld="lazydocker"
 
-alias oc="opencode"
+alias claude="/home/yash/.claude/local/claude"
 
-alias claude="~/.claude/local/claude"
+alias tm='task-master'
+alias taskmaster='task-master'
 
 alias cnvm1="sudo sh -c 'echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"
 alias cnvm0="sudo sh -c 'echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"

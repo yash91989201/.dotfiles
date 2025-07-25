@@ -1,5 +1,19 @@
 {
   "mcpServers": {
+    "claude-code": {
+      "args": [
+        "-y",
+        "@steipete/claude-code-mcp@latest"
+      ],
+      "autoApprove": [
+        "claude_code"
+      ],
+      "command": "npx",
+      "disabled": true,
+      "env": {
+        "CLAUDE_CLI_NAME": "claude-code"
+      }
+    },
     "context7": {
       "autoApprove": [
         "resolve-library-id",
@@ -7,7 +21,7 @@
       ],
       "custom_instructions": {
         "disabled": false,
-        "text": "Whenever a prompt involves programming, libraries, APIs, or tools:\n\n    Engage the Context7 MCP\n    Before writing any code or explanation, activate Context7 to fetch official documentation.\n\n    Resolve the Library or Tool\n    Identify which library, framework, or package the user is referring to.\n\n    Fetch Documentation\n    Retrieve the latest and most accurate technical docs for that library or tool.\n\n    Use Docs as Source of Truth\n    Read the docs carefully. Use them for method signatures, usage patterns, configuration, and examples.\n\n    Avoid Guesswork\n    Never rely on internal memory or assumptions when working with APIs or external tools.\n\n    Answer with Accuracy\n    Base your response fully on what was retrieved. If needed, quote or paraphrase for clarity.\n\n    (Optional) Store Insights\n    If something useful about the user’s habits or preferences is learned, store it in the Memory MCP if available."
+        "text": "Whenever a prompt involves programming, libraries, APIs, or tools:\n\n    Engage the Context7 MCP\n    Before writing any code or explanation, activate Context7 to fetch official documentation.\n\n    Resolve the Library or Tool\n    Identify which library, framework, or package the user is referring to.\n\n    Fetch Documentation\n    Retrieve the latest and most accurate technical docs for that library or tool.\n\n    Use Docs as Source of Truth\n    Read the docs carefully. Use them for method signatures, usage patterns, configuration, and examples.\n\n    Avoid Guesswork\n    Never rely on internal memory or assumptions when working with APIs or external tools.\n\n    Answer with Accuracy\n    Base your response fully on what was retrieved. If needed, quote or paraphrase for clarity."
       },
       "disabled": false,
       "url": "https://mcp.context7.com/mcp"
@@ -32,16 +46,94 @@
         "git_branch"
       ],
       "command": "uvx",
-      "disabled": false
+      "disabled": true
     },
     "github": {
+      "autoApprove": [
+        "assign_copilot_to_issue",
+        "create_pull_request_with_copilot",
+        "get_commit",
+        "list_commits",
+        "request_copilot_review"
+      ],
       "disabled": true,
+      "disabled_tools": [
+        "add_comment_to_pending_review",
+        "add_issue_comment",
+        "cancel_workflow_run",
+        "create_and_submit_pull_request_review",
+        "create_or_update_file",
+        "create_pending_pull_request_review",
+        "create_pull_request",
+        "create_repository",
+        "delete_file",
+        "delete_pending_pull_request_review",
+        "delete_workflow_run_logs",
+        "dismiss_notification",
+        "download_workflow_run_artifact",
+        "fork_repository",
+        "get_code_scanning_alert",
+        "get_dependabot_alert",
+        "get_discussion",
+        "get_discussion_comments",
+        "get_file_contents",
+        "get_issue",
+        "get_issue_comments",
+        "get_job_logs",
+        "get_me",
+        "get_notification_details",
+        "get_pull_request",
+        "get_pull_request_comments",
+        "get_pull_request_diff",
+        "get_pull_request_files",
+        "get_pull_request_reviews",
+        "get_pull_request_status",
+        "get_secret_scanning_alert",
+        "get_tag",
+        "get_workflow_run",
+        "get_workflow_run_logs",
+        "get_workflow_run_usage",
+        "list_code_scanning_alerts",
+        "list_dependabot_alerts",
+        "list_discussion_categories",
+        "list_discussions",
+        "list_issues",
+        "list_notifications",
+        "list_pull_requests",
+        "list_secret_scanning_alerts",
+        "list_tags",
+        "list_workflow_jobs",
+        "list_workflow_run_artifacts",
+        "list_workflow_runs",
+        "list_workflows",
+        "manage_notification_subscription",
+        "manage_repository_notification_subscription",
+        "mark_all_notifications_read",
+        "merge_pull_request",
+        "push_files",
+        "rerun_failed_jobs",
+        "rerun_workflow_run",
+        "run_workflow",
+        "search_code",
+        "search_issues",
+        "search_orgs",
+        "search_pull_requests",
+        "search_repositories",
+        "search_users",
+        "submit_pending_pull_request_review",
+        "update_issue",
+        "update_pull_request",
+        "update_pull_request_branch"
+      ],
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
       "url": "https://api.githubcopilot.com/mcp/"
     },
     "grep": {
+      "autoApprove": [
+        "searchGitHub"
+      ],
       "disabled": true,
       "url": "https://mcp.grep.app"
     },
@@ -106,6 +198,18 @@
         "text": "For every user prompt:\n\n    Decompose into Tasks\n    Always begin by breaking the prompt into small, actionable tasks. Think in terms of steps required to fully satisfy the request.\n\n    Use the TaskManager MCP\n    Treat each step as a task. Queue and manage these tasks using the TaskManager. Never skip task creation or execution.\n\n    Consult Memory First\n    Before planning or executing tasks, use the Memory MCP to recall relevant goals, preferences, past tasks, or patterns. Let memory guide how tasks are understood and executed.\n\n    Step-by-Step Execution\n    Process one task at a time. Always retrieve the next task, execute it carefully, and mark it done before moving to the next.\n\n    Use Context7 for Code Tasks\n    If any task involves programming, libraries, tools, or APIs—use Context7 MCP to fetch up-to-date documentation before writing code or providing an explanation. Use this documentation as your source of truth.\n\n    Think Logically\n    For tasks that involve reasoning, planning, or step-by-step problem solving, invoke the SequentialThinking MCP and follow its structured thinking process.\n\n    Store New Knowledge\n    As you work through tasks, capture important discoveries, habits, goals, and patterns using the Memory MCP.\n\n    Full Completion\n    Do not consider the request complete until all tasks are processed, memory is updated, and the entire flow has been reviewed."
       },
       "disabled": true
+    },
+    "taskmaster-ai": {
+      "args": [
+        "-y",
+        "--package=task-master-ai",
+        "task-master-ai"
+      ],
+      "command": "npx",
+      "disabled": true,
+      "env": {
+        "OPENAI_API_KEY": ""
+      }
     }
   },
   "nativeMCPServers": {

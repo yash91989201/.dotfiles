@@ -176,8 +176,5 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-# opencode
-export PATH=/home/yash/.opencode/bin:$PATH
-
 # claude
 export PATH=/home/yash/.claude/local:$PATH
