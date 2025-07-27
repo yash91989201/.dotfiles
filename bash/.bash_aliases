@@ -37,3 +37,5 @@ alias taskmaster='task-master'
 
 alias cnvm1="sudo sh -c 'echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"
 alias cnvm0="sudo sh -c 'echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"
+
+alias ccusage='while true; do clear; bunx ccusage; sleep 5; done'
