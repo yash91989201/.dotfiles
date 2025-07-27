@@ -175,17 +175,17 @@ Here is the task to delegate:
       },
       {
         name = "dtcc",
-        description = "Delegate a coding task to Claude Code MCP.",
-        details = "This command interprets the user's request and generates a structured Claude Code MCP prompt to ensure accurate task execution.",
+        description = "Delegate a coding task to Claude Code.",
+        details = "This command interprets the user's request and generates a structured prompt to ensure accurate task execution.",
         prompt = [[
-Carefully read and follow the Claude Code MCP custom instructions.
+Your task is to *delegate* the user's request to Claude Code MCP — not to solve it yourself.
 
-Thoroughly understand the user's request and translate it into a clear, properly formatted Claude Code MCP command.
+Follow the Claude Code MCP instructions to create a clear, properly formatted command for Claude Code MCP to execute.
 
-Structure your response as a clean, ready-to-submit Claude Code command that enables accurate and efficient task fulfillment.
+Structure your output as a complete, ready-to-submit prompt, and then invoke the Claude Code MCP to perform the task.
 
 Here is the user's request:
-  ]],
+]],
       },
     },
     windows = {
