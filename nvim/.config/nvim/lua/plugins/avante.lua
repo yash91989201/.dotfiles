@@ -160,11 +160,15 @@ return {
       {
         name = "dtcp",
         description = "Delegate a coding task to the GitHub Copilot agent.",
-        details = "This command delegates the user's task to the GitHub Copilot agent using the GitHub MCP server. The issue title should be a concise summary of the user's prompt, and the description should be a detailed elaboration. The created issue must be assigned to the Copilot agent using MCP.",
+        details = "This command uses the GitHub MCP server to create an issue from the user's request and assign it to the Copilot agent.",
         prompt = [[
-Steps (use github mcp tools):
-1. Use `create_issue` tool to: Create a github issue where the title is a short summary of the user's task, and the body is a detailed, descriptive version of the prompt.
-2. Use `assign_copilot_to_issue` tool to: Assign the Copilot agent to the newly created issue.
+Use the GitHub MCP tools to delegate the task:
+
+1. Use `create_issue` to open a new GitHub issue.  
+   - Title: A short summary of the user's task  
+   - Body: A clear, detailed version of the user's request
+
+2. Use `assign_copilot_to_issue` to assign the Copilot agent to the issue.
 
 Here is the task to delegate:
 ]],
