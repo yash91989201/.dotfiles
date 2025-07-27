@@ -189,7 +189,7 @@ Here is the user's request:
       },
     },
     windows = {
-      width = 36,
+      width = 38,
       input = {
         height = 12,
       },
