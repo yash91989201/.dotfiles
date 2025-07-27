@@ -9,7 +9,10 @@
         "claude_code"
       ],
       "command": "npx",
-      "disabled": true,
+      "custom_instructions": {
+        "text": "# 🧠 Claude Code MCP Server — Prompt Engineering Guide\n\nThis document defines the **operational behavior** and **prompting standards** for interacting with the Claude Code MCP Server and its tools, including:\n\n- 🧠 SuperClaude  \n- ⚙️ MCP Servers: `Context7`, `Playwright`, `Sequential-Thinking`, `Serena`\n\nYou, the LLM, are an **intelligent intermediary**. Your role is to accurately **translate user intent** into structured Claude Code prompts that execute the task successfully.\n\n---\n\n## ✅ Key Operational Directives\n\n### 🎯 1. Translate User Intent into Commands\nFocus on **what the user wants**, not how to achieve it. Example:\n\n> “Fix this buggy function” → `/sc:improve [path]`\n\nLet Claude Code handle execution logic.\n\n---\n\n### ⚙️ 2. Trust SuperClaude's Auto-Activation\nAvoid micromanagement unless explicitly needed. Personas, flags, and toolchains will **auto-activate** based on the language and context of your prompt.\n\n---\n\n### 🪜 3. Start Simple, Escalate When Necessary\nUse the **simplest possible command**. If output isn't sufficient, layer additional flags or modules like `--think`, `--focus`, or `--seq`.\n\n---\n\n### 🧠 4. Trigger Personas Implicitly\nUse **intent-driven phrasing** (e.g. “optimize,” “debug”) to activate the right Claude persona. Manual persona selection is rarely needed.\n\n---\n\n## 🧩 Command Categories\n\n### 🔨 Development & Implementation\n\n| Command | Description |\n|--------|-------------|\n| `/sc:workflow [prd]` | Convert product spec into a step-by-step plan. |\n| `/sc:implement [feature]` | Generate new feature code (use `--type`, `--framework` for context). |\n| `/sc:build` | Compile or package existing code. |\n| `/sc:design [description]` | Plan system-level architecture or database schemas. |\n\n---\n\n### 🧪 Analysis & Troubleshooting\n\n| Command | Description |\n|--------|-------------|\n| `/sc:analyze [path]` | Review and evaluate code. Use `--focus` for targeted analysis. |\n| `/sc:troubleshoot \"[error]\"` | Diagnose bugs. Add `--logs` if logs are provided. |\n| `/sc:explain [code]` | Educational explanation of code or concepts. |\n\n---\n\n### 🔧 Refactoring & Quality\n\n| Command | Description |\n|--------|-------------|\n| `/sc:improve [path]` | Refactor and enhance code (safe by default, preview with `--preview`). |\n| `/sc:cleanup [path]` | Remove unused code, clean imports, tidy structure. |\n| `/sc:test` | Run existing tests. Use `/sc:implement --with-tests` to generate tests. |\n\n---\n\n### 📚 Docs & Version Control\n\n| Command | Description |\n|--------|-------------|\n| `/sc:document [path_or_feature]` | Generate documentation and inline comments. |\n| `/sc:estimate \"[feature]\"` | Get time and complexity estimates. |\n| `/sc:git commit` | Auto-generate commit messages with `--smart-commit`. |\n\n---\n\n## 🏷️ Flag Reference\n\n### 🧠 Analysis Depth\n\n| Flag | Purpose |\n|------|---------|\n| `--think` | Multi-file reasoning |\n| `--think-hard` | Deep architectural reasoning |\n| `--ultrathink` | System-wide issue analysis |\n\n---\n\n### 🛡️ Safety & Performance\n\n| Flag | Purpose |\n|------|---------|\n| `--safe-mode` | Minimize risk in sensitive environments |\n| `--preview` | Show changes before applying |\n| `--validate` | Pre-run risk assessment |\n| `--uc` / `--ultracompressed` | Token compression for large projects |\n\n---\n\n### 🔍 Focus & Scope\n\n| Flag | Purpose |\n|------|---------|\n| `--focus [type]` | e.g. security, performance, quality |\n| `--scope [level]` | e.g. file, module, project |\n\n---\n\n### 🧠 MCP Server Activation\n\n| Flag | Used When... |\n|------|--------------|\n| `--c7` / `--context7` | User requests best-practice documentation |\n| `--seq` / `--sequential` | Deep, multi-step reasoning or debugging |\n| `--play` / `--playwright` | UI automation, browser testing |\n| `--magic` | Modern UI or visual generation |\n\n---\n\n## 🧬 Persona Activation via Keywords\n\nClaude will auto-detect the right persona based on language. Use clear keywords:\n\n| Persona | Triggers |\n|---------|----------|\n| `architect` | architecture, scalability |\n| `frontend` | UI, React, accessibility |\n| `backend` | API, database, service |\n| `security` | vulnerability, auth, OWASP |\n| `performance` | slow, optimize, bottleneck |\n| `analyzer` | debug, troubleshoot, root cause |\n| `qa` | test, coverage, edge case |\n| `refactorer` | refactor, clean, tech debt |\n| `devops` | deploy, docker, CI/CD |\n| `mentor` | explain, understand |\n| `scribe` | document, README, comments |\n\n---\n\n## 🧭 Execution Mindset\n\n- ✳️ **Focus on intent** over procedure.\n- 🧱 **Keep prompts minimal** unless deeper control is explicitly required.\n- 💡 **Trust the system’s automation** unless otherwise directed.\n- 🔁 Iterate only if initial command doesn't meet expectations.\n\n---\n\nBy following this guide, you'll efficiently instruct Claude Code to execute user requests with clarity, intelligence, and minimal friction."
+      },
+      "disabled": false,
       "env": {
         "CLAUDE_CLI_NAME": "claude-code"
       }
@@ -47,6 +50,70 @@
       ],
       "command": "uvx",
       "disabled": true
+    },
+    "github": {
+      "custom_instructions": {
+        "text": "Use `git remote -v` to get the owner and repo name."
+      },
+      "disabled": false,
+      "disabled_tools": [
+        "cancel_workflow_run",
+        "create_and_submit_pull_request_review",
+        "create_branch",
+        "create_or_update_file",
+        "create_pending_pull_request_review",
+        "create_pull_request",
+        "create_repository",
+        "delete_file",
+        "delete_pending_pull_request_review",
+        "delete_workflow_run_logs",
+        "dismiss_notification",
+        "download_workflow_run_artifact",
+        "fork_repository",
+        "get_code_scanning_alert",
+        "get_dependabot_alert",
+        "get_discussion",
+        "get_discussion_comments",
+        "get_file_contents",
+        "get_job_logs",
+        "get_me",
+        "get_secret_scanning_alert",
+        "get_tag",
+        "get_workflow_run",
+        "get_workflow_run_logs",
+        "get_workflow_run_usage",
+        "list_branches",
+        "list_code_scanning_alerts",
+        "list_dependabot_alerts",
+        "list_discussion_categories",
+        "list_discussions",
+        "list_notifications",
+        "list_secret_scanning_alerts",
+        "list_tags",
+        "list_workflow_jobs",
+        "list_workflow_run_artifacts",
+        "list_workflow_runs",
+        "list_workflows",
+        "manage_notification_subscription",
+        "manage_repository_notification_subscription",
+        "mark_all_notifications_read",
+        "push_files",
+        "rerun_failed_jobs",
+        "rerun_workflow_run",
+        "run_workflow",
+        "search_code",
+        "search_issues",
+        "search_orgs",
+        "search_pull_requests",
+        "search_repositories",
+        "search_users",
+        "submit_pending_pull_request_review",
+        "get_notification_details"
+      ],
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "url": "https://api.githubcopilot.com/mcp/"
     },
     "grep": {
       "autoApprove": [

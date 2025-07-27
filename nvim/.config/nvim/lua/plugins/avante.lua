@@ -134,15 +134,6 @@ return {
           temperature = 0.75,
         },
       },
-      gemini_flash_lite = {
-        __inherited_from = "gemini",
-        display_name = "gemini/gemini-2.5-flash-lite",
-        model = "gemini-2.5-flash-lite-preview-06-17",
-        hide_in_model_selector = false,
-        extra_request_body = {
-          temperature = 0.75,
-        },
-      },
     },
     behaviour = {
       auto_set_highlight_group = true,
@@ -166,11 +157,37 @@ return {
         details = "Detects all file changes, summarizes them, generates a meaningful commit message, commits, and pushes to the remote repository in one step.",
         prompt = "Detect all staged and unstaged changes in the current Git repository. Summarize the changes and generate a concise, descriptive commit message. Then commit and push all changes to the remote repository.",
       },
+      {
+        name = "dtcp",
+        description = "Delegate a coding task to the GitHub Copilot agent.",
+        details = "This command delegates the user's task to the GitHub Copilot agent using the GitHub MCP server. The issue title should be a concise summary of the user's prompt, and the description should be a detailed elaboration. The created issue must be assigned to the Copilot agent using MCP.",
+        prompt = [[
+Steps (use github mcp tools):
+1. Use `create_issue` tool to: Create a github issue where the title is a short summary of the user's task, and the body is a detailed, descriptive version of the prompt.
+2. Use `assign_copilot_to_issue` tool to: Assign the Copilot agent to the newly created issue.
+
+Here is the task to delegate:
+]],
+      },
+      {
+        name = "dtcc",
+        description = "Delegate a coding task to Claude Code MCP.",
+        details = "This command interprets the user's request and generates a structured Claude Code MCP prompt to ensure accurate task execution.",
+        prompt = [[
+Carefully read and follow the Claude Code MCP custom instructions.
+
+Thoroughly understand the user's request and translate it into a clear, properly formatted Claude Code MCP command.
+
+Structure your response as a clean, ready-to-submit Claude Code command that enables accurate and efficient task fulfillment.
+
+Here is the user's request:
+  ]],
+      },
     },
     windows = {
       width = 36,
       input = {
-        height = 10,
+        height = 12,
       },
     },
     input = {
