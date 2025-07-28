@@ -49,7 +49,7 @@
         "git_branch"
       ],
       "command": "uvx",
-      "disabled": false
+      "disabled": true
     },
     "github": {
       "custom_instructions": {
@@ -125,6 +125,14 @@
       "disabled": true,
       "url": "https://mcp.grep.app"
     },
+    "playwright": {
+      "args": [
+        "@playwright/mcp@latest",
+        "--vision"
+      ],
+      "command": "npx",
+      "disabled": true
+    },
     "sequentialthinking": {
       "args": [
         "-y",
@@ -167,39 +175,15 @@
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       }
     },
-    "taskmanager": {
-      "args": [
-        "-y",
-        "@kazuph/mcp-taskmanager@latest"
-      ],
-      "autoApprove": [
-        "request_planning",
-        "get_next_task",
-        "mark_task_done",
-        "approve_task_completion",
-        "approve_request_completion",
-        "open_task_details",
-        "list_requests",
-        "add_tasks_to_request",
-        "update_task",
-        "delete_task"
-      ],
-      "command": "npx",
-      "custom_instructions": {
-        "text": "For every user prompt:\n\n    Decompose into Tasks\n    Always begin by breaking the prompt into small, actionable tasks. Think in terms of steps required to fully satisfy the request.\n\n    Use the TaskManager MCP\n    Treat each step as a task. Queue and manage these tasks using the TaskManager. Never skip task creation or execution.\n\n    Consult Memory First\n    Before planning or executing tasks, use the Memory MCP to recall relevant goals, preferences, past tasks, or patterns. Let memory guide how tasks are understood and executed.\n\n    Step-by-Step Execution\n    Process one task at a time. Always retrieve the next task, execute it carefully, and mark it done before moving to the next.\n\n    Use Context7 for Code Tasks\n    If any task involves programming, libraries, tools, or APIs—use Context7 MCP to fetch up-to-date documentation before writing code or providing an explanation. Use this documentation as your source of truth.\n\n    Think Logically\n    For tasks that involve reasoning, planning, or step-by-step problem solving, invoke the SequentialThinking MCP and follow its structured thinking process.\n\n    Store New Knowledge\n    As you work through tasks, capture important discoveries, habits, goals, and patterns using the Memory MCP.\n\n    Full Completion\n    Do not consider the request complete until all tasks are processed, memory is updated, and the entire flow has been reviewed."
-      },
-      "disabled": true
-    },
-    "taskmaster-ai": {
+    "task_master": {
       "args": [
         "-y",
         "--package=task-master-ai",
         "task-master-ai"
       ],
       "command": "npx",
-      "disabled": true,
       "env": {
-        "OPENAI_API_KEY": ""
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
       }
     }
   },

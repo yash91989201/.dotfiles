@@ -70,22 +70,22 @@ return {
         display_name = "copilot/gpt-4o",
         hide_in_model_selector = false,
       },
-      gemini_pro = {
+      ["gemini-pro"] = {
         __inherited_from = "gemini",
         display_name = "gemini/gemini-2.5-pro",
         model = "gemini-2.5-pro",
         hide_in_model_selector = false,
         extra_request_body = {
-          temperature = 0.75,
+          temperature = 0.7,
         },
       },
-      gemini_flash = {
+      ["gemini-flash"] = {
         __inherited_from = "gemini",
         display_name = "gemini/gemini-2.5-flash",
         model = "gemini-2.5-flash",
         hide_in_model_selector = false,
         extra_request_body = {
-          temperature = 0.75,
+          temperature = 0.7,
         },
       },
     },
