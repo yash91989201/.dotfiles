@@ -45,30 +45,24 @@ return {
         model = "claude-3-5-haiku-20241022",
         display_name = "claude/claude-3.5-haiku",
         hide_in_model_selector = true,
-        extra_request_body = {
-          max_tokens = 8192,
-        },
       },
       ["claude-sonnet-3.5"] = {
         __inherited_from = "claude",
         model = "claude-3-5-sonnet-latest",
         display_name = "claude/claude-sonnet-3.5",
-        hide_in_model_selector = false,
-        extra_request_body = {
-          max_tokens = 8192,
-        },
+        hide_in_model_selector = true,
       },
       ["claude-sonnet-3.7"] = {
         __inherited_from = "claude",
         model = "claude-3-7-sonnet-latest",
         display_name = "claude/claude-sonnet-3.7",
-        hide_in_model_selector = false,
+        hide_in_model_selector = true,
       },
       ["claude-sonnet-4"] = {
         __inherited_from = "claude",
         model = "claude-sonnet-4-20250514",
         display_name = "claude/claude-sonnet-4",
-        hide_in_model_selector = false,
+        hide_in_model_selector = true,
       },
       ["copilot-claude-3.5-sonnet"] = {
         __inherited_from = "copilot",
