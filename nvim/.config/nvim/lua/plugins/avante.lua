@@ -40,30 +40,6 @@ return {
       openai = {
         hide_in_model_selector = true,
       },
-      ["claude-haiku-3.5"] = {
-        __inherited_from = "claude",
-        model = "claude-3-5-haiku-20241022",
-        display_name = "claude/claude-3.5-haiku",
-        hide_in_model_selector = true,
-      },
-      ["claude-sonnet-3.5"] = {
-        __inherited_from = "claude",
-        model = "claude-3-5-sonnet-latest",
-        display_name = "claude/claude-sonnet-3.5",
-        hide_in_model_selector = true,
-      },
-      ["claude-sonnet-3.7"] = {
-        __inherited_from = "claude",
-        model = "claude-3-7-sonnet-latest",
-        display_name = "claude/claude-sonnet-3.7",
-        hide_in_model_selector = true,
-      },
-      ["claude-sonnet-4"] = {
-        __inherited_from = "claude",
-        model = "claude-sonnet-4-20250514",
-        display_name = "claude/claude-sonnet-4",
-        hide_in_model_selector = true,
-      },
       ["copilot-claude-3.5-sonnet"] = {
         __inherited_from = "copilot",
         model = "claude-3.5-sonnet",
@@ -82,22 +58,10 @@ return {
         display_name = "copilot/claude-sonnet-4",
         hide_in_model_selector = false,
       },
-      ["copilot-gpt-4"] = {
-        __inherited_from = "copilot",
-        model = "gpt-4",
-        display_name = "copilot/gpt-4",
-        hide_in_model_selector = true,
-      },
       ["copilot-gpt-4.1"] = {
         __inherited_from = "copilot",
         model = "gpt-4.1",
         display_name = "copilot/gpt-4.1",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gpt-4.1-mini"] = {
-        __inherited_from = "copilot",
-        model = "gpt-4.1-mini",
-        display_name = "copilot/gpt-4.1-mini",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-4o"] = {
@@ -105,35 +69,6 @@ return {
         model = "gpt-4o",
         display_name = "copilot/gpt-4o",
         hide_in_model_selector = false,
-      },
-      ["copilot-gpt-4o-mini"] = {
-        __inherited_from = "copilot",
-        model = "gpt-4o-mini",
-        display_name = "copilot/gpt-4o-mini",
-        hide_in_model_selector = true,
-      },
-      ["copilot-o3-mini"] = {
-        __inherited_from = "copilot",
-        model = "o3-mini",
-        display_name = "copilot/o3-mini",
-        hide_in_model_selector = true,
-      },
-      ["openai-gpt-4o"] = {
-        __inherited_from = "openai",
-        model = "gpt-4o",
-        display_name = "openai/gpt-4o",
-        hide_in_model_selector = true,
-      },
-      ["openai-gpt-4o-mini"] = {
-        model = "gpt-4o-mini",
-        display_name = "openai/gpt-4o-mini",
-        hide_in_model_selector = true,
-      },
-      ["openai-gpt-4-1"] = {
-        __inherited_from = "openai",
-        model = "gpt-4.1",
-        display_name = "openai/gpt-4.1",
-        hide_in_model_selector = true,
       },
       gemini_pro = {
         __inherited_from = "gemini",
