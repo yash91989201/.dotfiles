@@ -49,7 +49,7 @@
         "git_branch"
       ],
       "command": "uvx",
-      "disabled": true
+      "disabled": false
     },
     "github": {
       "custom_instructions": {
@@ -182,6 +182,7 @@
         "task-master-ai"
       ],
       "command": "npx",
+      "disabled": true,
       "env": {
         "OPENAI_API_KEY": "${OPENAI_API_KEY}"
       }
