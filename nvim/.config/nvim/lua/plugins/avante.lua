@@ -104,6 +104,10 @@ return {
         require("mcphub.extensions.avante").mcp_tool(),
       }
     end,
+    rag_service = {
+      enabled = false,
+      host_mount = vim.fn.getcwd(),
+    },
     shortcuts = {
       {
         name = "cnp",
@@ -118,8 +122,8 @@ return {
         prompt = [[
 Use the GitHub MCP tools to delegate the task:
 
-1. Use `create_issue` to open a new GitHub issue.  
-   - Title: A short summary of the user's task  
+1. Use `create_issue` to open a new GitHub issue.
+   - Title: A short summary of the user's task
    - Body: A clear, detailed version of the user's request
 
 2. Use `assign_copilot_to_issue` to assign the Copilot agent to the issue.
