@@ -131,20 +131,6 @@ Use the GitHub MCP tools to delegate the task:
 Here is the task to delegate:
 ]],
       },
-      {
-        name = "dtcc",
-        description = "Delegate a coding task to Claude Code.",
-        details = "This command interprets the user's request and generates a structured prompt to ensure accurate task execution.",
-        prompt = [[
-Your task is to *delegate* the user's request to Claude Code MCP — not to solve it yourself.
-
-Follow the Claude Code MCP instructions to create a clear, properly formatted command for Claude Code MCP to execute.
-
-Structure your output as a complete, ready-to-submit prompt, and then invoke the Claude Code MCP to perform the task.
-
-Here is the user's request:
-]],
-      },
     },
     windows = {
       width = 38,
