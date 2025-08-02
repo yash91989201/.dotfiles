@@ -17,29 +17,8 @@ return {
     },
   },
   opts = {
-    provider = "copilot-gpt-4.1",
+    provider = "copilot-gpt-4o",
     providers = {
-      morph = {
-        model = "morph-v3-fast",
-      },
-      claude = {
-        hide_in_model_selector = true,
-      },
-      copilot = {
-        hide_in_model_selector = true,
-      },
-      gemini = {
-        hide_in_model_selector = true,
-      },
-      vertex = {
-        hide_in_model_selector = true,
-      },
-      vertex_claude = {
-        hide_in_model_selector = true,
-      },
-      openai = {
-        hide_in_model_selector = true,
-      },
       ["copilot-claude-3.5-sonnet"] = {
         __inherited_from = "copilot",
         model = "claude-3.5-sonnet",
@@ -75,18 +54,33 @@ return {
         display_name = "gemini/gemini-2.5-pro",
         model = "gemini-2.5-pro",
         hide_in_model_selector = false,
-        extra_request_body = {
-          temperature = 0.7,
-        },
       },
       ["gemini-flash"] = {
         __inherited_from = "gemini",
         display_name = "gemini/gemini-2.5-flash",
         model = "gemini-2.5-flash",
         hide_in_model_selector = false,
-        extra_request_body = {
-          temperature = 0.7,
-        },
+      },
+      morph = {
+        model = "morph-v3-fast",
+      },
+      claude = {
+        hide_in_model_selector = true,
+      },
+      copilot = {
+        hide_in_model_selector = true,
+      },
+      gemini = {
+        hide_in_model_selector = true,
+      },
+      vertex = {
+        hide_in_model_selector = true,
+      },
+      vertex_claude = {
+        hide_in_model_selector = true,
+      },
+      openai = {
+        hide_in_model_selector = true,
       },
     },
     behaviour = {
