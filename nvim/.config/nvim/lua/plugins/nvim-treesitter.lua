@@ -28,7 +28,6 @@ return {
       "proto",
       "nginx",
       "helm",
-      "prisma",
     },
     query_linter = {
       enable = true,

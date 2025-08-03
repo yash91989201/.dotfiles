@@ -32,7 +32,7 @@
         "git_branch"
       ],
       "command": "uvx",
-      "disabled": true
+      "disabled": false
     },
     "github": {
       "custom_instructions": {

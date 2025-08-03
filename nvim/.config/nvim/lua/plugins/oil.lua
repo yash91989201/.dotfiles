@@ -1,5 +1,6 @@
 return {
   "stevearc/oil.nvim",
+  cmd = "Oil",
   dependencies = { "echasnovski/mini.icons" },
   opts = {
     keymaps = {
