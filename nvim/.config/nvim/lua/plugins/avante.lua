@@ -125,6 +125,25 @@ Use the GitHub MCP tools to delegate the task:
 Here is the task to delegate:
 ]],
       },
+      {
+        name = "implement",
+        description = "Plan and implement a feature using Shrimp Task Manager MCP, with optional use of context7 and grep mcp.",
+        details = "Guides AI through Shrimp’s structured workflow for planning, executing, and verifying a feature, while allowing use of context7 for latest docs and grep for code patterns/examples.",
+        prompt = [[
+Use Shrimp Task Manager MCP to plan and implement the requested feature.
+
+1. Analyze and clarify the request.
+2. If needed, enter research mode (Shrimp Task Manager MCP) to explore solutions and best practices.
+3. For latest documentation on tools/packages, use context7 MCP.
+4. For real-world code examples or patterns from repos, use grep MCP.
+5. Break the feature into subtasks, define dependencies, priorities, and assess complexity.
+6. Check Task Memory to reuse relevant past work.
+7. Provide step-by-step instructions for each subtask with any required code/config changes.
+8. Execute in order, track progress, verify results, and summarize completion.
+
+Below is user’s request:
+]],
+      },
     },
     windows = {
       width = 38,
