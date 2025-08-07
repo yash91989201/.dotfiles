@@ -17,14 +17,8 @@ return {
     },
   },
   opts = {
-    provider = "copilot-gpt-4o",
+    provider = "copilot-gpt-4.1",
     providers = {
-      ["copilot-claude-3.5-sonnet"] = {
-        __inherited_from = "copilot",
-        model = "claude-3.5-sonnet",
-        display_name = "copilot/claude-3.5-sonnet",
-        hide_in_model_selector = false,
-      },
       ["copilot-claude-3.7-sonnet"] = {
         __inherited_from = "copilot",
         model = "claude-3.7-sonnet",
@@ -41,12 +35,6 @@ return {
         __inherited_from = "copilot",
         model = "gpt-4.1",
         display_name = "copilot/gpt-4.1",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gpt-4o"] = {
-        __inherited_from = "copilot",
-        model = "gpt-4o",
-        display_name = "copilot/gpt-4o",
         hide_in_model_selector = false,
       },
       ["gemini-pro"] = {
