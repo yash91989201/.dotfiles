@@ -9,6 +9,11 @@ return {
   opts = {
     config = vim.fn.expand("~/.config/nvim/mcp/servers.json"),
     auto_approve = true,
+    extensions = {
+      avante = {
+        make_slash_commands = true,
+      },
+    },
   },
   keys = {
     { "<leader>ch", "<cmd>MCPHub<cr>", desc = "MCP Hub" },
