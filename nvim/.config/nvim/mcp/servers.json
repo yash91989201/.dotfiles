@@ -128,7 +128,7 @@
       "custom_instructions": {
         "text": "The `Sequential Thinking` MCP is a specialized tool designed to support **deep, adaptive, and multi-step reasoning**. \nIt allows for a flexible, evolving approach to problem-solving, where each thought refines or builds upon the previous one.\n\nUse this module when the task requires **nonlinear thinking**, **exploration**, or **strategic reasoning** beyond a simple one-shot response.\n\n---\n\n## 🧩 When to Use SequentialThinking\n\nEngage the `Sequential Thinking` MCP for:\n\n- Explicit User request.\n- Complex or ambiguous coding tasks\n- Multi-layered technical problems\n- Deep debugging or architectural trade-offs\n- Questions that benefit from **step-by-step** or **reflective analysis**\n- Design reasoning that may evolve across multiple stages\n\n> ✅ Use it to thoughtfully and accurately fulfill the user's task.\n\n---"
       },
-      "disabled": false
+      "disabled": true
     },
     "shadcn-theme": {
       "args": [
@@ -182,7 +182,7 @@
         "research_mode"
       ],
       "command": "npx",
-      "disabled": true,
+      "disabled": false,
       "env": {
         "DATA_DIR": "/home/yash/shrimp-task-manager-data",
         "ENABLE_GUI": "true",
