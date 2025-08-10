@@ -29,12 +29,14 @@
       ],
       "command": "uvx"
     },
-    "github": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/",
-      "headers": {
-        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
-      }
+    "filesystem": {
+      "type": "stdio",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/yash/projects"
+      ],
+      "command": "npx"
     },
     "playwright": {
       "type": "stdio",
@@ -48,18 +50,6 @@
       "type": "http",
       "url": "https://mcp.grep.app"
     },
-    "shadcn-theme": {
-      "type": "stdio",
-      "args": [
-        "-y",
-        "shadcn@latest",
-        "registry:mcp"
-      ],
-      "env": {
-        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      },
-      "command": "npx"
-    },
     "shadcn-ui": {
       "type": "stdio",
       "args": [
@@ -69,14 +59,6 @@
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       }
-    },
-    "sequentialthinking": {
-      "type": "stdio",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "command": "npx"
     }
   },
   "permissions": {
