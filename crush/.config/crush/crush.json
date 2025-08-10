@@ -1,0 +1,93 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "markdown": {
+      "command": "marksman"
+    },
+    "tailwindcss": {
+      "command": "tailwindcss-language-server",
+      "args": [
+        "--stdio"
+      ]
+    },
+    "typescript": {
+      "command": "vtsls",
+      "args": [
+        "--stdio"
+      ]
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "git": {
+      "type": "stdio",
+      "args": [
+        "mcp-server-git"
+      ],
+      "command": "uvx"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "args": [
+        "@playwright/mcp@latest",
+        "--vision"
+      ],
+      "command": "npx"
+    },
+    "grep": {
+      "type": "http",
+      "url": "https://mcp.grep.app"
+    },
+    "shadcn-theme": {
+      "type": "stdio",
+      "args": [
+        "-y",
+        "shadcn@latest",
+        "registry:mcp"
+      ],
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      },
+      "command": "npx"
+    },
+    "shadcn-ui": {
+      "type": "stdio",
+      "args": [
+        "@jpisnice/shadcn-ui-mcp-server"
+      ],
+      "command": "npx",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    },
+    "sequentialthinking": {
+      "type": "stdio",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx"
+    }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "bash",
+      "view",
+      "ls",
+      "grep",
+      "edit",
+      "mcp_context7_get-library-doc",
+      "mcp_context7_resolve-library-id"
+    ]
+  }
+}
