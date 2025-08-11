@@ -23,24 +23,18 @@ return {
         __inherited_from = "copilot",
         model = "claude-3.5-sonnet",
         display_name = "copilot/claude-3.5-sonnet",
-        hide_in_model_selector = true,
+        hide_in_model_selector = false,
       },
       ["copilot-claude-3.7-sonnet"] = {
         __inherited_from = "copilot",
         model = "claude-3.7-sonnet",
         display_name = "copilot/claude-3.7-sonnet",
-        hide_in_model_selector = true,
+        hide_in_model_selector = false,
       },
       ["copilot-claude-sonnet-4"] = {
         __inherited_from = "copilot",
         model = "claude-sonnet-4",
         display_name = "copilot/claude-sonnet-4",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gpt-5"] = {
-        __inherited_from = "copilot",
-        model = "gpt-5",
-        display_name = "copilot/gpt-5",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-4.1"] = {
