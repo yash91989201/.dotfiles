@@ -99,28 +99,37 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Commit and push all staged and unstaged changes in the current Git repository with a clear, intent-based commit message.",
-        details = "Detects all file changes, interprets their purpose, generates a concise commit message reflecting the underlying intent or effect (not just line changes), then commits and pushes in one step.",
+        description = "Commit and push all staged and unstaged changes in the current Git repository with a clear, point-wise, intent-based commit message.",
+        details = "Detects all file changes, interprets their purpose, generates a commit message that is concise yet descriptive (point-wise if needed), then commits and pushes.",
         prompt = [[
 Detect all staged and unstaged changes in the current Git repository.
-Use Git MCP tools to perform this task whenever they are required. Before starting, check if the Git MCP server is enabled. 
-If it is not enabled, use the `MCPHub` mcp server's `toggle_mcp_server` tool to toggle it on.
 
 1. **Analyze the changes** to determine the purpose, feature, or fix they represent.
-2. **Interpret the intent** behind each change — focus on *what* and *why*, not just *how many lines* changed.
+2. **Interpret the intent** — focus on *what* and *why*, not just *how many lines* changed.
 3. **Generate a commit message** that is:
-   - Concise
-   - Written in the imperative mood (e.g., "Enable dark mode in settings" not "Enabled...")
-   - Clearly explains the high-level purpose of the change
-   - Avoids raw file names, line counts, or low-level code descriptions unless essential
-4. Commit **all changes** (both staged and unstaged) with this message.
-5. Push the commit to the remote repository.
+   - Concise but slightly descriptive.
+   - Uses bullet points for multiple related changes under the same intent.
+   - Written in the imperative mood (e.g., "Enable dark mode in settings" not "Enabled...").
+   - Clearly explains the high-level purpose and is understandable by humans.
+   - Avoids raw file names, line counts, or low-level code details unless essential.
+4. If there are multiple unrelated intents, split into separate commits (one per intent).
+5. Commit all changes with the message(s).
+6. Push to the remote repository.
 
 Example:
-If a config change enables dark mode support in the settings UI:
-✅ Correct: `Enable dark mode in settings`  
-❌ Incorrect: `Changed config option from false to true for dark_mode`  
-❌ Incorrect: `Added 1 line in settings.json`
+
+If a config change enables dark mode support and improves accessibility in the UI:
+✅ Correct (single commit with bullets):
+
+    Improve UI accessibility and enable dark mode -
+
+    1. Enabled dark mode in settings.
+    2. Increased contrast for text elements.
+    3. Added keyboard navigation support.
+
+❌ Incorrect:
+`Changed config option from false to true for dark_mode`  
+`Updated 3 files in UI module`
 ]],
       },
       {
