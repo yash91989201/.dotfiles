@@ -99,9 +99,29 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Commit and push all staged and unstaged changes in the current Git repository.",
-        details = "Detects all file changes, summarizes them, generates a meaningful commit message, commits, and pushes to the remote repository in one step.",
-        prompt = "Detect all staged and unstaged changes in the current Git repository. Summarize the changes and generate a concise, descriptive commit message. Then commit and push all changes to the remote repository.",
+        description = "Commit and push all staged and unstaged changes in the current Git repository with a clear, intent-based commit message.",
+        details = "Detects all file changes, interprets their purpose, generates a concise commit message reflecting the underlying intent or effect (not just line changes), then commits and pushes in one step.",
+        prompt = [[
+Detect all staged and unstaged changes in the current Git repository.
+Use Git MCP tools to perform this task whenever they are required. Before starting, check if the Git MCP server is enabled. 
+If it is not enabled, use the `MCPHub` mcp server's `toggle_mcp_server` tool to toggle it on.
+
+1. **Analyze the changes** to determine the purpose, feature, or fix they represent.
+2. **Interpret the intent** behind each change — focus on *what* and *why*, not just *how many lines* changed.
+3. **Generate a commit message** that is:
+   - Concise
+   - Written in the imperative mood (e.g., "Enable dark mode in settings" not "Enabled...")
+   - Clearly explains the high-level purpose of the change
+   - Avoids raw file names, line counts, or low-level code descriptions unless essential
+4. Commit **all changes** (both staged and unstaged) with this message.
+5. Push the commit to the remote repository.
+
+Example:
+If a config change enables dark mode support in the settings UI:
+✅ Correct: `Enable dark mode in settings`  
+❌ Incorrect: `Changed config option from false to true for dark_mode`  
+❌ Incorrect: `Added 1 line in settings.json`
+]],
       },
       {
         name = "dtcp",
@@ -137,6 +157,19 @@ Use Shrimp Task Manager MCP to plan and implement the requested feature.
 
 Below is user’s request:
 ]],
+      },
+      {
+        name = "og",
+        description = "Operational Guidelines",
+        details = "Clear, enforceable operational rules to ensure tasks are completed efficiently, accurately, and with minimal unnecessary actions or file reads.",
+        prompt = [[
+Operational Guidelines (Strict Adherence Required):
+
+1. **Tool Usage** — Use MCP tools *only* when they are essential for efficiently completing the current task. Avoid unnecessary tool calls.
+2. **File Editing** — Make minimal, targeted changes when editing file that *directly* fulfill the stated requirement. Avoid formatting changes, refactoring, or style edits unless explicitly requested.
+3. **Task Scope** — Stay strictly within the boundaries of the current task. Do not attempt to add enhancements, refactor unrelated areas, or address issues not mentioned.
+4. **File Access** — Only read files absolutely necessary to complete the current task. Avoid scanning the entire codebase unless it is unavoidable.
+  ]],
       },
     },
     windows = {
