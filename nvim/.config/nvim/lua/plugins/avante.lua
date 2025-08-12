@@ -104,30 +104,26 @@ return {
         prompt = [[
 Detect all staged and unstaged changes in the current Git repository.
 
-1. **Analyze the changes** to determine the purpose, feature, or fix they represent.
-2. **Interpret the intent** — focus on *what* and *why*, not just *how many lines* changed.
-3. **Generate a commit message** that is:
-   - Concise but slightly descriptive.
-   - Uses bullet points for multiple related changes under the same intent.
-   - Written in the imperative mood (e.g., "Enable dark mode in settings" not "Enabled...").
-   - Clearly explains the high-level purpose and is understandable by humans.
-   - Avoids raw file names, line counts, or low-level code details unless essential.
-4. If there are multiple unrelated intents, split into separate commits (one per intent).
-5. Commit all changes with the message(s).
-6. Push to the remote repository.
+1. **Analyze changes** to determine the purpose, feature, or fix.
+2. **Focus on intent** — what and why, not raw file stats.
+3. **Write a commit message** that is:
+   - Concise yet descriptive.
+   - Bullet points for multiple related changes.
+   - Imperative mood (e.g., "Enable dark mode").
+   - Understandable to humans, minimal low-level details.
+4. For unrelated intents, create separate commits.
+5. Commit all changes and push to remote.
 
-Example:
+Example: 
+If a config change enables dark mode support and improves accessibility in the UI.
 
-If a config change enables dark mode support and improves accessibility in the UI:
-✅ Correct (single commit with bullets):
+✅ Correct:  
+Improve UI accessibility and enable dark mode -  
+1. Enabled dark mode in settings.  
+2. Increased text contrast.  
+3. Added keyboard navigation.
 
-    Improve UI accessibility and enable dark mode -
-
-    1. Enabled dark mode in settings.
-    2. Increased contrast for text elements.
-    3. Added keyboard navigation support.
-
-❌ Incorrect:
+❌ Incorrect:  
 `Changed config option from false to true for dark_mode`  
 `Updated 3 files in UI module`
 ]],
