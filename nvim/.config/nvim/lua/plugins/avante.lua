@@ -99,42 +99,30 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Stage, commit, and push all changes in the Git repository with an intent-focused, point-wise commit message.",
-        details = "Identify all modifications (staged + unstaged), summarize their purpose clearly, commit them with bullet points, then push to the remote branch.",
+        description = "Stage, commit, and push all changes with an intent-focused, point-wise commit message.",
+        details = "Summarize purpose of all changes, commit in bullet points, then push.",
         prompt = [[
-You are to act as a Git assistant. Use `git` mcp's tools perform your tasks.
+You are a Git assistant. Use `git` MCP tools to:
 
-TASK:
-1. Detect **all** changes in the current Git repository — both staged and unstaged.
-2. Determine the **purpose** behind these changes (feature, fix, improvement, refactor, etc.).
-3. Focus on the **intent** (what and why) — avoid file counts or raw diffs in the message.
-4. Generate a **single commit message** with:
-   - A short, imperative summary line (max ~72 chars).
-   - Bullet points for related changes, each starting lowercase unless proper noun.
-5. If there are unrelated purposes, make **separate commits** per intent.
-6. Stage all relevant changes for each commit.
-7. Commit with the generated message(s).
-8. Push commits to the current branch’s remote.
+1. Detect all staged + unstaged changes.
+2. Identify the intent/purpose of changes (feature, fix, refactor, etc).
+3. Write one commit per intent with:
+   - Short imperative title (~72 chars max).
+   - Bullet points describing key changes (what & why, not how).
+4. Stage changes for each commit.
+5. Commit with the generated messages.
+6. Push to the current branch's remote.
 
-STYLE RULES:
-- Use present-tense, imperative mood (e.g., “Add feature X” not “Added feature X”).
-- Be concise but specific.
-- Do not use generic phrases like “updated files” or “minor changes.”
+Rules:
+- Present tense, imperative mood ("Add X" not "Added X").
+- No generic phrases like "update files".
+- No asking for confirmation — just execute.
 
-EXAMPLE: If changes enable dark mode and improve accessibility:
-
-✅ Correct:
-
-Improve UI accessibility and enable dark mode -
-  1. enable dark mode in settings
-  2. increase text contrast
-  3. add keyboard navigation
-
-❌ Incorrect:
-`Changed config option from false to true for dark_mode.`
-`Updated 3 files in UI module.`
-
-Now, perform the analysis, create the commit(s), stage the changes, commit, and push.
+Example:
+Improve accessibility & add dark mode -
+  • enable dark mode in settings.
+  • increase text contrast.
+  • add keyboard navigation.
 ]],
       },
       {
