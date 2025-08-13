@@ -99,33 +99,25 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Commit and push all staged and unstaged changes in the current Git repository with a clear, point-wise, intent-based commit message.",
-        details = "Detects all file changes, interprets their purpose, generates a commit message that is concise yet descriptive (point-wise if needed), then commits and pushes.",
+        description = "Commit and push all staged and unstaged changes in the Git repo with a clear, point-wise, intent-based commit message.",
+        details = "Analyzes changes, writes concise commit messages, then stages, commits, and pushes to the current branch's remote.",
         prompt = [[
-Detect all staged and unstaged changes in the current Git repository.
+Detect all changes (staged + unstaged) in the Git repository.
 
-1. **Analyze changes** to determine the purpose, feature, or fix.
-2. **Focus on intent** — what and why, not raw file stats.
-3. **Write a commit message** that is:
-   - Concise yet descriptive.
-   - Bullet points for multiple related changes.
+1. **Analyze** to find the purpose, feature, or fix.
+2. **Focus on intent** — what and why, not file stats.
+3. **Write a commit message**:
+   - Concise and descriptive.
+   - Bullet points for related changes.
    - Imperative mood (e.g., "Enable dark mode").
-   - Understandable to humans, minimal low-level details.
-4. For unrelated intents, create separate commits.
-5. Commit all changes and push to remote.
+4. For unrelated intents, make separate commits.
+5. **Stage all changes**, commit with the message, and **push to the remote** of the current branch — do not only display the message.
 
-Example: 
-If a config change enables dark mode support and improves accessibility in the UI.
-
-✅ Correct:  
-Improve UI accessibility and enable dark mode -  
+Example:  
+✅ Improve UI accessibility and enable dark mode -  
 1. Enabled dark mode in settings.  
 2. Increased text contrast.  
 3. Added keyboard navigation.
-
-❌ Incorrect:  
-`Changed config option from false to true for dark_mode`  
-`Updated 3 files in UI module`
 ]],
       },
       {
