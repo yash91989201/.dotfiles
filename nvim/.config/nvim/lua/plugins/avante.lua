@@ -99,25 +99,42 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Commit and push all staged and unstaged changes in the Git repo with a clear, point-wise, intent-based commit message.",
-        details = "Analyzes changes, writes concise commit messages, then stages, commits, and pushes to the current branch's remote.",
+        description = "Stage, commit, and push all changes in the Git repository with an intent-focused, point-wise commit message.",
+        details = "Identify all modifications (staged + unstaged), summarize their purpose clearly, commit them with bullet points, then push to the remote branch.",
         prompt = [[
-Detect all changes (staged + unstaged) in the Git repository.
+You are to act as a Git assistant. Use `git` mcp's tools perform your tasks.
 
-1. **Analyze** to find the purpose, feature, or fix.
-2. **Focus on intent** — what and why, not file stats.
-3. **Write a commit message**:
-   - Concise and descriptive.
-   - Bullet points for related changes.
-   - Imperative mood (e.g., "Enable dark mode").
-4. For unrelated intents, make separate commits.
-5. **Stage all changes**, commit with the message, and **push to the remote** of the current branch — do not only display the message.
+TASK:
+1. Detect **all** changes in the current Git repository — both staged and unstaged.
+2. Determine the **purpose** behind these changes (feature, fix, improvement, refactor, etc.).
+3. Focus on the **intent** (what and why) — avoid file counts or raw diffs in the message.
+4. Generate a **single commit message** with:
+   - A short, imperative summary line (max ~72 chars).
+   - Bullet points for related changes, each starting lowercase unless proper noun.
+5. If there are unrelated purposes, make **separate commits** per intent.
+6. Stage all relevant changes for each commit.
+7. Commit with the generated message(s).
+8. Push commits to the current branch’s remote.
 
-Example:  
-✅ Improve UI accessibility and enable dark mode -  
-1. Enabled dark mode in settings.  
-2. Increased text contrast.  
-3. Added keyboard navigation.
+STYLE RULES:
+- Use present-tense, imperative mood (e.g., “Add feature X” not “Added feature X”).
+- Be concise but specific.
+- Do not use generic phrases like “updated files” or “minor changes.”
+
+EXAMPLE: If changes enable dark mode and improve accessibility:
+
+✅ Correct:
+
+Improve UI accessibility and enable dark mode -
+  1. enable dark mode in settings
+  2. increase text contrast
+  3. add keyboard navigation
+
+❌ Incorrect:
+`Changed config option from false to true for dark_mode.`
+`Updated 3 files in UI module.`
+
+Now, perform the analysis, create the commit(s), stage the changes, commit, and push.
 ]],
       },
       {
