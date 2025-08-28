@@ -32,7 +32,7 @@
         "git_branch"
       ],
       "command": "uvx",
-      "disabled": false
+      "disabled": true
     },
     "github": {
       "autoApprove": [
