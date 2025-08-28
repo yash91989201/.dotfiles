@@ -17,65 +17,81 @@ return {
     },
   },
   opts = {
-    provider = "copilot-gpt-4.1",
+    provider = "copilot-gpt-5-mini",
     providers = {
-      ["copilot-claude-3.5-sonnet"] = {
+      ["copilot-gpt-5-mini"] = {
         __inherited_from = "copilot",
-        model = "claude-3.5-sonnet",
-        display_name = "copilot/claude-3.5-sonnet",
-        hide_in_model_selector = false,
-      },
-      ["copilot-claude-3.7-sonnet"] = {
-        __inherited_from = "copilot",
-        model = "claude-3.7-sonnet",
-        display_name = "copilot/claude-3.7-sonnet",
-        hide_in_model_selector = false,
-      },
-      ["copilot-claude-sonnet-4"] = {
-        __inherited_from = "copilot",
-        model = "claude-sonnet-4",
-        display_name = "copilot/claude-sonnet-4",
+        model = "gpt-5-mini",
+        display_name = "GPT 5 Mini (x0) (Default)",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-4.1"] = {
         __inherited_from = "copilot",
         model = "gpt-4.1",
-        display_name = "copilot/gpt-4.1",
+        display_name = "GPT 4.1 (x0)",
         hide_in_model_selector = false,
       },
-      ["gemini-pro"] = {
-        __inherited_from = "gemini",
-        display_name = "gemini/gemini-2.5-pro",
+      ["copilot-gpt-5"] = {
+        __inherited_from = "copilot",
+        model = "gpt-5",
+        display_name = "GPT 5 (x1)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-claude-opus-41"] = {
+        __inherited_from = "copilot",
+        model = "claude-opus-41",
+        display_name = "Claude Opus 4.1 (x10)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-claude-sonnet-4"] = {
+        __inherited_from = "copilot",
+        model = "claude-sonnet-4",
+        display_name = "Claude Sonnet 4 (x1)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-claude-3.7-sonnet-thought"] = {
+        __inherited_from = "copilot",
+        model = "claude-3.7-sonnet-thought",
+        display_name = "Claude Sonnet 3.7 Thinking (x1.25)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-claude-3.7-sonnet"] = {
+        __inherited_from = "copilot",
+        model = "claude-3.7-sonnet",
+        display_name = "Claude Sonnet 3.7 (x1)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-claude-3.5-sonnet"] = {
+        __inherited_from = "copilot",
+        model = "claude-3.5-sonnet",
+        display_name = "Claude Sonnet 3.5 (x1)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-grok-code-fast-1"] = {
+        __inherited_from = "copilot",
+        model = "grok-code-fast-1",
+        display_name = "Grok Code Fast 1 (x0.25)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-gemini-2.5-pro"] = {
+        __inherited_from = "copilot",
         model = "gemini-2.5-pro",
+        display_name = "Gemini 2.5 Pro (x1)",
         hide_in_model_selector = false,
       },
-      ["gemini-flash"] = {
-        __inherited_from = "gemini",
-        display_name = "gemini/gemini-2.5-flash",
-        model = "gemini-2.5-flash",
+      ["copilot-gemini-2.0-flash"] = {
+        __inherited_from = "copilot",
+        model = "gemini-2.0-flash",
+        display_name = "Gemini 2.0 Flash (x0.25)",
         hide_in_model_selector = false,
       },
-      morph = {
-        model = "morph-v3-fast",
-      },
-      claude = {
-        hide_in_model_selector = true,
-      },
-      copilot = {
-        hide_in_model_selector = true,
-      },
-      gemini = {
-        hide_in_model_selector = true,
-      },
-      vertex = {
-        hide_in_model_selector = true,
-      },
-      vertex_claude = {
-        hide_in_model_selector = true,
-      },
-      openai = {
-        hide_in_model_selector = true,
-      },
+      copilot = { hide_in_model_selector = true },
+      gemini = { hide_in_model_selector = true },
+      claude = { hide_in_model_selector = true },
+      vertex = { hide_in_model_selector = true },
+      vertex_claude = { hide_in_model_selector = true },
+      openai = { hide_in_model_selector = true },
+      morph = { hide_in_model_selector = true },
     },
     behaviour = {
       auto_set_highlight_group = true,
@@ -107,7 +123,7 @@ You are a Git assistant. Use `git` MCP tools to:
 1. Detect all staged + unstaged changes.
 2. Identify the intent/purpose of changes (feature, fix, refactor, etc).
 3. Write one commit per intent with:
-   - Short imperative title (~72 chars max).
+   - Short imperative title (~80 chars max).
    - Bullet points describing key changes (what & why, not how).
 4. Stage changes for each commit.
 5. Commit with the generated messages.
