@@ -22,13 +22,13 @@ return {
       ["copilot-gpt-5-mini"] = {
         __inherited_from = "copilot",
         model = "gpt-5-mini",
-        display_name = "GPT 5 Mini (x0) (Default)",
+        display_name = "GPT 5 Mini (Default)",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-4.1"] = {
         __inherited_from = "copilot",
         model = "gpt-4.1",
-        display_name = "GPT 4.1 (x0)",
+        display_name = "GPT 4.1",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-5"] = {
