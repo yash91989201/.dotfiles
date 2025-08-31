@@ -1,0 +1,60 @@
+{
+  "selectedAuthType": "oauth-personal",
+  "preferredEditor": "neovim",
+  "vimMode": false,
+  "mcpServers": {
+    "git": {
+      "type": "local",
+      "args": [
+        "mcp-server-git"
+      ],
+      "command": "uvx"
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "playwright": {
+      "args": [
+        "@playwright/mcp@latest",
+        "--vision"
+      ],
+      "command": "npx",
+      "disabled": true
+    },
+    "sequentialthinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "autoApprove": [
+        "sequentialthinking"
+      ],
+      "command": "npx"
+    },
+    "shadcn-theme": {
+      "args": [
+        "-y",
+        "shadcn@latest",
+        "registry:mcp"
+      ],
+      "command": "npx",
+      "env": {
+        "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
+      }
+    },
+    "shadcn-ui": {
+      "args": [
+        "@jpisnice/shadcn-ui-mcp-server"
+      ],
+      "command": "npx",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    }
+  },
+  "theme": "GitHub"
+}

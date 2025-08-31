@@ -1,0 +1,25 @@
+description = "Asks the model to refactor the current context into a pure function."
+
+prompt = """
+You are a Git assistant. Use `git` MCP tools to:
+
+1. Detect all staged + unstaged changes.
+2. Identify the intent/purpose of changes (feature, fix, refactor, etc).
+3. Write one commit per intent with:
+   - Short imperative title (~80 chars max).
+   - Bullet points describing key changes (what & why, not how).
+4. Stage changes for each commit.
+5. Commit with the generated messages.
+6. Push to the current branch's remote.
+
+Rules:
+- Present tense, imperative mood ("Add X" not "Added X").
+- No generic phrases like "update files".
+- No asking for confirmation — just execute.
+
+Example:
+Improve accessibility & add dark mode -
+  • enable dark mode in settings.
+  • increase text contrast.
+  • add keyboard navigation.
+"""

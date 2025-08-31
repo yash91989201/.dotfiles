@@ -8,6 +8,7 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "folke/snacks.nvim",
+    "takeshiD/avante-status.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
@@ -22,19 +23,37 @@ return {
       ["copilot-gpt-5-mini"] = {
         __inherited_from = "copilot",
         model = "gpt-5-mini",
-        display_name = "GPT 5 Mini (Default)",
+        display_name = "GPT 5 Mini (x0) (Default)",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-4.1"] = {
         __inherited_from = "copilot",
         model = "gpt-4.1",
-        display_name = "GPT 4.1",
+        display_name = "GPT 4.1 (x0)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-gpt-4o"] = {
+        __inherited_from = "copilot",
+        model = "gpt-4o",
+        display_name = "GPT 4o (x0)",
         hide_in_model_selector = false,
       },
       ["copilot-gpt-5"] = {
         __inherited_from = "copilot",
         model = "gpt-5",
         display_name = "GPT 5 (x1)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-gpt-o3"] = {
+        __inherited_from = "copilot",
+        model = "gpt-o3",
+        display_name = "GPT o3 (x1)",
+        hide_in_model_selector = false,
+      },
+      ["copilot-gpt-o4-mini"] = {
+        __inherited_from = "copilot",
+        model = "gpt-o4-mini",
+        display_name = "GPT o4 Mini (x0.33)",
         hide_in_model_selector = false,
       },
       ["copilot-claude-opus-41"] = {
@@ -115,30 +134,53 @@ return {
     shortcuts = {
       {
         name = "cnp",
-        description = "Stage, commit, and push all changes with an intent-focused, point-wise commit message.",
-        details = "Summarize purpose of all changes, commit in bullet points, then push.",
+        description = "Stage, commit, and push all changes with intent-focused, logical commit separation.",
+        details = "Analyze changes by purpose, create separate commits per intent, use conventional format with bullet points.",
         prompt = [[
-You are a Git assistant. Use `git` MCP tools to:
+You are a Git assistant. Use `git` MCP tools to execute this workflow (enable MCPHub if required).
 
-1. Detect all staged + unstaged changes.
-2. Identify the intent/purpose of changes (feature, fix, refactor, etc).
-3. Write one commit per intent with:
-   - Short imperative title (~80 chars max).
-   - Bullet points describing key changes (what & why, not how).
-4. Stage changes for each commit.
-5. Commit with the generated messages.
-6. Push to the current branch's remote.
+### Step 1: Review Changes
+  - Use `git_status` to list modified, staged, and untracked files.
+  - Use `git_diff_unstaged` to inspect working directory changes.
+  - Use `git_diff_staged` to inspect staged changes.
+  - Exclude temp, build, and sensitive files from staging.
 
-Rules:
-- Present tense, imperative mood ("Add X" not "Added X").
-- No generic phrases like "update files".
-- No asking for confirmation — just execute.
+### Step 2: Smart Staging by Intent
+  - Group related changes logically (feature, bugfix, refactor, docs, style, config).
+  - Stage files for each group with `git_add`.
+  - If needed, reset with `git_reset` before regrouping.
 
-Example:
-Improve accessibility & add dark mode -
-  • enable dark mode in settings.
-  • increase text contrast.
-  • add keyboard navigation.
+### Step 3: Commit by Intent
+  - For each group of staged changes, use `git_commit` with a **Conventional Commit** style message:
+    - Format: `type(scope): description`
+      - **Types:** feat, fix, docs, style, refactor, test, chore, perf
+      - Use imperative mood (e.g., "Add", "Fix", "Update")
+      - Keep subject line ≤ 50 chars
+    - Body (optional, use bullet points):
+      - What changed (specific components)
+      - Why changed (reason, user/business benefit)
+
+### Step 4: Push
+  - Push all commits to the current branch’s remote using bash tool.
+
+### Rules
+  - NO generic commit messages (avoid "update files", "fix issues").
+  - Never mix unrelated changes in one commit.
+  - Be descriptive, precise, and action-oriented.
+  - Always use MCP tool syntax correctly (`git_add`, `git_commit`, etc.).
+  - Execute workflow **without asking for confirmation**.
+  - Stay strictly within the boundaries of the current workflow.
+  - Do not output unnecessary information; only show failure messages if an operation fails.
+
+### Examples
+
+feat(auth): implement OAuth2 integration
+  - add Google OAuth provider config
+  - create user session management
+
+fix(ui): resolve mobile navigation accessibility
+  - increase touch target sizes to 44px minimum
+  - add ARIA labels and keyboard focus trap
 ]],
       },
       {

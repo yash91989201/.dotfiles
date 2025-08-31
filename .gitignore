@@ -1,2 +1,9 @@
+/gemini/.gemini/*
+!/gemini/.gemini/commands/
+!/gemini/.gemini/commands/**
+!/gemini/.gemini/settings.json
+!/gemini/.gemini/.gitignore
+
+
 .bash_secrets
 btop.log
