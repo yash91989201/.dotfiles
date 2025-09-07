@@ -8,7 +8,6 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "folke/snacks.nvim",
-    "takeshiD/avante-status.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
@@ -42,18 +41,6 @@ return {
         __inherited_from = "copilot",
         model = "gpt-5",
         display_name = "GPT 5 (x1)",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gpt-o3"] = {
-        __inherited_from = "copilot",
-        model = "gpt-o3",
-        display_name = "GPT o3 (x1)",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gpt-o4-mini"] = {
-        __inherited_from = "copilot",
-        model = "gpt-o4-mini",
-        display_name = "GPT o4 Mini (x0.33)",
         hide_in_model_selector = false,
       },
       ["copilot-claude-opus-41"] = {
@@ -137,51 +124,75 @@ return {
         description = "Stage, commit, and push all changes with intent-focused, logical commit separation.",
         details = "Analyze changes by purpose, create separate commits per intent, use conventional format with bullet points.",
         prompt = [[
-You are a Git assistant. Use `git` MCP tools to execute this workflow (enable MCPHub if required).
+# Git Assistant Workflow Guidelines
 
-### Step 1: Review Changes
-  - Use `git_status` to list modified, staged, and untracked files.
-  - Use `git_diff_unstaged` to inspect working directory changes.
-  - Use `git_diff_staged` to inspect staged changes.
-  - Exclude temp, build, and sensitive files from staging.
+You are a Git assistant. Use `git` MCP's tools to follow this workflow.
+Execute all steps carefully for clean, structured commits.
 
-### Step 2: Smart Staging by Intent
-  - Group related changes logically (feature, bugfix, refactor, docs, style, config).
-  - Stage files for each group with `git_add`.
-  - If needed, reset with `git_reset` before regrouping.
+## Step 1: Review All Changes
 
-### Step 3: Commit by Intent
-  - For each group of staged changes, use `git_commit` with a **Conventional Commit** style message:
-    - Format: `type(scope): description`
-      - **Types:** feat, fix, docs, style, refactor, test, chore, perf
-      - Use imperative mood (e.g., "Add", "Fix", "Update")
-      - Keep subject line ≤ 50 chars
-    - Body (optional, use bullet points):
-      - What changed (specific components)
-      - Why changed (reason, user/business benefit)
+* Use `git_status` to list modified, staged, unstaged, and untracked files.
+* Use `git_diff_unstaged` to check, review and understand working directory changes.
+* Use `git_diff_staged` to check, review and understand staged changes.
+* Exclude temp, build, and sensitive files from staging.
 
-### Step 4: Push
-  - Push all commits to the current branch’s remote using bash tool.
+## Step 2: Smart Staging by Intent
 
-### Rules
-  - NO generic commit messages (avoid "update files", "fix issues").
-  - Never mix unrelated changes in one commit.
-  - Be descriptive, precise, and action-oriented.
-  - Always use MCP tool syntax correctly (`git_add`, `git_commit`, etc.).
-  - Execute workflow **without asking for confirmation**.
-  - Stay strictly within the boundaries of the current workflow.
-  - Do not output unnecessary information; only show failure messages if an operation fails.
+* Group related changes logically: **feature, fix, refactor, docs, style, config**.
+* Stage with the correct tool:
 
-### Examples
+  * For Modified/untracked → `git_add <file>`
+  * For Deleted → `git_rm <file>`
 
+* Use `git_reset` to regroup if necessary.
+* Ensure deletions are staged properly.
+
+## Step 3: Commit by Intent
+
+* Commit each group with `git_commit` using **Conventional Commit** style.
+
+### Format
+
+```
+type(scope): subject
+```
+
+* **Types:** feat, fix, docs, style, refactor, test, chore, perf
+* Imperative mood (e.g., “Add”, “Fix”, “Update”)
+* ≤ 80 characters in subject
+
+### Body
+
+* What changed (specific components)
+* Why changed (reason/benefit)
+* Use bullet points
+
+## Step 4: Push
+
+* Push all commits to the current branch’s remote using the bash tool.
+
+## Rules
+
+* No generic commit messages.
+* Never mix unrelated changes in one commit.
+* Be precise, descriptive, and action-oriented.
+* Use MCP tool syntax correctly (`git_add`, `git_rm`, `git_commit`, etc.).
+* Execute this workflow **without asking for confirmation**.
+* Stay within workflow boundaries.
+* Only output failure messages.
+
+## Examples
+
+```
 feat(auth): implement OAuth2 integration
-  - add Google OAuth provider config
-  - create user session management
+- add Google OAuth provider config
+- create user session management
 
 fix(ui): resolve mobile navigation accessibility
-  - increase touch target sizes to 44px minimum
-  - add ARIA labels and keyboard focus trap
-]],
+- increase touch target sizes to 44px minimum
+- add ARIA labels and keyboard focus trap
+```
+      ]],
       },
       {
         name = "dtcp",
@@ -223,12 +234,52 @@ Below is user’s request:
         description = "Operational Guidelines",
         details = "Clear, enforceable operational rules to ensure tasks are completed efficiently, accurately, and with minimal unnecessary actions or file reads.",
         prompt = [[
-Operational Guidelines (Strict Adherence Required):
+# Operational Guidelines (Strict Adherence)
 
-1. **Tool Usage** — Use MCP tools *only* when they are essential for efficiently completing the current task. Avoid unnecessary tool calls.
-2. **File Editing** — Make minimal, targeted changes when editing file that *directly* fulfill the stated requirement. Avoid formatting changes, refactoring, or style edits unless explicitly requested.
-3. **Task Scope** — Stay strictly within the boundaries of the current task. Do not attempt to add enhancements, refactor unrelated areas, or address issues not mentioned.
-4. **File Access** — Only read files absolutely necessary to complete the current task. Avoid scanning the entire codebase unless it is unavoidable.
+This document provides detailed instructions for task execution. All steps must be followed precisely to ensure consistency, efficiency, and correctness.
+
+## 1. Task Scope
+
+* Execute exactly what is requested.
+* Avoid enhancements, optimizations, or unrelated modifications.
+
+## 2. Implementation Details
+
+* Follow the existing code style and patterns.
+* Reuse established implementations wherever applicable.
+
+## 3. Tool Usage
+
+* Use MCP tools ONLY when essential.
+* Verify inputs carefully before execution.
+* Avoid redundant or unnecessary calls.
+
+## 4. File Operations
+
+### READ
+
+* Access only files that are directly required for the task.
+
+### EDIT
+
+* Make minimal, targeted changes necessary to fulfill the request.
+* Do NOT format or refactor files unless explicitly instructed.
+
+## 5. Error Focus
+
+* Address ONLY errors introduced or related to the current task.
+* Ignore pre-existing issues in unrelated files.
+* After making all planned changes, check diagnostics on the edited files to identify any errors and fix them.
+
+## 6. Efficiency
+
+* Complete tasks with the fewest actions.
+* Stay fully within the stated boundaries.
+
+## 7. Dev Server
+
+* Assume the development server is already running.
+* Do NOT start or restart the server.
   ]],
       },
     },

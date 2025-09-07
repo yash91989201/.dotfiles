@@ -1,10 +1,7 @@
 {
   "mcpServers": {
     "context7": {
-      "autoApprove": [
-        "resolve-library-id",
-        "get-library-docs"
-      ],
+      "autoApprove": [],
       "custom_instructions": {
         "disabled": false,
         "text": "# 📘 Accurate Use of Programming Libraries, APIs, and Tools\n\nWhen responding to prompts involving **programming**, **libraries**, **frameworks**, **APIs**, or **tools**, follow this protocol to ensure accuracy.\n\n> ⚠️ Your training data may be outdated.  \n> Always use `Context7` MCP to fetch **up-to-date official documentation** before answering technical questions.\n> Use `Context7` first for acquiring documentation for libraries instead of using web_search tool, if it fails then only use the web_search tool.\n\n---\n\n## ✅ Execution Workflow\n\n### 1. 🔌 Activate `Context7` MCP\n- Engage `Context7` before writing any code or explanation.\n- It fetches **live, official documentation** from trusted sources.\n\n---\n\n### 2. 🧭 Identify the Technology\n- Determine the **specific library**, **API**, or **tool** the user is referring to.\n- Consider context like platform, version, or programming language.\n\n---\n\n### 3. 📚 Fetch and Use Official Docs\n- Retrieve current documentation using `Context7` \n\n- Use the docs to verify:\n  - Method signatures  \n  - Config options  \n  - Usage patterns  \n  - Examples and constraints\n\n---\n\n### 4. 🚫 Avoid Guessing\n- Do not rely on memory or assumptions, your training data may be outdated.\n- If information isn’t available in the docs, request clarification or state it’s not documented.\n\n---\n\n### 5. 🎯 Respond with Accuracy\n- Base your answer entirely on what was retrieved.\n- Quote or paraphrase documentation when helpful.\n- Ensure your output is **current**, **reliable**, and **usable**.\n\n---\n\n## 🧠 Final Reminder\n\n> If a prompt involves external libraries, APIs, or tools — **always check the docs via Context7** before responding.\n\nDocumentation is your source of truth. Let accuracy guide your response."
@@ -226,7 +223,7 @@
         "browser_wait_for"
       ],
       "command": "npx",
-      "disabled": true
+      "disabled": false
     },
     "sequentialthinking": {
       "args": [
