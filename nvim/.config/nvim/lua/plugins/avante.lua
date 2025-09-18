@@ -129,6 +129,8 @@ return {
 You are a Git assistant. Use `git` MCP's tools to follow this workflow.
 Execute all steps carefully for clean, structured commits.
 
+### If necessary enable the `git` MCP server, using the `toggle_mcp_server` tool.
+
 ## Step 1: Review All Changes
 
 * Use `git_status` to list modified, staged, unstaged, and untracked files.

@@ -1,7 +1,4 @@
 {
-  "selectedAuthType": "oauth-personal",
-  "preferredEditor": "neovim",
-  "vimMode": false,
   "mcpServers": {
     "git": {
       "type": "local",
@@ -46,15 +43,16 @@
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
       }
     },
-    "shadcn-ui": {
+    "shadcn": {
       "args": [
-        "@jpisnice/shadcn-ui-mcp-server"
+        "shacn@latest",
+        "mcp"
       ],
-      "command": "npx",
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
-      }
+      "command": "npx"
     }
   },
-  "theme": "GitHub"
+  "preferredEditor": "neovim",
+  "selectedAuthType": "oauth-personal",
+  "theme": "GitHub",
+  "vimMode": false
 }
