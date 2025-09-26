@@ -237,12 +237,21 @@
       "custom_instructions": {
         "text": "The `Sequential Thinking` MCP is a specialized tool designed to support **deep, adaptive, and multi-step reasoning**. \nIt allows for a flexible, evolving approach to problem-solving, where each thought refines or builds upon the previous one.\n\nUse this module when the task requires **nonlinear thinking**, **exploration**, or **strategic reasoning** beyond a simple one-shot response.\n\n---\n\n## 🧩 When to Use SequentialThinking\n\nEngage the `Sequential Thinking` MCP for:\n\n- Explicit User request.\n- Complex or ambiguous coding tasks\n- Multi-layered technical problems\n- Deep debugging or architectural trade-offs\n- Questions that benefit from **step-by-step** or **reflective analysis**\n- Design reasoning that may evolve across multiple stages\n\n> ✅ Use it to thoughtfully and accurately fulfill the user's task.\n\n---"
       },
-      "disabled": false
+      "disabled": true
     },
     "shadcn": {
       "args": [
         "shadcn@latest",
         "mcp"
+      ],
+      "autoApprove": [
+        "get_project_registries",
+        "list_items_in_registries",
+        "search_items_in_registries",
+        "view_items_in_registries",
+        "get_item_examples_from_registries",
+        "get_add_command_for_items",
+        "get_audit_checklist"
       ],
       "command": "npx",
       "disabled": true,
@@ -264,26 +273,6 @@
       "disabled": true,
       "env": {
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      }
-    },
-    "shadcn-ui": {
-      "args": [
-        "@jpisnice/shadcn-ui-mcp-server"
-      ],
-      "autoApprove": [
-        "get_component",
-        "get_component_demo",
-        "list_components",
-        "get_component_metadata",
-        "get_directory_structure",
-        "get_block",
-        "list_blocks"
-      ],
-      "command": "npx",
-      "disabled": true,
-      "disabled_prompts": [],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       }
     },
     "shrimp-task-manager": {
