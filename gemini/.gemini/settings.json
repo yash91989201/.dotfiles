@@ -51,8 +51,16 @@
       "command": "npx"
     }
   },
-  "preferredEditor": "neovim",
-  "selectedAuthType": "oauth-personal",
-  "theme": "GitHub",
-  "vimMode": false
+  "general": {
+    "preferredEditor": "neovim",
+    "vimMode": false
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "GitHub"
+  }
 }
