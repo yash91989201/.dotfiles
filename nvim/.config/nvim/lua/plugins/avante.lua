@@ -43,6 +43,12 @@ return {
         display_name = "GPT 5 (x1)",
         hide_in_model_selector = false,
       },
+      ["copilot-gpt-5-codex"] = {
+        __inherited_from = "copilot",
+        model = "gpt-5-codex",
+        display_name = "GPT 5 Codex (x1)",
+        hide_in_model_selector = false,
+      },
       ["copilot-claude-opus-41"] = {
         __inherited_from = "copilot",
         model = "claude-opus-41",
@@ -119,6 +125,32 @@ return {
       host_mount = vim.fn.getcwd(),
     },
     shortcuts = {
+
+      {
+        name = "udoc",
+        description = "Read doc, analyze modifications, integrate changes cleanly.",
+        details = "Understand existing doc, process new input, merge updates in place, remove redundancy, ensure clarity and consistency.",
+        prompt = [[
+# Documentation Update Workflow
+
+You are a **software developer with strong documentation skills**.  
+Your job is to update Markdown documentation based on new content provided while maintaining technical clarity and consistency.
+
+## Workflow
+1. **Read & understand existing doc** – capture structure, purpose, and key points.  
+2. **Read & understand modifications** – analyze intent and relation to current content.  
+3. **Integrate updates** – insert in relevant sections or add new ones. Merge overlaps, refine unclear text, and remove redundancy.  
+4. **Output** – return the complete, polished Markdown doc with consistent style, formatting, and tone.
+
+## Rules
+* Keep concise, actionable, and technically accurate.  
+* Use proper Markdown structure (headings, lists, code blocks).  
+* Never drop essential context, only remove duplicates.  
+
+---
+**New or updated content will be provided below.**
+  ]],
+      },
       {
         name = "cnp",
         description = "Stage, commit, and push all changes with intent-focused, logical commit separation.",
