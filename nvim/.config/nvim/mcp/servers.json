@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "chrome-devtools": {
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "command": "npx",
+      "disabled": true,
+      "type": "stdio"
+    },
     "context7": {
       "custom_instructions": {
         "disabled": false,
@@ -25,7 +34,6 @@
         "git_create_branch",
         "git_checkout",
         "git_show",
-        "git_init",
         "git_branch"
       ],
       "command": "uvx",
@@ -178,53 +186,6 @@
       },
       "url": "https://api.githubcopilot.com/mcp/"
     },
-    "grep": {
-      "autoApprove": [
-        "searchGitHub"
-      ],
-      "custom_instructions": {
-        "text": "# 🔍 Grep MCP — Large-Scale Codebase Search\n\nThe **Grep MCP** enables fast, regex-powered searches across millions of public GitHub repositories.\nUse it to discover patterns, examples, or anti-patterns in real-world code at scale.\n\n---\n\n## 🧭 When to Use\n\nUse Grep MCP for:\n\n- Searching real usage of APIs, methods, or patterns\n- Finding examples of configuration, syntax, or libraries\n- Identifying deprecated or insecure practices\n- Gathering code references across many projects\n\nDo **not** use it for local code or single-file tasks.\n\n---\n\n## 🛠️ How to Use\n\n1. **Understand the Search**\n   - Extract the user’s intent, target keyword/pattern, and optional file/language scope.\n\n2. **Formulate a Grep Query**\n   - Use precise regex or keywords.\n   - Add optional filters:\n     - `--language`, `--ext`, `--ignore-case`, `--context N`\n\n3. **Run via Grep MCP**\n   - Route the query through the MCP server.\n   - Do not attempt to grep local files.\n\n4. **Return Useful Output**\n   - Include matched lines, file paths, and repo names.\n   - Summarize results when possible.\n\n---\n\n## 📌 Examples\n\n| Task | Use Grep MCP? |\n|------|----------------|\n| Find `useEffect` usage | ✅ Yes |\n| Search `eval()` in JS | ✅ Yes |\n| Explore how OpenTelemetry is initialized in Python services | ✅ Yes |\n| Search for insecure `JWT` usage patterns in Node.js projects | ✅ Yes |\n| Fix local syntax error | ❌ No |\n| Rename a variable in a local file | ❌ No |\n\n---\n\n## ✅ Final Tip\n\n> Use Grep MCP for high-volume, **documentation-grade** code search across open-source GitHub projects.  \n> Keep queries clean and focused to reduce noise.\n\n---"
-      },
-      "disabled": true,
-      "url": "https://mcp.grep.app"
-    },
-    "playwright": {
-      "args": [
-        "@playwright/mcp@latest",
-        "--vision"
-      ],
-      "autoApprove": [
-        "browser_close",
-        "browser_resize",
-        "browser_console_messages",
-        "browser_handle_dialog",
-        "browser_evaluate",
-        "browser_file_upload",
-        "browser_install",
-        "browser_press_key",
-        "browser_type",
-        "browser_navigate",
-        "browser_navigate_back",
-        "browser_navigate_forward",
-        "browser_network_requests",
-        "browser_mouse_move_xy",
-        "browser_mouse_click_xy",
-        "browser_mouse_drag_xy",
-        "browser_take_screenshot",
-        "browser_snapshot",
-        "browser_click",
-        "browser_drag",
-        "browser_hover",
-        "browser_select_option",
-        "browser_tab_list",
-        "browser_tab_new",
-        "browser_tab_select",
-        "browser_tab_close",
-        "browser_wait_for"
-      ],
-      "command": "npx",
-      "disabled": true
-    },
     "sequentialthinking": {
       "args": [
         "-y",
@@ -273,37 +234,6 @@
       "disabled": true,
       "env": {
         "REGISTRY_URL": "https://tweakcn.com/r/themes/registry.json"
-      }
-    },
-    "shrimp-task-manager": {
-      "args": [
-        "-y",
-        "mcp-shrimp-task-manager"
-      ],
-      "autoApprove": [
-        "plan_task",
-        "analyze_task",
-        "reflect_task",
-        "split_tasks",
-        "list_tasks",
-        "execute_task",
-        "verify_task",
-        "delete_task",
-        "clear_all_tasks",
-        "update_task",
-        "query_task",
-        "get_task_detail",
-        "process_thought",
-        "init_project_rules",
-        "research_mode"
-      ],
-      "command": "npx",
-      "disabled": true,
-      "env": {
-        "DATA_DIR": "/home/yash/shrimp-task-manager-data",
-        "ENABLE_GUI": "true",
-        "TEMPLATES_USE": "en",
-        "WEB_PORT": "34986"
       }
     }
   },
