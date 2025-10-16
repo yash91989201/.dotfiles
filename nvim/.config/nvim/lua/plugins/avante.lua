@@ -17,7 +17,7 @@ return {
     },
   },
   opts = {
-    provider = "copilot-gpt-5-mini",
+    provider = "copilot-claude-sonnet-45",
     providers = {
       ["copilot-gpt-5-mini"] = {
         __inherited_from = "copilot",
@@ -55,11 +55,17 @@ return {
         display_name = "Claude Opus 4.1 (x10)",
         hide_in_model_selector = false,
       },
+      ["copilot-claude-sonnet-45"] = {
+        __inherited_from = "copilot",
+        model = "claude-sonnet-4.5",
+        display_name = "Claude Sonnet 4.5 (x1)",
+        hide_in_model_selector = false,
+      },
       ["copilot-claude-sonnet-4"] = {
         __inherited_from = "copilot",
         model = "claude-sonnet-4",
         display_name = "Claude Sonnet 4 (x1)",
-        hide_in_model_selector = false,
+        hide_in_model_selector = true,
       },
       ["copilot-claude-3.7-sonnet-thought"] = {
         __inherited_from = "copilot",
@@ -73,10 +79,10 @@ return {
         display_name = "Claude Sonnet 3.7 (x1)",
         hide_in_model_selector = false,
       },
-      ["copilot-claude-3.5-sonnet"] = {
+      ["copilot-claude-haiku-4.5"] = {
         __inherited_from = "copilot",
-        model = "claude-3.5-sonnet",
-        display_name = "Claude Sonnet 3.5 (x1)",
+        model = "claude-haiku-4.5",
+        display_name = "Claude Haiku 4.5 (x0.33)",
         hide_in_model_selector = false,
       },
       ["copilot-grok-code-fast-1"] = {
@@ -323,12 +329,12 @@ This document provides detailed instructions for task execution. All steps must 
         height = 12,
       },
     },
-    input = {
-      provider = "snacks",
-    },
-    selector = {
-      provider = "snacks",
-    },
+    -- input = {
+    --   provider = "nui",
+    -- },
+    -- selector = {
+    --   provider = "nui",
+    -- },
   },
   keys = {
     { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear chat" },
