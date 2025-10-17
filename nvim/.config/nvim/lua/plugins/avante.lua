@@ -6,7 +6,6 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
     "folke/snacks.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
@@ -31,12 +30,6 @@ return {
         display_name = "GPT 4.1 (x0)",
         hide_in_model_selector = false,
       },
-      ["copilot-gpt-4o"] = {
-        __inherited_from = "copilot",
-        model = "gpt-4o",
-        display_name = "GPT 4o (x0)",
-        hide_in_model_selector = false,
-      },
       ["copilot-gpt-5"] = {
         __inherited_from = "copilot",
         model = "gpt-5",
@@ -59,24 +52,6 @@ return {
         __inherited_from = "copilot",
         model = "claude-sonnet-4.5",
         display_name = "Claude Sonnet 4.5 (x1)",
-        hide_in_model_selector = false,
-      },
-      ["copilot-claude-sonnet-4"] = {
-        __inherited_from = "copilot",
-        model = "claude-sonnet-4",
-        display_name = "Claude Sonnet 4 (x1)",
-        hide_in_model_selector = true,
-      },
-      ["copilot-claude-3.7-sonnet-thought"] = {
-        __inherited_from = "copilot",
-        model = "claude-3.7-sonnet-thought",
-        display_name = "Claude Sonnet 3.7 Thinking (x1.25)",
-        hide_in_model_selector = false,
-      },
-      ["copilot-claude-3.7-sonnet"] = {
-        __inherited_from = "copilot",
-        model = "claude-3.7-sonnet",
-        display_name = "Claude Sonnet 3.7 (x1)",
         hide_in_model_selector = false,
       },
       ["copilot-claude-haiku-4.5"] = {
@@ -235,41 +210,6 @@ fix(ui): resolve mobile navigation accessibility
       ]],
       },
       {
-        name = "dtcp",
-        description = "Delegate a coding task to the GitHub Copilot agent.",
-        details = "This command uses the GitHub MCP server to create an issue from the user's request and assign it to the Copilot agent.",
-        prompt = [[
-Use the GitHub MCP tools to delegate the task:
-
-1. Use `create_issue` to open a new GitHub issue.
-   - Title: A short summary of the user's task
-   - Body: A clear, detailed version of the user's request
-
-2. Use `assign_copilot_to_issue` to assign the Copilot agent to the issue.
-
-Here is the task to delegate:
-]],
-      },
-      {
-        name = "implement",
-        description = "Plan and implement a feature using Shrimp Task Manager MCP, with optional use of context7 and grep mcp.",
-        details = "Guides AI through Shrimp’s structured workflow for planning, executing, and verifying a feature, while allowing use of context7 for latest docs and grep for code patterns/examples.",
-        prompt = [[
-Use Shrimp Task Manager MCP to plan and implement the requested feature.
-
-1. Analyze and clarify the request.
-2. If needed, enter research mode (Shrimp Task Manager MCP) to explore solutions and best practices.
-3. For latest documentation on tools/packages, use context7 MCP.
-4. For real-world code examples or patterns from repos, use grep MCP.
-5. Break the feature into subtasks, define dependencies, priorities, and assess complexity.
-6. Check Task Memory to reuse relevant past work.
-7. Provide step-by-step instructions for each subtask with any required code/config changes.
-8. Execute in order, track progress, verify results, and summarize completion.
-
-Below is user’s request:
-]],
-      },
-      {
         name = "og",
         description = "Operational Guidelines",
         details = "Clear, enforceable operational rules to ensure tasks are completed efficiently, accurately, and with minimal unnecessary actions or file reads.",
@@ -326,15 +266,9 @@ This document provides detailed instructions for task execution. All steps must 
     windows = {
       width = 38,
       input = {
-        height = 12,
+        height = 14,
       },
     },
-    -- input = {
-    --   provider = "nui",
-    -- },
-    -- selector = {
-    --   provider = "nui",
-    -- },
   },
   keys = {
     { "<leader>ax", "<cmd>AvanteClear<cr>", desc = "avante: clear chat" },
