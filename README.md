@@ -34,6 +34,9 @@
 33. zen browser
 34. android studio
 35. git
+36. crush
+37. github copilot cli
+38. gemini cli
 
 ## Global npm packages
 
