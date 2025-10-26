@@ -1,16 +1,4 @@
-# WINDOWS
-
-1. windows terminal
-2. zen browser
-3. docker desktop
-4. android studio
-5. git
-6. latest nvidia
-7. Latest Microsoft Visual C++ Redistributable for running android vcs
-
-Windows terminal settings.json path: /mnt/c/Users/yashr/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
-
-## WSL UBUNTU
+# Softwares and Packages
 
 1. go
 2. starship terminal
@@ -31,7 +19,6 @@ Windows terminal settings.json path: /mnt/c/Users/yashr/AppData/Local/Packages/M
 17. golangci-lint
 18. terraform
 19. pulumi
-20. global npm libs for nvim tree-sitter-cli, eslint, neovim
 21. protoc (installed from releases)
 22. protoc-gen-go (installed using go)
 23. protoc-gen-go-grpc (installed using go)
@@ -42,6 +29,27 @@ Windows terminal settings.json path: /mnt/c/Users/yashr/AppData/Local/Packages/M
 28. python
 29. uv
 30. venv
+31. linux teams app
+32. timechamp
+33. zen browser
+34. android studio
+35. git
+
+## Global npm packages
+
+1. @charmland/crush@0.12.3
+2. @fission-ai/openspec@0.13.0
+3. @github/copilot@0.0.351
+4. @google/gemini-cli@0.10.0
+5. @openai/codex@0.49.0
+6. @playwright/mcp@0.0.44
+7. chrome-devtools-mcp@0.9.0
+8. corepack@0.34.1
+9. mcp-hub@4.2.1
+10. neovim@5.4.0
+11. npm@11.6.2
+12. tree-sitter-cli@0.25.10
+13. typescript-language-server@5.0.1
 
 ### Packages to install for working with proto
 

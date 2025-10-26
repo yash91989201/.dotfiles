@@ -36,12 +36,6 @@ return {
         display_name = "GPT 5 (x1)",
         hide_in_model_selector = false,
       },
-      ["copilot-gpt-5-codex"] = {
-        __inherited_from = "copilot",
-        model = "gpt-5-codex",
-        display_name = "GPT 5 Codex (x1)",
-        hide_in_model_selector = false,
-      },
       ["copilot-claude-opus-41"] = {
         __inherited_from = "copilot",
         model = "claude-opus-41",
@@ -70,12 +64,6 @@ return {
         __inherited_from = "copilot",
         model = "gemini-2.5-pro",
         display_name = "Gemini 2.5 Pro (x1)",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gemini-2.0-flash"] = {
-        __inherited_from = "copilot",
-        model = "gemini-2.0-flash",
-        display_name = "Gemini 2.0 Flash (x0.25)",
         hide_in_model_selector = false,
       },
       copilot = { hide_in_model_selector = true },
