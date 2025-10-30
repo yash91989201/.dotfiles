@@ -184,3 +184,10 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$HOME/.nvm/versions/node/v24.4.0/bin/crush:$PATH"
 
 export PATH="$HOME/.nvm/versions/node/v24.4.0/bin/typescript-language-server:$PATH"
+
+export PATH="$HOME/development/flutter/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export JAVA_HOME=/usr/bin/java

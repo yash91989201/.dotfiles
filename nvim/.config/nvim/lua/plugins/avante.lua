@@ -36,6 +36,33 @@ return {
         display_name = "GPT 5 (x1)",
         hide_in_model_selector = false,
       },
+      ["copilot-gpt-5-codex-low"] = {
+        __inherited_from = "copilot",
+        model = "gpt-5-codex",
+        display_name = "GPT 5 Codex (Low) (x1)",
+        hide_in_model_selector = false,
+        extra_request_body = {
+          reasoning_effort = "low",
+        },
+      },
+      ["copilot-gpt-5-codex-medium"] = {
+        __inherited_from = "copilot",
+        model = "gpt-5-codex",
+        display_name = "GPT 5 Codex (Medium) (x1)",
+        hide_in_model_selector = false,
+        extra_request_body = {
+          reasoning_effort = "medium",
+        },
+      },
+      ["copilot-gpt-5-codex-high"] = {
+        __inherited_from = "copilot",
+        model = "gpt-5-codex",
+        display_name = "GPT 5 Codex (High) (x1)",
+        hide_in_model_selector = false,
+        extra_request_body = {
+          reasoning_effort = "high",
+        },
+      },
       ["copilot-claude-opus-41"] = {
         __inherited_from = "copilot",
         model = "claude-opus-41",
