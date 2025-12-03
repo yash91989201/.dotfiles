@@ -6,7 +6,6 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
-    "folke/snacks.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
@@ -16,7 +15,7 @@ return {
     },
   },
   opts = {
-    provider = "copilot-claude-sonnet-45",
+    provider = "copilot-gpt-5-mini",
     providers = {
       ["copilot-gpt-5-mini"] = {
         __inherited_from = "copilot",
@@ -24,49 +23,22 @@ return {
         display_name = "GPT 5 Mini (x0) (Default)",
         hide_in_model_selector = false,
       },
-      ["copilot-gpt-4.1"] = {
+      ["copilot-gpt-51"] = {
         __inherited_from = "copilot",
-        model = "gpt-4.1",
-        display_name = "GPT 4.1 (x0)",
+        model = "gpt-5.1",
+        display_name = "GPT 5.1 (x1)",
         hide_in_model_selector = false,
       },
-      ["copilot-gpt-5"] = {
+      ["copilot-gpt-51-codex"] = {
         __inherited_from = "copilot",
-        model = "gpt-5",
-        display_name = "GPT 5 (x1)",
+        model = "gpt-5.1-codex",
+        display_name = "Codex (x1)",
         hide_in_model_selector = false,
       },
-      ["copilot-gpt-5-codex-low"] = {
+      ["copilot-gpt-51-codex-mini"] = {
         __inherited_from = "copilot",
-        model = "gpt-5-codex",
-        display_name = "GPT 5 Codex (Low) (x1)",
-        hide_in_model_selector = false,
-        extra_request_body = {
-          reasoning_effort = "low",
-        },
-      },
-      ["copilot-gpt-5-codex-medium"] = {
-        __inherited_from = "copilot",
-        model = "gpt-5-codex",
-        display_name = "GPT 5 Codex (Medium) (x1)",
-        hide_in_model_selector = false,
-        extra_request_body = {
-          reasoning_effort = "medium",
-        },
-      },
-      ["copilot-gpt-5-codex-high"] = {
-        __inherited_from = "copilot",
-        model = "gpt-5-codex",
-        display_name = "GPT 5 Codex (High) (x1)",
-        hide_in_model_selector = false,
-        extra_request_body = {
-          reasoning_effort = "high",
-        },
-      },
-      ["copilot-claude-opus-41"] = {
-        __inherited_from = "copilot",
-        model = "claude-opus-41",
-        display_name = "Claude Opus 4.1 (x10)",
+        model = "gpt-5.1-codex-mini",
+        display_name = "Codex Mini (x0.33)",
         hide_in_model_selector = false,
       },
       ["copilot-claude-sonnet-45"] = {
@@ -85,12 +57,6 @@ return {
         __inherited_from = "copilot",
         model = "grok-code-fast-1",
         display_name = "Grok Code Fast 1 (x0.25)",
-        hide_in_model_selector = false,
-      },
-      ["copilot-gemini-2.5-pro"] = {
-        __inherited_from = "copilot",
-        model = "gemini-2.5-pro",
-        display_name = "Gemini 2.5 Pro (x1)",
         hide_in_model_selector = false,
       },
       copilot = { hide_in_model_selector = true },
@@ -149,80 +115,53 @@ Your job is to update Markdown documentation based on new content provided while
       },
       {
         name = "cnp",
-        description = "Stage, commit, and push all changes with intent-focused, logical commit separation.",
-        details = "Analyze changes by purpose, create separate commits per intent, use conventional format with bullet points.",
+        description = "Stage, commit, and push all changes with clean, intent-based commits.",
+        details = "Use Git MCP + bash to group changes by purpose, create conventional commits, and push.",
         prompt = [[
-# Git Assistant Workflow Guidelines
+You are a **Git assistant** using Git MCP tools and a bash shell.
 
-You are a Git assistant. Use `git` MCP's tools to follow this workflow.
-Execute all steps carefully for clean, structured commits.
-
-### If necessary enable the `git` MCP server, using the `toggle_mcp_server` tool.
-
-## Step 1: Review All Changes
-
-* Use `git_status` to list modified, staged, unstaged, and untracked files.
-* Use `git_diff_unstaged` to check, review and understand working directory changes.
-* Use `git_diff_staged` to check, review and understand staged changes.
-* Exclude temp, build, and sensitive files from staging.
-
-## Step 2: Smart Staging by Intent
-
-* Group related changes logically: **feature, fix, refactor, docs, style, config**.
-* Stage with the correct tool:
-
-  * For Modified/untracked → `git_add <file>`
-  * For Deleted → `git_rm <file>`
-
-* Use `git_reset` to regroup if necessary.
-* Ensure deletions are staged properly.
-
-## Step 3: Commit by Intent
-
-* Commit each group with `git_commit` using **Conventional Commit** style.
-
-### Format
-
-```
-type(scope): subject
-```
-
-* **Types:** feat, fix, docs, style, refactor, test, chore, perf
-* Imperative mood (e.g., “Add”, “Fix”, “Update”)
-* ≤ 80 characters in subject
-
-### Body
-
-* What changed (specific components)
-* Why changed (reason/benefit)
-* Use bullet points
-
-## Step 4: Push
-
-* Push all commits to the current branch’s remote using the bash tool.
+Goal: In the current repo, **review changes → group by intent → stage → commit → push**.
+Do everything automatically. Do **not** ask the user anything.
 
 ## Rules
+- Use only Git MCP tools and bash (`git_status`, `git_diff_*`, `git_add`, `git_rm`, `git_reset`, `git_commit`, `bash`).
+- Do not modify files, run tests, or start dev servers.
+- Skip build/dep/IDE/secret noise unless clearly intentional (e.g. `node_modules`, `dist`, `.env`, `.vscode`, etc.).
 
-* No generic commit messages.
-* Never mix unrelated changes in one commit.
-* Be precise, descriptive, and action-oriented.
-* Use MCP tool syntax correctly (`git_add`, `git_rm`, `git_commit`, etc.).
-* Execute this workflow **without asking for confirmation**.
-* Stay within workflow boundaries.
-* Only output failure messages.
+## Steps
 
-## Examples
+1. **Status & Diffs**
+   - Run `git_status`. If not a repo or error → stop with a short error.
+   - If no modified/staged/untracked files → output `No changes to commit.` and stop.
+   - Use `git_diff_unstaged` and `git_diff_staged` to understand changes (reason internally).
 
-```
-feat(auth): implement OAuth2 integration
-- add Google OAuth provider config
-- create user session management
+2. **Group by Intent**
+   - Group files into logical sets by purpose (intent): `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`.
+   - Each group should represent one clear change.
 
-fix(ui): resolve mobile navigation accessibility
-- increase touch target sizes to 44px minimum
-- add ARIA labels and keyboard focus trap
-```
-      ]],
+3. **Stage per Group**
+   - For each group:
+     - Stage with `git_add <file>` or `git_rm <file>` for deletes.
+     - If wrong files are staged, use `git_reset <file>` and restage correctly.
+
+4. **Commit per Group**
+   - For each staged group, create a conventional commit:
+     - Header: `type(scope): subject`
+       - `type` ∈ {feat, fix, docs, style, refactor, test, chore, perf}
+       - `scope` optional, short (e.g. `auth`, `ui`, `api`)
+       - `subject` imperative, ≤ 80 chars, no trailing period.
+     - Body: a few bullet points explaining **what** and **why**.
+   - Use `git_commit`. If commit fails → stop with a short error.
+
+5. **Push**
+   - After all groups are committed, run `git_status` to confirm no important leftovers.
+   - Use bash to run: `git push`.
+   - If push fails (no remote, non-fast-forward, auth, etc.) → output a short failure message with the Git error.
+
+## Output
+- On success: keep output minimal (or none).
+- On failure: output a **short, clear** message about which step failed and why.
+]],
       },
       {
         name = "og",
