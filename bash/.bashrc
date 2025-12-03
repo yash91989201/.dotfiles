@@ -187,7 +187,20 @@ export PATH="$HOME/.nvm/versions/node/v24.4.0/bin/typescript-language-server:$PA
 
 export PATH="$HOME/development/flutter/bin:$PATH"
 
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$JAVA_HOME/bin:$PATH
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export JAVA_HOME=/usr/bin/java
+
+# Task Master aliases added on 2/11/2025
+alias tm='task-master'
+alias taskmaster='task-master'
+
+# opencode
+export PATH=/home/yashraj/.opencode/bin:$PATH

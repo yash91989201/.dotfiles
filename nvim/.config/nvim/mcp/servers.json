@@ -14,7 +14,7 @@
         "disabled": false,
         "text": "Always use context7 when I need code generation, setup or configuration steps, or\nlibrary/API documentation. This means you should automatically use the Context7 MCP\ntools to resolve library id and get library docs without me having to explicitly ask."
       },
-      "disabled": false,
+      "disabled": true,
       "type": "streamable-http",
       "url": "https://mcp.context7.com/mcp"
     },
@@ -187,6 +187,7 @@
       "url": "https://api.githubcopilot.com/mcp/"
     },
     "grep": {
+      "disabled": true,
       "url": "https://mcp.grep.app"
     },
     "sequentialthinking": {
