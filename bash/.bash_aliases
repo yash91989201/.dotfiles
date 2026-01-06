@@ -34,3 +34,4 @@ alias cnvm1="sudo sh -c 'echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004
 alias cnvm0="sudo sh -c 'echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+alias oc='opencode'
