@@ -114,25 +114,9 @@ if [ -f "$HOME/.bash_secrets" ]; then source "$HOME/.bash_secrets"; fi
 # starship init
 eval "$(starship init bash)"
 
-# Run fastfetch only in interactive shells
-if [[ $- == *i* ]]; then
-  fastfetch
-fi
-
 # -----------------------------------------------------------------------------
 # Environment & Path Configuration
 # -----------------------------------------------------------------------------
-
-# Cargo
-. "$HOME/.cargo/env"
-
-# Local bin
-. "$HOME/.local/bin/env"
-
-# Go
-export PATH=$PATH:/usr/local/go/bin
-GO_BIN="$(go env GOPATH)/bin"
-export PATH="$PATH:$GO_BIN"
 
 # NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
@@ -143,13 +127,11 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="/home/yash/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+function wezterm_osc7() {
+  printf '\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD"
+}
+
+PROMPT_COMMAND="wezterm_osc7;$PROMPT_COMMAND"
 
 # Neovim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
@@ -165,42 +147,16 @@ export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
 # set nvim as man page viewer
 export MANPAGER="nvim +Man!"
 
-# -----------------------------------------------------------------------------
-# Set compose bake for docker build
-# -----------------------------------------------------------------------------
+export PATH="$HOME/.local/bin:$PATH"
 
-export COMPOSE_BAKE=true
-
-# Android
-export ANDROID_HOME="$HOME/Android/Sdk"
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# claude
-export PATH=/home/yash/.claude/local:$PATH
-
-export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-
-export PATH="$HOME/.nvm/versions/node/v24.4.0/bin/crush:$PATH"
-
-export PATH="$HOME/.nvm/versions/node/v24.4.0/bin/typescript-language-server:$PATH"
-
-export PATH="$HOME/development/flutter/bin:$PATH"
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_SDK_ROOT=$ANDROID_HOME
-
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-
-export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$JAVA_HOME/bin:$PATH
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# Task Master aliases added on 2/11/2025
-alias tm='task-master'
-alias taskmaster='task-master'
+# Rust env
+. "$HOME/.cargo/env"
 
 # opencode
-export PATH=/home/yashraj/.opencode/bin:$PATH
+export PATH=/home/yash/.opencode/bin:$PATH
+
+export PATH=$PATH:/usr/local/go/bin
+
+export PATH="/home/yash/go/bin:$PATH"
+
+export PATH="$HOME/.bun/bin:$PATH"

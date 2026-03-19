@@ -16,7 +16,6 @@ return {
       "black",
       "ruff",
       "emmet-language-server",
-      "deno",
     },
   },
 }

@@ -16,6 +16,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias wezterm='flatpak run org.wezfurlong.wezterm'
+
 # Add an "alert" alias for long running commands.
 # Use like so:
 # sleep 10; alert
@@ -30,8 +32,23 @@ alias lg="lazygit"
 
 alias ld="lazydocker"
 
-alias cnvm1="sudo sh -c 'echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"
-alias cnvm0="sudo sh -c 'echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"
+cnvm() {
+  local path="/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
+  local current
+  current=$(cat "$path")
+  local new=$((1 - current))
+  sudo sh -c "echo $new > $path"
+
+  local old_state
+  local new_state
+
+  old_state=$([ "$current" -eq 1 ] && echo "on" || echo "off")
+  new_state=$([ "$new" -eq 1 ] && echo "on" || echo "off")
+
+  echo "Conservation mode: $old_state → $new_state"
+}
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias oc='opencode'
+alias cc='claude'
+alias kc="kimi-cli --yolo"
