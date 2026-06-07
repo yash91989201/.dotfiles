@@ -11,3 +11,6 @@ keymap.set("n", "-", "<C-x>", { desc = "Decrement number" })
 
 keymap.set("n", "<leader>bs", ":w<Return>", { desc = "Save current buffer", noremap = true, silent = true })
 keymap.set("n", "<leader>bS", ":wa!<Return>", { desc = "Save all buffers", noremap = true, silent = true })
+
+keymap.set("n", "<leader>ai", ":PiAsk<CR>", { desc = "Ask pi" })
+keymap.set("v", "<leader>ai", ":PiAskSelection<CR>", { desc = "Ask pi (selection)" })

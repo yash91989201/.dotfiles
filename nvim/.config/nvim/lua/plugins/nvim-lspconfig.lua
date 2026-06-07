@@ -4,5 +4,20 @@ return {
     inlay_hints = {
       enabled = false,
     },
+    servers = {
+      bacon_ls = {
+        enabled = true,
+      },
+      rust_analyzer = { enabled = false },
+      tailwindcss = {
+        settings = {
+          tailwindCSS = {
+            lint = {
+              suggestCanonicalClasses = true,
+            },
+          },
+        },
+      },
+    },
   },
 }

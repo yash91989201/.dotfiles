@@ -23,6 +23,8 @@ return {
       "terraform",
       "nginx",
       "helm",
+      "rust",
+      "ron",
     },
     query_linter = {
       enable = true,

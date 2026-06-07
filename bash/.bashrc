@@ -134,23 +134,20 @@ function wezterm_osc7() {
 PROMPT_COMMAND="wezterm_osc7;$PROMPT_COMMAND"
 
 # Neovim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/usr/bin/nvim"
 
 # -----------------------------------------------------------------------------
 # Default Applications
 # -----------------------------------------------------------------------------
 
 # set default editor
-export EDITOR=/opt/nvim-linux-x86_64/bin/nvim
-export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 
 # set nvim as man page viewer
 export MANPAGER="nvim +Man!"
 
 export PATH="$HOME/.local/bin:$PATH"
-
-# Rust env
-. "$HOME/.cargo/env"
 
 # opencode
 export PATH=/home/yash/.opencode/bin:$PATH
@@ -160,3 +157,11 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="/home/yash/go/bin:$PATH"
 
 export PATH="$HOME/.bun/bin:$PATH"
+
+source /usr/share/nvm/init-nvm.sh
+. "$HOME/.cargo/env"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
+# <<< grok installer <<<

@@ -48,7 +48,15 @@ cnvm() {
   echo "Conservation mode: $old_state → $new_state"
 }
 
-alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
-alias oc='opencode'
-alias cc='claude'
 alias kc="kimi-cli --yolo"
+
+oc() {
+  if [ "$#" -eq 0 ]; then
+    local port
+    port=$(shuf -i 49152-65535 -n 1)
+
+    OPENCODE_PORT="$port" opencode --port "$port"
+  else
+    opencode "$@"
+  fi
+}

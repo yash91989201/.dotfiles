@@ -405,6 +405,10 @@ wezterm.on("update-status", function(window, pane)
 	window:set_right_status(wezterm.format(right))
 end)
 
+-- Hyprland/Wayland specific fixes
+config.enable_wayland = false
+config.window_decorations = "NONE"
+
 -- ============================================================
 -- Hyperlinks
 -- ============================================================

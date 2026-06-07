@@ -1,13 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "oh-my-opencode@latest",
+    "opencode-firecrawl",
     "opencode-gemini-auth@latest",
-    "github:JRedeker/opencode-morph-fast-apply",
-    "context-mode"
+    "context-mode@latest",
+    "oh-my-opencode-slim@latest",
+    "@williamcr01/opencode-tps@latest",
+    "@morphllm/opencode-morph-plugin"
   ],
   "instructions": [
-    "~/.config/opencode/node_modules/opencode-morph-fast-apply/MORPH_INSTRUCTIONS.md"
+    "node_modules/@morphllm/opencode-morph-plugin/instructions/morph-tools.md"
   ],
   "mcp": {
     "context-mode": {
@@ -17,4 +19,13 @@
       ]
     }
   },
+  "agent": {
+    "explore": {
+      "disable": true
+    },
+    "general": {
+      "disable": true
+    },
+  },
+  "lsp": true
 }
