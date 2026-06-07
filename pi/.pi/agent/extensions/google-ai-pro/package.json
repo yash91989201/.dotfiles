@@ -1,0 +1,8 @@
+{
+  "name": "pi-google-ai-pro-extension",
+  "private": true,
+  "type": "module",
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}

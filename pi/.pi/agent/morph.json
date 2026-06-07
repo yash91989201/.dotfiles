@@ -1,0 +1,31 @@
+{
+  "apiKey": "",
+  "apiKeyFile": "/home/yash/.pi/agent/morph.env",
+  "apiKeyStrategy": "round-robin",
+  "editEnabled": true,
+  "warpgrepEnabled": true,
+  "warpgrepGithubEnabled": true,
+  "autoCompactEnabled": true,
+  "allowReadonlyAgents": false,
+  "routing": {
+    "editMode": "strong",
+    "codebaseSearchMode": "prefer",
+    "githubSearchMode": "prefer",
+    "fallbackToNativeTools": true
+  },
+  "statsDashboard": {
+    "enabled": false,
+    "host": "127.0.0.1",
+    "port": 47631,
+    "token": "3657f38c57472ed7de31107a5ecf4dac9676",
+    "autoOpen": true,
+    "storagePath": "~/.pi/agent/morph-stats.jsonl",
+    "retentionDays": 30
+  },
+  "compactContextThreshold": 0.7,
+  "compactPreserveRecent": 2,
+  "compactRatio": 0.3,
+  "timeoutMs": 30000,
+  "warpGrepTimeoutMs": 60000,
+  "compactTimeoutMs": 60000
+}

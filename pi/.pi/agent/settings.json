@@ -1,0 +1,78 @@
+{
+  "packages": [
+    "npm:context-mode",
+    "npm:pi-subagents",
+    "npm:pi-morphllm-plugin",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-powerline-footer",
+    "npm:pi-total-recall",
+    "npm:pi-mcp-adapter",
+    "npm:pi-slipstream-compact",
+    "npm:@jmcombs/pi-context7"
+  ],
+  "skills": [
+    "~/.agents/skills"
+  ],
+  "prompts": [
+    "~/.pi/agent/prompts"
+  ],
+  "lastChangelogVersion": "0.78.1",
+  "quietStartup": true,
+  "theme": "tokyonight-night",
+  "enableInstallTelemetry": false,
+  "defaultProvider": "xiaomi",
+  "defaultModel": "mimo-v2.5-pro",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.5",
+    "google-ai-pro/gemini-3.1-flash-lite",
+    "google-ai-pro/gemini-3.5-flash",
+    "google-ai-pro/gemini-3.1-pro-preview",
+    "google-ai-pro/gemini-2.5-pro",
+    "xiaomi/mimo-v2-flash",
+    "xiaomi/mimo-v2.5",
+    "xiaomi/mimo-v2.5-pro",
+    "fireworks/accounts/fireworks/models/kimi-k2p6",
+    "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
+    "fireworks/accounts/fireworks/models/minimax-m2p7",
+    "fireworks/accounts/fireworks/models/glm-5p1",
+    "fireworks/accounts/fireworks/routers/glm-5p1-fast"
+  ],
+  "subagents": {
+    "agentOverrides": {
+      "oracle": {
+        "model": "openai-codex/gpt-5.5",
+        "thinking": "high"
+      },
+      "researcher": {
+        "model": "fireworks/accounts/fireworks/models/kimi-k2p6",
+        "thinking": "low"
+      },
+      "scout": {
+        "model": "fireworks/accounts/fireworks/models/kimi-k2p6",
+        "thinking": "low"
+      },
+      "worker": {
+        "model": "fireworks/accounts/fireworks/models/minimax-m2p7",
+        "thinking": "low"
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.4-mini",
+        "thinking": "medium"
+      }
+    }
+  },
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "treeFilterMode": "default",
+  "powerline": "default",
+  "hideThinkingBlock": true,
+  "editorPaddingX": 2,
+  "terminal": {
+    "showTerminalProgress": false
+  },
+  "collapseChangelog": true
+}
