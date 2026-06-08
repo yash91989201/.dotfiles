@@ -1,9 +1,41 @@
+# === Secrets ===
+.bash_secrets
+auth.json
+
+# === Logs ===
+*.log
+btop.log
+
+# === Pi: agent sessions & runtime ===
+pi/.pi/agent/sessions/
+pi/.pi/agent/run-history.jsonl
+pi/.pi/agent/mcp-cache.json
+pi/.pi/agent/mcp-npx-cache.json
+pi/.pi/agent/mcp-onboarding.json
+
+# === Pi: context-mode databases & stats ===
+pi/.pi/context-mode/sessions/*.db
+pi/.pi/context-mode/sessions/*.db-shm
+pi/.pi/context-mode/sessions/*.db-wal
+pi/.pi/context-mode/sessions/stats-pid-*.json
+pi/.pi/context-mode/content/*.db
+pi/.pi/context-mode/content/*.db-shm
+pi/.pi/context-mode/content/*.db-wal
+
+# === Pi: memory database ===
+pi/.pi/memory/*.db
+pi/.pi/memory/*.db-shm
+pi/.pi/memory/*.db-wal
+
+# === Pi: session-search index ===
+pi/.pi/session-search/
+
+# === Node modules ===
+node_modules/
+
+# === Gemini config overrides ===
 /gemini/.gemini/*
 !/gemini/.gemini/commands/
 !/gemini/.gemini/commands/**
 !/gemini/.gemini/settings.json
 !/gemini/.gemini/.gitignore
-
-
-.bash_secrets
-btop.log
