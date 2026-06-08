@@ -13,7 +13,13 @@ The extension stores OAuth client credentials in `auth.json` (not checked into g
 }
 ```
 
-These are the OAuth client ID/secret used by the Gemini CLI Code Assist login flow.
+These are the OAuth client ID/secret used by the Gemini CLI Code Assist login flow. If you see Google `Error 401: invalid_client` and the browser URL contains `client_id=YOUR_CLIENT_ID`, this file still has placeholders; replace them with the real values before running `/login`.
+
+After editing, verify without printing secrets:
+
+```bash
+node -e 'const a=require("./auth.json"); console.log({id:a.oauthClientId?.endsWith(".apps.googleusercontent.com"), secret:!!a.oauthClientSecret, placeholder:/YOUR_CLIENT|REPLACE|TODO/i.test(JSON.stringify(a))})'
+```
 
 ## Usage
 

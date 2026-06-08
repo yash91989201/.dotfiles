@@ -9,7 +9,8 @@
     "npm:pi-total-recall",
     "npm:pi-mcp-adapter",
     "npm:pi-slipstream-compact",
-    "npm:@jmcombs/pi-context7"
+    "npm:@jmcombs/pi-context7",
+    "npm:@juicesharp/rpiv-btw"
   ],
   "skills": [
     "~/.agents/skills"

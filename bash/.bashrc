@@ -127,8 +127,8 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-function wezterm_osc7() {
-  printf '\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD"
+wezterm_osc7() {
+  printf $'\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD"
 }
 
 PROMPT_COMMAND="wezterm_osc7;$PROMPT_COMMAND"
@@ -157,11 +157,3 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="/home/yash/go/bin:$PATH"
 
 export PATH="$HOME/.bun/bin:$PATH"
-
-source /usr/share/nvm/init-nvm.sh
-. "$HOME/.cargo/env"
-
-# >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
-[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
-# <<< grok installer <<<

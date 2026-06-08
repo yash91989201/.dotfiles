@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "entries": {
+    "[\"npx\",\"-y\",\"tavily-mcp@latest\"]": {
+      "resolvedBin": "/home/yash/.npm/_npx/3a4829a0511b3281/node_modules/tavily-mcp/build/index.js",
+      "resolvedAt": 1780845486579,
+      "packageVersion": "0.2.20",
+      "isJs": true
+    },
+    "[\"npx\",\"-y\",\"firecrawl-mcp@latest\"]": {
+      "resolvedBin": "/home/yash/.npm/_npx/07e67900497e7fc9/node_modules/firecrawl-mcp/dist/index.js",
+      "resolvedAt": 1780845493877,
+      "packageVersion": "3.20.2",
+      "isJs": true
+    }
+  }
+}

@@ -39,6 +39,15 @@ function loadAuthConfig(): void {
 		if (!auth.oauthClientId || !auth.oauthClientSecret) {
 			throw new Error("auth.json must contain oauthClientId and oauthClientSecret");
 		}
+		if (isPlaceholderCredential(auth.oauthClientId) || isPlaceholderCredential(auth.oauthClientSecret)) {
+			throw new Error(
+				"auth.json still contains placeholder OAuth credentials. " +
+				"Replace YOUR_CLIENT_ID/YOUR_CLIENT_SECRET with the Gemini CLI Code Assist OAuth client credentials."
+			);
+		}
+		if (!String(auth.oauthClientId).endsWith(".apps.googleusercontent.com")) {
+			throw new Error("auth.json oauthClientId does not look like a Google OAuth client ID");
+		}
 		OAUTH_CLIENT_ID = auth.oauthClientId;
 		OAUTH_CLIENT_SECRET = auth.oauthClientSecret;
 	} catch (error) {
@@ -48,6 +57,10 @@ function loadAuthConfig(): void {
 			`See README.md for details. Error: ${error instanceof Error ? error.message : String(error)}`
 		);
 	}
+}
+
+function isPlaceholderCredential(value: unknown): boolean {
+	return typeof value === "string" && /YOUR_CLIENT|REPLACE|TODO|<.*>/i.test(value);
 }
 
 loadAuthConfig();
