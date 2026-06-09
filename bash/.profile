@@ -29,4 +29,3 @@ fi
 export LANG=en_IN.UTF-8
 export LANGUAGE=en_IN.UTF-8
 export LC_ALL=en_IN.UTF-8
-. "$HOME/.cargo/env"

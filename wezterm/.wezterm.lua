@@ -120,16 +120,13 @@ config.warn_about_missing_glyphs = false
 config.audible_bell = "Disabled"
 
 config.max_fps = 120
-config.animation_fps = 1
+config.animation_fps = 120
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBlock"
 
 -- The status callback checks git/battery state; update less often so it
 -- does not compete with Neovim during heavy redraws.
 config.status_update_interval = 5000
-
--- Disable ligature shaping for lower text-layout overhead in dense code views.
-config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.window_close_confirmation = "NeverPrompt"
 
@@ -234,7 +231,7 @@ config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
-config.tab_max_width = 40
+config.tab_max_width = 48
 config.show_tab_index_in_tab_bar = false
 
 -- ── Helpers ──────────────────────────────────────────────────
