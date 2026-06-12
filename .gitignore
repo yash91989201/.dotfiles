@@ -45,3 +45,5 @@ node_modules/
 !/gemini/.gemini/commands/**
 !/gemini/.gemini/settings.json
 !/gemini/.gemini/.gitignore
+
+.scratch

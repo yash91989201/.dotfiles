@@ -1,6 +1,6 @@
 ---
 description: Scout codebase context with cheap subagent
-model: fireworks/accounts/fireworks/models/kimi-k2p5
+model: fireworks/accounts/fireworks/routers/kimi-k2p6-turbo
 thinking: low
 subagent: scout
 ---

@@ -24,20 +24,20 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "xiaomi",
-  "defaultModel": "mimo-v2.5",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "xiaomi/mimo-v2.5",
     "xiaomi/mimo-v2.5-pro",
     "cursor/composer-2.5",
     "cursor/gpt-5.3-codex",
+    "cursor/claude-4.6-sonnet-medium-thinking",
     "openai-codex/gpt-5.4-mini",
     "openai-codex/gpt-5.5",
     "fireworks/accounts/fireworks/models/kimi-k2p6",
     "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
-    "fireworks/accounts/fireworks/models/minimax-m2p7",
-    "cursor/claude-4.6-sonnet-medium-thinking"
+    "fireworks/accounts/fireworks/models/minimax-m2p7"
   ],
   "subagents": {
     "agentOverrides": {
@@ -46,11 +46,11 @@
         "thinking": "high"
       },
       "researcher": {
-        "model": "fireworks/accounts/fireworks/models/kimi-k2p6-turbo",
+        "model": "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
         "thinking": "low"
       },
       "scout": {
-        "model": "fireworks/accounts/fireworks/models/kimi-k2p6-turbo",
+        "model": "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
         "thinking": "low"
       },
       "worker": {
@@ -66,12 +66,15 @@
   "warnings": {
     "anthropicExtraUsage": false
   },
-  "treeFilterMode": "default",
+  "treeFilterMode": "user-only",
   "powerline": "default",
   "hideThinkingBlock": true,
-  "editorPaddingX": 2,
+  "editorPaddingX": 3,
   "terminal": {
     "showTerminalProgress": false
   },
-  "collapseChangelog": true
+  "collapseChangelog": true,
+  "enableSkillCommands": true,
+  "doubleEscapeAction": "tree",
+  "httpIdleTimeoutMs": 300000
 }
