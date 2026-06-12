@@ -9,8 +9,10 @@
     "npm:pi-total-recall",
     "npm:pi-mcp-adapter",
     "npm:pi-slipstream-compact",
-    "npm:@jmcombs/pi-context7",
-    "npm:@juicesharp/rpiv-btw"
+    "npm:@juicesharp/rpiv-btw",
+    "npm:pi-gitnexus",
+    "npm:pi-caveman",
+    "npm:@schultzp2020/pi-cursor"
   ],
   "skills": [
     "~/.agents/skills"
@@ -18,28 +20,24 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.78.1",
+  "lastChangelogVersion": "0.79.1",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi",
-  "defaultModel": "mimo-v2.5-pro",
+  "defaultModel": "mimo-v2.5",
   "defaultThinkingLevel": "high",
   "enabledModels": [
-    "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.5",
-    "google-ai-pro/gemini-3.1-flash-lite",
-    "google-ai-pro/gemini-3.5-flash",
-    "google-ai-pro/gemini-3.1-pro-preview",
-    "google-ai-pro/gemini-2.5-pro",
-    "xiaomi/mimo-v2-flash",
     "xiaomi/mimo-v2.5",
     "xiaomi/mimo-v2.5-pro",
+    "cursor/composer-2.5",
+    "cursor/gpt-5.3-codex",
+    "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.5",
     "fireworks/accounts/fireworks/models/kimi-k2p6",
     "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
     "fireworks/accounts/fireworks/models/minimax-m2p7",
-    "fireworks/accounts/fireworks/models/glm-5p1",
-    "fireworks/accounts/fireworks/routers/glm-5p1-fast"
+    "cursor/claude-4.6-sonnet-medium-thinking"
   ],
   "subagents": {
     "agentOverrides": {
@@ -48,11 +46,11 @@
         "thinking": "high"
       },
       "researcher": {
-        "model": "fireworks/accounts/fireworks/models/kimi-k2p6",
+        "model": "fireworks/accounts/fireworks/models/kimi-k2p6-turbo",
         "thinking": "low"
       },
       "scout": {
-        "model": "fireworks/accounts/fireworks/models/kimi-k2p6",
+        "model": "fireworks/accounts/fireworks/models/kimi-k2p6-turbo",
         "thinking": "low"
       },
       "worker": {

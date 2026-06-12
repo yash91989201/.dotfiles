@@ -36,6 +36,8 @@
 -- │  S           │  Toggle tab bar                             │
 -- │  w           │  Workspace launcher                         │
 -- │  W           │  New workspace                              │
+-- │  ( / )       │  Prev / next workspace                      │
+-- │  $           │  Rename workspace                           │
 -- ├──────────────┼─────────────────────────────────────────────┤
 -- │  [ / y       │  Enter copy mode                            │
 -- │  v           │  Paste from primary selection               │
@@ -129,6 +131,8 @@ config.default_cursor_style = "SteadyBlock"
 config.status_update_interval = 5000
 
 config.window_close_confirmation = "NeverPrompt"
+
+config.enable_kitty_keyboard = true
 
 -- ══════════════════════════════════════════════════════════════
 --  Window
@@ -620,6 +624,27 @@ config.keys = {
 				end
 			end),
 		}),
+	},
+	{ key = "(", mods = "LEADER|SHIFT", action = act.SwitchWorkspaceRelative(-1) },
+	{ key = ")", mods = "LEADER|SHIFT", action = act.SwitchWorkspaceRelative(1) },
+	{
+		key = "$",
+		mods = "LEADER|SHIFT",
+		action = wezterm.action_callback(function(win, pane)
+			local cur = win:active_workspace()
+			win:perform_action(
+				act.PromptInputLine({
+					description = 'Rename workspace "' .. cur .. '" to:',
+					initial_value = cur,
+					action = wezterm.action_callback(function(w, _, line)
+						if line and #line > 0 and line ~= cur then
+							wezterm.mux.rename_workspace(cur, line)
+						end
+					end),
+				}),
+				pane
+			)
+		end),
 	},
 
 	-- Copy / search / paste

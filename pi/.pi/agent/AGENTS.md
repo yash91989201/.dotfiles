@@ -1,5 +1,3 @@
-Morph FastApply: Prefer morph_fastapply first only for suitable existing-file edits after reading the file and preparing marker-wrapped anchor snippets with // ... existing code .... Use native edit for small exact replacements, and use native write only for brand new files. If morph_fastapply lacks sufficient anchor context, skip it and use native edit instead.
-
 <!-- pi-morphllm-plugin:fastapply:start -->
 Morph FastApply: Prefer morph_fastapply first only for suitable existing-file edits after reading the file and preparing marker-wrapped anchor snippets with // ... existing code .... Use native edit for small exact replacements, and use native write only for brand new files. If morph_fastapply lacks sufficient anchor context, skip it and use native edit instead.
 <!-- pi-morphllm-plugin:fastapply:end -->
@@ -9,7 +7,9 @@ Morph FastApply: Prefer morph_fastapply first only for suitable existing-file ed
 You have access to specialized subagents for specific tasks. Use them when the situation calls for their expertise:
 
 ### Observer (Visual Analysis)
+
 **When to use — ALWAYS for images:**
+
 - User pastes an image, screenshot, or PDF
 - User asks "what's this error?" with a screenshot
 - User shares a diagram, chart, or visual content
@@ -19,6 +19,7 @@ You have access to specialized subagents for specific tasks. Use them when the s
 > **Rule:** Always delegate image analysis to the observer subagent, even if the running model has multimodal capabilities. This keeps raw image bytes out of the main context window and ensures consistent structured analysis.
 
 **How to use:**
+
 ```typescript
 subagent({
   agent: "observer",
@@ -28,12 +29,15 @@ subagent({
 ```
 
 **Example triggers:**
+
 - User pastes error screenshot → spawn observer to extract error details
 - User shares UI screenshot → spawn observer to describe layout and issues
 - User shares architecture diagram → spawn observer to explain components and relationships
 
 ### Designer (UI/UX)
+
 **When to use:**
+
 - User asks for UI/UX review or improvements
 - User wants to improve visual design, layout, or styling
 - User needs help with accessibility or responsive design
@@ -41,6 +45,7 @@ subagent({
 - User asks about color theory, typography, or spacing
 
 **How to use:**
+
 ```typescript
 subagent({
   agent: "designer",
@@ -50,13 +55,16 @@ subagent({
 ```
 
 **Example triggers:**
+
 - "How can I improve this UI?" → spawn designer
 - "Make this more accessible" → spawn designer
 - "Add some animations" → spawn designer
 - "Review the visual hierarchy" → spawn designer
 
 ### Fixer (Fast Parallel Execution)
+
 **When to use:**
+
 - Well-defined implementation tasks with complete context provided
 - Bulk updates across multiple files (e.g., "update all controllers")
 - Writing tests for multiple functions
@@ -64,6 +72,7 @@ subagent({
 - Tasks that can be parallelized across folders/files
 
 **How to use:**
+
 ```typescript
 subagent({
   agent: "fixer",
@@ -73,11 +82,13 @@ subagent({
 ```
 
 **Example triggers:**
+
 - "Write tests for all API endpoints" → spawn fixers per endpoint folder
 - "Add input validation to all forms" → spawn fixers per form component
 - "Update all imports to use new module" → spawn fixers per directory
 
 **Parallel pattern:**
+
 ```typescript
 subagent({
   tasks: [
@@ -92,12 +103,14 @@ subagent({
 ```
 
 **Fixer vs Worker:**
+
 - Fixer: Fast, bounded tasks with complete context → use for speed
 - Worker: Complex implementation needing decisions → use for quality
 
 ### General Pattern
 
 When spawning these agents:
+
 1. Use `context: "fork"` for observer/designer/oracle (inherit conversation)
 2. Use `context: "fresh"` for fixer (gets only the task)
 3. Be specific in the task description about what you need

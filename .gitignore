@@ -2,18 +2,25 @@
 .bash_secrets
 auth.json
 
+# === Neovim ===
+nvim/.config/nvim/lazy-lock.json
+
 # === Logs ===
 *.log
 btop.log
 
-# === Pi: agent sessions & runtime ===
+# === Pi: runtime & session data ===
 pi/.pi/agent/sessions/
 pi/.pi/agent/run-history.jsonl
 pi/.pi/agent/mcp-cache.json
 pi/.pi/agent/mcp-npx-cache.json
 pi/.pi/agent/mcp-onboarding.json
+pi/.pi/agent/morph.env
+pi/.pi/agent/cursor-model-cache.json
+pi/.pi/agent/cursor-sdk-model-list.json
+pi/.pi/agent/cursor-proxy.json
+pi/.pi/agent/trust.json
 
-# === Pi: context-mode databases & stats ===
 pi/.pi/context-mode/sessions/*.db
 pi/.pi/context-mode/sessions/*.db-shm
 pi/.pi/context-mode/sessions/*.db-wal
@@ -22,13 +29,12 @@ pi/.pi/context-mode/content/*.db
 pi/.pi/context-mode/content/*.db-shm
 pi/.pi/context-mode/content/*.db-wal
 
-# === Pi: memory database ===
 pi/.pi/memory/*.db
 pi/.pi/memory/*.db-shm
 pi/.pi/memory/*.db-wal
 
-# === Pi: session-search index ===
 pi/.pi/session-search/
+pi/.pi/agent/skills/
 
 # === Node modules ===
 node_modules/
