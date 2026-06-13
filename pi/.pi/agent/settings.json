@@ -12,7 +12,7 @@
     "npm:@juicesharp/rpiv-btw",
     "npm:pi-gitnexus",
     "npm:pi-caveman",
-    "npm:@schultzp2020/pi-cursor"
+    "npm:pi-cursor-sdk"
   ],
   "skills": [
     "~/.agents/skills"
@@ -24,18 +24,25 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "fireworks",
-  "defaultModel": "accounts/fireworks/routers/kimi-k2p6-turbo",
+  "defaultProvider": "cursor",
+  "defaultModel": "auto",
   "defaultThinkingLevel": "high",
   "enabledModels": [
-    "cursor/composer-2.5",
+    "cursor/auto",
+    "cursor/composer-latest:fast",
+    "cursor/composer-latest:slow",
+    "cursor/grok-build@1m",
+    "cursor/haiku-latest",
     "cursor/gpt-5.3-codex",
-    "cursor/claude-4.6-sonnet-medium-thinking",
+    "cursor/sonnet-latest@1m",
+    "cursor/grok-latest@1m",
+    "cursor/opus-4.8@1m",
+    "cursor/fable@1m",
+    "openai-codex/gpt-5.5",
+    "openai-codex/gpt-5.4-mini",
     "fireworks/accounts/fireworks/models/kimi-k2p6",
     "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
-    "fireworks/accounts/fireworks/models/minimax-m2p7",
-    "openai-codex/gpt-5.5",
-    "openai-codex/gpt-5.4-mini"
+    "fireworks/accounts/fireworks/models/minimax-m2p7"
   ],
   "subagents": {
     "agentOverrides": {
