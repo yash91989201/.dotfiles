@@ -20,24 +20,22 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.1",
+  "lastChangelogVersion": "0.79.2",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultProvider": "fireworks",
+  "defaultModel": "accounts/fireworks/routers/kimi-k2p6-turbo",
   "defaultThinkingLevel": "high",
   "enabledModels": [
-    "xiaomi/mimo-v2.5",
-    "xiaomi/mimo-v2.5-pro",
     "cursor/composer-2.5",
     "cursor/gpt-5.3-codex",
     "cursor/claude-4.6-sonnet-medium-thinking",
-    "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.5",
     "fireworks/accounts/fireworks/models/kimi-k2p6",
     "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
-    "fireworks/accounts/fireworks/models/minimax-m2p7"
+    "fireworks/accounts/fireworks/models/minimax-m2p7",
+    "openai-codex/gpt-5.5",
+    "openai-codex/gpt-5.4-mini"
   ],
   "subagents": {
     "agentOverrides": {
