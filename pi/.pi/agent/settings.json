@@ -72,14 +72,17 @@
     "anthropicExtraUsage": false
   },
   "treeFilterMode": "user-only",
-  "powerline": "default",
+  "powerline": "compact",
   "hideThinkingBlock": true,
-  "editorPaddingX": 3,
+  "editorPaddingX": 1,
   "terminal": {
-    "showTerminalProgress": false
+    "showTerminalProgress": false,
+    "imageWidthCells": 60
   },
   "collapseChangelog": true,
   "enableSkillCommands": true,
   "doubleEscapeAction": "tree",
-  "httpIdleTimeoutMs": 300000
+  "httpIdleTimeoutMs": 300000,
+  "autocompleteMaxVisible": 7,
+  "defaultProjectTrust": "always"
 }
