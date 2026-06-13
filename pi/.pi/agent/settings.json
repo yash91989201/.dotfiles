@@ -24,8 +24,8 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "cursor",
-  "defaultModel": "grok-latest@1m",
+  "defaultProvider": "xiaomi",
+  "defaultModel": "mimo-v2.5",
   "defaultThinkingLevel": "medium",
   "enabledModels": [
     "xiaomi/mimo-v2.5",
@@ -39,10 +39,10 @@
     "cursor/opus-4.8@1m",
     "openai-codex/gpt-5.5",
     "openai-codex/gpt-5.4-mini",
-    "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
     "fireworks/accounts/fireworks/models/minimax-m3",
-    "fireworks/accounts/fireworks/routers/kimi-k2p7-code-fast",
-    "fireworks/accounts/fireworks/models/kimi-k2p7-code"
+    "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
+    "fireworks/accounts/fireworks/models/kimi-k2p7-code",
+    "fireworks/accounts/fireworks/routers/kimi-k2p7-code-fast"
   ],
   "subagents": {
     "agentOverrides": {
