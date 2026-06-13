@@ -5,14 +5,14 @@
     "npm:pi-morphllm-plugin",
     "npm:@juicesharp/rpiv-todo",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:pi-powerline-footer",
     "npm:pi-total-recall",
     "npm:pi-mcp-adapter",
     "npm:pi-slipstream-compact",
     "npm:@juicesharp/rpiv-btw",
     "npm:pi-gitnexus",
     "npm:pi-caveman",
-    "npm:pi-cursor-sdk"
+    "npm:pi-cursor-sdk",
+    "npm:pi-powerline-footer"
   ],
   "skills": [
     "~/.agents/skills"
@@ -20,24 +20,23 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.2",
+  "lastChangelogVersion": "0.79.3",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "cursor",
-  "defaultModel": "auto",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "xiaomi",
+  "defaultModel": "mimo-v2.5",
+  "defaultThinkingLevel": "medium",
   "enabledModels": [
+    "xiaomi/mimo-v2.5",
+    "xiaomi/mimo-v2.5-pro",
     "cursor/auto",
-    "cursor/composer-latest:fast",
     "cursor/composer-latest:slow",
     "cursor/grok-build@1m",
-    "cursor/haiku-latest",
     "cursor/gpt-5.3-codex",
     "cursor/sonnet-latest@1m",
     "cursor/grok-latest@1m",
     "cursor/opus-4.8@1m",
-    "cursor/fable@1m",
     "openai-codex/gpt-5.5",
     "openai-codex/gpt-5.4-mini",
     "fireworks/accounts/fireworks/models/kimi-k2p6",
@@ -72,7 +71,7 @@
     "anthropicExtraUsage": false
   },
   "treeFilterMode": "user-only",
-  "powerline": "compact",
+  "powerline": "custom",
   "hideThinkingBlock": true,
   "editorPaddingX": 1,
   "terminal": {
