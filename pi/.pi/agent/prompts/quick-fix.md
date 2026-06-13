@@ -1,11 +1,12 @@
 ---
-description: Fast routine fix/edit [kimi 2.6 medium]
-model: fireworks/accounts/fireworks/models/kimi-k2p6
+description: Fast routine fix/edit
+model: fireworks/accounts/fireworks/routers/kimi-k2p6-turbo
 thinking: medium
 ---
 Handle this as a fast routine coding task.
 
 Rules:
+
 - inspect only the files needed
 - prefer small exact edits
 - avoid broad refactors unless asked

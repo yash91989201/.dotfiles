@@ -1,6 +1,6 @@
 ---
 description: Implement with worker subagent
-model: fireworks/accounts/fireworks/models/minimax-m2p7
+model: fireworks/accounts/fireworks/models/minimax-m3
 thinking: low
 subagent: worker
 ---
@@ -10,6 +10,7 @@ Task:
 $@
 
 Rules:
+
 - keep the patch focused
 - follow existing project conventions
 - update/add tests only when appropriate
