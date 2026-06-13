@@ -1,6 +1,6 @@
 ---
 name: fixer
-description: "Fast execution specialist for well-defined tasks. 2x faster, 1/2 cost, designed for parallel execution across files and folders."
+description: "Fast execution specialist for well-defined tasks. Designed for parallel execution across files and folders."
 model: fireworks/accounts/fireworks/routers/kimi-k2p6-turbo
 systemPromptMode: replace
 inheritProjectContext: true
