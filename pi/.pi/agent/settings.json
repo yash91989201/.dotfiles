@@ -7,12 +7,13 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-total-recall",
     "npm:pi-mcp-adapter",
-    "npm:pi-slipstream-compact",
     "npm:@juicesharp/rpiv-btw",
     "npm:pi-gitnexus",
     "npm:pi-caveman",
     "npm:pi-cursor-sdk",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:pi-web-access",
+    "npm:@upstash/context7-pi"
   ],
   "skills": [
     "~/.agents/skills"
@@ -26,7 +27,7 @@
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi",
   "defaultModel": "mimo-v2.5",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
     "xiaomi/mimo-v2.5",
     "xiaomi/mimo-v2.5-pro",
