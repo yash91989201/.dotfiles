@@ -1,9 +1,79 @@
 {
+  "settings": {
+    "idleTimeout": 10,
+    "toolPrefix": "server"
+  },
   "mcpServers": {
     "context-mode": {
       "command": "context-mode",
       "lifecycle": "lazy",
       "directTools": true
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "env": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      },
+      "lifecycle": "lazy",
+      "directTools": [
+        "resolve-library-id",
+        "query-docs"
+      ]
+    },
+    "tavily": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "tavily-mcp@latest"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
+      },
+      "lifecycle": "lazy",
+      "directTools": [
+        "tavily_search",
+        "tavily_extract",
+        "tavily_research"
+      ]
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp@latest"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      },
+      "lifecycle": "lazy",
+      "directTools": [
+        "firecrawl_scrape",
+        "firecrawl_search",
+        "firecrawl_map",
+        "firecrawl_crawl",
+        "firecrawl_check_crawl_status",
+        "firecrawl_extract"
+      ],
+      "excludeTools": [
+        "firecrawl_monitor_create",
+        "firecrawl_monitor_list",
+        "firecrawl_monitor_get",
+        "firecrawl_monitor_update",
+        "firecrawl_monitor_delete",
+        "firecrawl_monitor_run",
+        "firecrawl_monitor_checks",
+        "firecrawl_monitor_check",
+        "firecrawl_agent",
+        "firecrawl_agent_status",
+        "firecrawl_interact",
+        "firecrawl_interact_stop",
+        "firecrawl_parse",
+        "firecrawl_search_feedback"
+      ]
     }
   }
 }

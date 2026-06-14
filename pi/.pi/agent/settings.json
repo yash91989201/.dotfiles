@@ -1,7 +1,7 @@
 {
   "packages": [
     "npm:context-mode",
-    "npm:pi-subagents",
+    "npm:pi-subagents@0.25.0",
     "npm:pi-morphllm-plugin",
     "npm:@juicesharp/rpiv-todo",
     "npm:@juicesharp/rpiv-ask-user-question",
@@ -25,9 +25,9 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "xiaomi",
-  "defaultModel": "mimo-v2.5",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "medium",
   "enabledModels": [
     "xiaomi/mimo-v2.5",
     "xiaomi/mimo-v2.5-pro",

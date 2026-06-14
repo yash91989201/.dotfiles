@@ -1,75 +1,74 @@
+# Agent Instructions
+
 <!-- pi-morphllm-plugin:fastapply:start -->
-Morph FastApply: Use native edit for small exact replacements.
-Use `morph_fastapply` only after reading target file and preparing
-marker-wrapped snippets with `// ... existing code ...` for
-large/scattered/whitespace-sensitive existing-file edits.
-Fall back to edit/write if needed.
+Morph FastApply: Use native edit for small exact replacements. Use
+`morph_fastapply` only after reading target file and preparing marker-wrapped
+snippets with `// ... existing code ...` for large/scattered edits. Fall back
+to edit/write if needed.
 <!-- pi-morphllm-plugin:fastapply:end -->
 ---
 
-## Global Workflow
+## Core
 
-Keep main context lean. Prefer fresh subagents with explicit task +
-context over forking the full chat. Fork only when inherited decisions
-or visual content are essential.
+- Keep context lean. Prefer fresh subagents with explicit task/context.
+  Fork only for inherited decisions or visual content.
+- Never paste large outputs: logs, tests, docs, JSON, git history, broad
+  search results. Use context-mode.
+- Before large implementation: run `scout`; hand exact findings to
+  `worker`/`fixer`.
+- Reviews inspect repo/diff directly; never rely on parent summary only.
 
----
+## Tool Routing
 
-## Subagent Routing
+Use first matching rule. Do not waste time with lower-signal sources.
 
-### `observer` · `fork`
+1. **Library/framework/SDK docs** → `mcp:context7`
+   - Triggers: API usage, config, options, examples, migrations,
+     version behavior.
+   - Do **not** read `node_modules/` for docs unless Context7 lacks
+     needed source detail.
+2. **Current web facts / discovery** → `mcp:tavily`
+   - Triggers: latest version, deprecation, comparison, announcement,
+     ecosystem status, recent issue.
+   - Use targeted queries; stop after enough primary evidence.
+3. **Specific URL / site extraction** → `mcp:firecrawl`
+   - Triggers: scrape/read URL, docs site, changelog page, blog series,
+     sitemap/crawl, hard-to-extract page.
+   - Prefer single-page scrape; map/crawl only when one page insufficient.
+4. **Large or repetitive output** → `mcp:context-mode`
+   - Triggers: output >20 lines, logs, JSON, test output, coverage,
+     git history, search results.
+   - Process/summarize; do not dump raw bytes into chat.
+5. **Local repo understanding** → `scout`
+   - Triggers: unknown codebase flow, broad search, architecture, many files.
 
-Images, screenshots, PDFs, diagrams, terminal output.
+Avoid:
 
-### `designer`
+- `node_modules/` for normal docs lookup.
+- Web search when Context7 answers library docs.
+- Firecrawl crawl when Tavily search or one scrape is enough.
+- Installing packages before checking existing config/package metadata.
 
-UI/UX, layout, accessibility, animation, visual polish.
-Pass exact files/screenshots and constraints.
+## Subagents
 
-### `fixer` · `fresh`
-
-Bounded edits, tests, repetitive/bulk changes.
-See [Fixer Contract](#fixer-contract) before invoking.
-
-### `oracle` · `fork`
-
-Risky architecture, ambiguous decisions, high-stakes review.
-
-### `reviewer` · `fresh`
-
-Code review. Pass diff/files and explicit focus area.
-
-### `scout` · `fresh`
-
-Codebase reconnaissance. Request compressed
-files/symbols/risks in the handoff.
-
-### `researcher` + `scout` · parallel
-
-External + local research. Synthesize results in parent.
-
----
-
-## Context Rules
-
-- **Never** paste large outputs (logs, tests, docs, JSON, git history,
-  broad search results) into chat — use context-mode tools.
-- Before any large implementation: run `scout` first, then hand off
-  exact context to `worker`/`fixer`.
-- Reviews must inspect repo/diff directly — do not rely on parent
-  chat state.
-
----
+- `observer` fork: images, screenshots, PDFs, diagrams, terminal output.
+- `designer`: UI/UX, layout, accessibility, animation, visual polish.
+- `fixer` fresh: bounded edits/tests/bulk changes. Must include scope,
+  pattern/example, exact change, acceptance.
+- `oracle` fork: risky architecture, ambiguity, high-stakes decisions.
+- `reviewer` fresh: code review with diff/files and focus.
+- `scout` fresh: codebase reconnaissance; request compressed
+  files/symbols/risks.
+- `researcher` + `scout` parallel: external + local research;
+  parent synthesizes.
 
 ## Fixer Contract
 
-Only invoke `fixer` when the task is fully scoped.
-Every `fixer` handoff **must** include:
+Invoke `fixer` only when fully scoped:
 
-1. **Files/folders** — allowed scope (no implicit expansion)
-2. **Pattern/example** — what the change looks like
-3. **Exact change** — what to do, not just what to achieve
-4. **Acceptance/verification** — how to confirm success
+1. Files/folders allowed
+2. Pattern/example
+3. Exact change
+4. Acceptance/verification
 
-> If scope is unclear → ask the user **or** run `scout` first.
-> Do not guess.
+If unclear, ask user or run `scout` first.
