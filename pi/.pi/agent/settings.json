@@ -11,9 +11,7 @@
     "npm:pi-gitnexus",
     "npm:pi-caveman",
     "npm:pi-cursor-sdk",
-    "npm:pi-powerline-footer",
-    "npm:pi-web-access",
-    "npm:@upstash/context7-pi"
+    "npm:pi-powerline-footer"
   ],
   "skills": [
     "~/.agents/skills"
@@ -25,8 +23,8 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultProvider": "xiaomi",
+  "defaultModel": "mimo-v2.5",
   "defaultThinkingLevel": "medium",
   "enabledModels": [
     "xiaomi/mimo-v2.5",
@@ -38,11 +36,9 @@
     "cursor/sonnet-latest@1m",
     "cursor/grok-latest@1m",
     "cursor/opus-4.8@1m",
-    "openai-codex/gpt-5.5",
     "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.5",
     "fireworks/accounts/fireworks/models/minimax-m3",
-    "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
-    "fireworks/accounts/fireworks/models/kimi-k2p7-code",
     "fireworks/accounts/fireworks/routers/kimi-k2p7-code-fast"
   ],
   "subagents": {
@@ -85,5 +81,14 @@
   "doubleEscapeAction": "tree",
   "httpIdleTimeoutMs": 300000,
   "autocompleteMaxVisible": 7,
-  "defaultProjectTrust": "always"
+  "defaultProjectTrust": "always",
+  "knowledge-search": {
+    "paths": [
+      "~/projects",
+      "~/.dotfiles"
+    ]
+  },
+  "memory": {
+    "lessonInjection": "selective"
+  }
 }
