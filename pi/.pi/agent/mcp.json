@@ -7,7 +7,12 @@
     "context-mode": {
       "command": "context-mode",
       "lifecycle": "lazy",
-      "directTools": true
+      "directTools": [
+        "ctx_search",
+        "ctx_execute",
+        "ctx_index",
+        "ctx_stats"
+      ]
     },
     "context7": {
       "command": "npx",
@@ -35,9 +40,7 @@
       },
       "lifecycle": "lazy",
       "directTools": [
-        "tavily_search",
-        "tavily_extract",
-        "tavily_research"
+        "tavily_search"
       ]
     },
     "firecrawl": {
@@ -51,28 +54,7 @@
       },
       "lifecycle": "lazy",
       "directTools": [
-        "firecrawl_scrape",
-        "firecrawl_search",
-        "firecrawl_map",
-        "firecrawl_crawl",
-        "firecrawl_check_crawl_status",
-        "firecrawl_extract"
-      ],
-      "excludeTools": [
-        "firecrawl_monitor_create",
-        "firecrawl_monitor_list",
-        "firecrawl_monitor_get",
-        "firecrawl_monitor_update",
-        "firecrawl_monitor_delete",
-        "firecrawl_monitor_run",
-        "firecrawl_monitor_checks",
-        "firecrawl_monitor_check",
-        "firecrawl_agent",
-        "firecrawl_agent_status",
-        "firecrawl_interact",
-        "firecrawl_interact_stop",
-        "firecrawl_parse",
-        "firecrawl_search_feedback"
+        "firecrawl_scrape"
       ]
     }
   }

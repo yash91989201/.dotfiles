@@ -18,6 +18,7 @@ pi/.pi/agent/mcp-onboarding.json
 pi/.pi/agent/morph.env
 pi/.pi/agent/cursor-model-cache.json
 pi/.pi/agent/cursor-sdk-model-list.json
+pi/.pi/agent/cursor-sdk-context-windows.json
 pi/.pi/agent/cursor-proxy.json
 pi/.pi/agent/trust.json
 

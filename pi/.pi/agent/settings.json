@@ -5,13 +5,12 @@
     "npm:pi-morphllm-plugin",
     "npm:@juicesharp/rpiv-todo",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:pi-total-recall",
     "npm:pi-mcp-adapter",
-    "npm:@juicesharp/rpiv-btw",
     "npm:pi-gitnexus",
     "npm:pi-caveman",
     "npm:pi-cursor-sdk",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:@mrclrchtr/supi-context"
   ],
   "skills": [
     "~/.agents/skills"
@@ -19,16 +18,16 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.3",
+  "lastChangelogVersion": "0.79.4",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "xiaomi",
+  "defaultProvider": "xiaomi-token-plan-sgp",
   "defaultModel": "mimo-v2.5",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
-    "xiaomi/mimo-v2.5",
-    "xiaomi/mimo-v2.5-pro",
+    "xiaomi-token-plan-sgp/mimo-v2.5",
+    "xiaomi-token-plan-sgp/mimo-v2.5-pro",
     "cursor/auto",
     "cursor/composer-latest:slow",
     "cursor/grok-build@1m",
