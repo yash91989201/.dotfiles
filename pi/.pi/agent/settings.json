@@ -1,6 +1,5 @@
 {
   "packages": [
-    "npm:context-mode",
     "npm:pi-subagents@0.25.0",
     "npm:pi-morphllm-plugin",
     "npm:@juicesharp/rpiv-todo",
@@ -10,8 +9,9 @@
     "npm:pi-caveman",
     "npm:pi-cursor-sdk",
     "npm:pi-powerline-footer",
-    "npm:@mrclrchtr/supi-context",
-    "npm:@samfp/pi-memory"
+    "npm:@samfp/pi-memory",
+    "npm:context-mode",
+    "npm:pi-context-usage"
   ],
   "skills": [
     "~/.agents/skills"
@@ -48,8 +48,7 @@
         "thinking": "high"
       },
       "researcher": {
-        "model": "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
-        "thinking": "low"
+        "disabled": true
       },
       "scout": {
         "model": "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",

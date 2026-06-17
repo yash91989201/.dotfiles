@@ -6,13 +6,7 @@
   "mcpServers": {
     "context-mode": {
       "command": "context-mode",
-      "lifecycle": "lazy",
-      "directTools": [
-        "ctx_search",
-        "ctx_execute",
-        "ctx_index",
-        "ctx_stats"
-      ]
+      "lifecycle": "eager"
     },
     "context7": {
       "command": "npx",
@@ -23,11 +17,7 @@
       "env": {
         "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
       },
-      "lifecycle": "lazy",
-      "directTools": [
-        "resolve-library-id",
-        "query-docs"
-      ]
+      "lifecycle": "lazy"
     },
     "tavily": {
       "command": "npx",
@@ -38,10 +28,7 @@
       "env": {
         "TAVILY_API_KEY": "${TAVILY_API_KEY}"
       },
-      "lifecycle": "lazy",
-      "directTools": [
-        "tavily_search"
-      ]
+      "lifecycle": "lazy"
     },
     "firecrawl": {
       "command": "npx",
@@ -52,10 +39,7 @@
       "env": {
         "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
       },
-      "lifecycle": "lazy",
-      "directTools": [
-        "firecrawl_scrape"
-      ]
+      "lifecycle": "lazy"
     }
   }
 }
