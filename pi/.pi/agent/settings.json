@@ -61,6 +61,42 @@
       "reviewer": {
         "model": "openai-codex/gpt-5.4-mini",
         "thinking": "medium"
+      },
+      "backend-architect": {
+        "model": "openai-codex/gpt-5.5",
+        "thinking": "high"
+      },
+      "database-engineer": {
+        "model": "cursor/gpt-5.3-codex",
+        "thinking": "high"
+      },
+      "docker-expert": {
+        "model": "cursor/grok-build@1m",
+        "thinking": "medium"
+      },
+      "rabbitmq-expert": {
+        "model": "fireworks/accounts/fireworks/models/minimax-m3",
+        "thinking": "medium"
+      },
+      "refactoring-expert": {
+        "model": "xiaomi-token-plan-sgp/mimo-v2.5-pro",
+        "thinking": "high"
+      },
+      "frontend-specialist": {
+        "model": "cursor/sonnet-latest@1m",
+        "thinking": "medium"
+      },
+      "ui-ux-designer": {
+        "model": "cursor/sonnet-latest@1m",
+        "thinking": "medium"
+      },
+      "designer": {
+        "model": "cursor/sonnet-latest@1m",
+        "thinking": "medium"
+      },
+      "code-reviewer": {
+        "model": "openai-codex/gpt-5.4-mini",
+        "thinking": "medium"
       }
     }
   },
