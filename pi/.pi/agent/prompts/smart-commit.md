@@ -4,12 +4,8 @@ argument-hint: "[files | patterns | --staged]"
 ---
 # Smart Commit
 
-Workflow: inspect → group → plan → approve → commit → push.
-Use the `git-commit` skill for conventional commit formatting, type/scope inference, and staging.
-
-## Inputs
-
-`$ARGUMENTS`: file paths, patterns, or `--staged` to limit scope. Default: all changes.
+Inspect → group → plan → per-group review → commit → push.
+Use `git-commit` skill for type/scope inference, staging, and commit formatting.
 
 ## Step 1 — Inspect
 
@@ -19,68 +15,110 @@ git diff --stat && git diff
 git diff --staged --stat && git diff --staged
 ```
 
-Apply `$ARGUMENTS` scope where relevant. Read untracked file contents before grouping.
+Scope by `$ARGUMENTS` (file paths, patterns, or `--staged`). Default: all changes. Read untracked files before grouping.
 
-## Step 2 — Detect Unsafe Files
+## Step 2 — Group
 
-Exclude from all groups: `.env*`, credentials, private keys, tokens, local config, generated artifacts. List as skipped in the plan.
+One intent per commit: `feat` / `fix` / `refactor` / `docs` / `test` / `config` / `chore`. Separate risky from cleanup. Never mix.
 
-## Step 3 — Group by Intent
+Exclude from all groups: `.env*`, credentials, keys, tokens, local config, generated artifacts.
 
-One logical intent per commit. Separate features / fixes / refactors / docs / tests / config / chores. Don't mix risky changes with cleanup. Use `git-commit` skill to infer type, scope, and message per group.
-
-## Step 4 — Output Plan
-
-Post the full plan in your response before anything else happens:
+## Step 3 — Plan
 
 ```
-Commit plan
-Changes: <N> files  |  Groups: <N>
+Changes: <N> files | Groups: <N>
 
-Group 1: <intent>
-Files: <path> (<status>), ...
-Commit: <conventional message>
-Why: <one line>
+G1: <type>(<scope>) — <description>
+G2: ...
 
 Skipped: <path> — <reason>
 ```
 
-## Step 5 — Approval (MUST use `ask_user_question` — never plain text)
+## Step 4 — Per-Group Review
 
-Call `ask_user_question` right after the plan, with these four choices: commit and push, commit only, modify plan, cancel. Do not ask in prose, list options as markdown, or proceed without this call. End your turn immediately after calling it.
+For each group `i` of `N`, call `ask_user_question` **once**. The `preview` field shows the **commit card** — full file list, line counts, and description.
 
-## Step 6 — Handle Response
+**Commit card** (pass as `preview`):
+
+```markdown
+### <type>(<scope>): <short title>
+
+<1-3 sentence description, imperative mood>
+
+**Files (<count>):**
+- `<A/M/D/R>` `<filepath>` (+<lines>/-<lines>)
+```
+
+`A`=added, `M`=modified, `D`=deleted, `R`=renamed. `+/-` from `git diff --stat`. List all files, no truncation.
+
+```js
+ask_user_question({
+  questions: [{
+    question: `[${i}/${N}] Commit: <intent>?`,
+    header: `${type}(${scope})`,  // ≤16 chars
+    options: [
+      {
+        label: "Commit this group",
+        description: `${M} file(s)`,
+        preview: commitCard
+      },
+      {
+        label: "Skip this group",
+        description: "Leave uncommitted"
+      },
+      {
+        label: "Cancel all",
+        description: "Nothing committed"
+      }
+    ]
+  }]
+})
+```
 
 | Choice | Action |
 |---|---|
-| Commit and push | Step 7, `push=true` |
-| Commit only | Step 7, `push=false` |
-| Modify plan | Ask what to change in prose → regenerate plan (Step 4) → call `ask_user_question` again (Step 5). Never resume without a fresh approval call. |
-| Cancel | Stop. Report cancelled. No staging/commits. |
+| Commit this group | → commit queue |
+| Skip this group | → skip list |
+| Cancel all | → abort, nothing committed |
 
-## Step 7 — Execute
+Repeat for all `N` groups. If `N=1`, ask in prose (y/n) — tool requires ≥2 options. If `N>4`, batch in groups of 4.
 
-Per group: stage only that group's files → commit via `git-commit` skill → verify before next group.
+## Step 5 — Execute
 
-On failure: stop, show error, call `ask_user_question` with choices retry / skip this group / stop. Never auto-continue or ask in free text.
+For each queued group (in order):
+1. Stage only that group's files
+2. Commit via `git-commit` skill
+3. Verify commit hash before next group
 
-## Step 8 — Push
+On failure → `ask_user_question` with: "Retry" / "Skip this group" / "Stop here". Never auto-continue.
 
-Only if `push=true`. If no upstream, call `ask_user_question` with choices set upstream and push / skip push, before:
+## Step 6 — Push
 
-```bash
-git push -u origin HEAD
+If any commits made, show all commit titles as a multi-select list. User checks which to push, unchecked stay local.
+
+```js
+ask_user_question({
+  questions: [{
+    question: `Push ${commitCount} commit(s) to origin/${branch}?`,
+    header: "Push",
+    multiSelect: true,
+    options: commits.map(c => ({
+      label: `${c.hash.slice(0,7)} ${c.message}`,
+      description: `push to origin/${branch}`
+    }))
+  }]
+})
 ```
 
-Never force push.
+Push only checked commits. If none checked, skip push. If no upstream, ask "Set upstream and push" / "Skip push" first. Never force push.
 
 ## Final Report
 
 ```
 Done.
-Commits: <hash> <message> (one per line)
+Commits: <hash> <message>  (one per line)
 Pushed: yes/no
 Remote: <remote>/<branch>
 Skipped: <path> — <reason>
-Errors: <none or details>
+Errors: none, or details
 ```
