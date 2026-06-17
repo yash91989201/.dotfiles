@@ -18,10 +18,8 @@ edit/write if it fails.
 - Before large implementation: `scout` first, pass exact findings to
   `worker`/`fixer`.
 - Reviews inspect repo/diff directly. Never rely on parent summary.
-- Research MCP tools (tavily, context7, firecrawl) are called by the
-  `researcher` subagent only — never directly from main agent.
-- Other MCP servers (context-mode, future additions) are called directly
-  by main agent via the `mcp()` proxy, per Tool Routing below.
+- Research tasks (web search, docs, API refs, library docs) always go to
+  `researcher`. It calls tavily/context7/firecrawl internally.
 
 ---
 
@@ -36,9 +34,11 @@ First matching rule wins. No fallthrough.
 | 3 | Both needed (e.g. "how does X work, how do we do it") | `researcher` + `scout` |
 | 4 | Output >20 lines: logs, JSON, tests, history, search dumps | `context-mode` |
 
-Anti-patterns: calling tavily/context7/firecrawl directly from main agent
-(use `researcher`); grepping `node_modules/` for docs; installing packages
-before checking existing config/package metadata.
+Anti-patterns:
+
+- calling tavily/context7/firecrawl directly from main agent (use `researcher`)
+- grepping `node_modules/` for docs
+- installing packages before checking existing config/package metadata
 
 ---
 
@@ -98,4 +98,5 @@ Discovery: `mcp({ search: "term" })` · `mcp({ server: "name" })` ·
 | `git-commit` | fresh | Conventional commit analysis, intelligent staging, message generation. |
 | `skill-creator` | fresh | Create, modify, improve skills. Run evals and benchmarks. |
 
-**Context key:** `fresh` = new session, no prior context. `fork` = inherits parent session context.
+**Context key:** `fresh` = new session, no prior context. `fork` = inherits
+parent session context.
