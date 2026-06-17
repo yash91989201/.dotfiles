@@ -2,7 +2,6 @@
 description: Analyze git changes, group by logical intent, present commit plan, then use git-commit skill after approval
 argument-hint: "[files | patterns | --staged]"
 ---
-
 # Smart Commit
 
 Workflow: inspect → group → plan → approve → commit → push.
@@ -20,22 +19,19 @@ git diff --stat && git diff
 git diff --staged --stat && git diff --staged
 ```
 
-Apply `$ARGUMENTS` scope where relevant. For untracked files, read contents before grouping.
+Apply `$ARGUMENTS` scope where relevant. Read untracked file contents before grouping.
 
 ## Step 2 — Detect Unsafe Files
 
-Flag and exclude from all groups: `.env*`, credential files, private keys, tokens, local config, generated artifacts. List them in the plan as skipped.
+Exclude from all groups: `.env*`, credentials, private keys, tokens, local config, generated artifacts. List as skipped in the plan.
 
 ## Step 3 — Group by Intent
 
-One logical intent per commit. Keep related files together; split unrelated ones.
-Separate: features / fixes / refactors / docs / tests / config / chores.
-Don't mix risky changes with cleanup.
-Use `git-commit` skill to infer type, scope, and message per group.
+One logical intent per commit. Separate features / fixes / refactors / docs / tests / config / chores. Don't mix risky changes with cleanup. Use `git-commit` skill to infer type, scope, and message per group.
 
 ## Step 4 — Output Plan
 
-Write the full plan into your response. This is not an internal step — the user must see it before anything else happens.
+Post the full plan in your response before anything else happens:
 
 ```
 Commit plan
@@ -46,55 +42,37 @@ Files: <path> (<status>), ...
 Commit: <conventional message>
 Why: <one line>
 
-Group 2: ...
-
 Skipped: <path> — <reason>
 ```
 
-**End your response here. Do not ask for approval in this message.**
+## Step 5 — Approval (MUST use `ask_user_question` — never plain text)
 
-## Step 4b — Request Approval
+Call `ask_user_question` right after the plan, with these four choices: commit and push, commit only, modify plan, cancel. Do not ask in prose, list options as markdown, or proceed without this call. End your turn immediately after calling it.
 
-Send this as your next message:
+## Step 6 — Handle Response
 
-```
-Choose:
-1. Approve all + push
-2. Approve, no push
-3. Modify plan
-4. Cancel
-```
+| Choice | Action |
+|---|---|
+| Commit and push | Step 7, `push=true` |
+| Commit only | Step 7, `push=false` |
+| Modify plan | Ask what to change in prose → regenerate plan (Step 4) → call `ask_user_question` again (Step 5). Never resume without a fresh approval call. |
+| Cancel | Stop. Report cancelled. No staging/commits. |
 
-**Wait for the user's reply before doing anything.**
+## Step 7 — Execute
 
-## Step 5 — Handle Response
+Per group: stage only that group's files → commit via `git-commit` skill → verify before next group.
 
-| Choice           | Action                                      |
-|------------------|---------------------------------------------|
-| Approve + push   | Commit per plan → push                      |
-| Approve, no push | Commit per plan                             |
-| Modify           | Ask what to change → re-present plan → wait |
-| Cancel           | Stop, report cancelled                      |
+On failure: stop, show error, call `ask_user_question` with choices retry / skip this group / stop. Never auto-continue or ask in free text.
 
-## Step 6 — Execute
+## Step 8 — Push
 
-Per group:
-
-1. Stage only that group's files
-2. Use `git-commit` skill to commit
-3. Verify success before next group
-
-On failure: stop, show error, ask how to proceed. Do not auto-continue.
-
-## Step 7 — Push
-
-Only if approved. If no upstream, ask before running:
+Only if `push=true`. If no upstream, call `ask_user_question` with choices set upstream and push / skip push, before:
 
 ```bash
 git push -u origin HEAD
 ```
 
-Do not force push.
+Never force push.
 
 ## Final Report
 
