@@ -10,7 +10,8 @@
     "npm:pi-caveman",
     "npm:pi-cursor-sdk",
     "npm:pi-powerline-footer",
-    "npm:@mrclrchtr/supi-context"
+    "npm:@mrclrchtr/supi-context",
+    "npm:@samfp/pi-memory"
   ],
   "skills": [
     "~/.agents/skills"
@@ -18,7 +19,7 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.4",
+  "lastChangelogVersion": "0.79.6",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
