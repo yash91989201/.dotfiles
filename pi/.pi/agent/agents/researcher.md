@@ -42,12 +42,12 @@ mcp({ tool: "tavily_tavily_search", args: '{"query": "...", "search_depth": "adv
 
 **Scrape page:**
 ```js
-mcp({ tool: "firecrawl_scrape", args: '{"url": "...", "formats": ["markdown"], "onlyMainContent": true}' })
+mcp({ tool: "firecrawl_firecrawl_scrape", args: '{"url": "...", "formats": ["markdown"], "onlyMainContent": true}' })
 ```
 
 **Discover pages on a site:**
 ```js
-mcp({ tool: "firecrawl_map", args: '{"url": "..."}' })
+mcp({ tool: "firecrawl_firecrawl_map", args: '{"url": "..."}' })
 ```
 
 **Library/framework docs:**
@@ -58,17 +58,17 @@ mcp({ tool: "context7_query-docs", args: '{"libraryId": "/facebook/react", "quer
 
 **Parallel web gathering (preferred over sequential scrapes):**
 ```js
-mcp({ tool: "ctx_fetch_and_index", args: '{"requests": [{"url": "url1", "source": "label1"}, {"url": "url2", "source": "label2"}], "concurrency": 4}' })
+mcp({ tool: "context_mode_ctx_fetch_and_index", args: '{"requests": [{"url": "url1", "source": "label1"}, {"url": "url2", "source": "label2"}], "concurrency": 4}' })
 ```
 
 **Search indexed content:**
 ```js
-mcp({ tool: "ctx_search", args: '{"queries": ["specific term"]}' })
+mcp({ tool: "context_mode_ctx_search", args: '{"queries": ["specific term"]}' })
 ```
 
 **Data processing:**
 ```js
-mcp({ tool: "ctx_execute", args: '{"language": "javascript", "code": "console.log(...)"}' })
+mcp({ tool: "context_mode_ctx_execute", args: '{"language": "javascript", "code": "console.log(...)"}' })
 ```
 
 ## Research Strategy
@@ -106,9 +106,9 @@ Write to `research.md`:
 - Areas needing deeper investigation
 
 ## Tool Usage Log
-- `tavily_search` — searched for X (why)
-- `firecrawl_scrape` — scraped Y (why)
-- `ctx_fetch_and_index` — gathered Z pages in parallel
+- `tavily_tavily_search` — searched for X (why)
+- `firecrawl_firecrawl_scrape` — scraped Y (why)
+- `context_mode_ctx_fetch_and_index` — gathered Z pages in parallel
 
 ## Sources
 ### Kept
