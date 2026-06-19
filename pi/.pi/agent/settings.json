@@ -26,8 +26,8 @@
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi-token-plan-sgp",
-  "defaultModel": "mimo-v2.5-pro",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "mimo-v2.5",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
     "xiaomi-token-plan-sgp/mimo-v2.5",
     "xiaomi-token-plan-sgp/mimo-v2.5-pro",
