@@ -11,7 +11,9 @@
     "npm:pi-powerline-footer",
     "npm:@samfp/pi-memory",
     "npm:context-mode",
-    "npm:pi-context-usage"
+    "npm:pi-context-usage",
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:@raquezha/noagy"
   ],
   "skills": [
     "~/.agents/skills"
@@ -19,16 +21,19 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.6",
+  "lastChangelogVersion": "0.79.8",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi-token-plan-sgp",
-  "defaultModel": "mimo-v2.5",
+  "defaultModel": "mimo-v2.5-pro",
   "defaultThinkingLevel": "medium",
   "enabledModels": [
     "xiaomi-token-plan-sgp/mimo-v2.5",
     "xiaomi-token-plan-sgp/mimo-v2.5-pro",
+    "opencode-go/minimax-m3",
+    "opencode-go/kimi-k2.7-code",
+    "opencode-go/glm-5.2",
     "cursor/auto",
     "cursor/composer-latest:slow",
     "cursor/grok-build@1m",
@@ -97,6 +102,10 @@
       "code-reviewer": {
         "model": "openai-codex/gpt-5.4-mini",
         "thinking": "medium"
+      },
+      "vision": {
+        "model": "antigravity/gemini-3.5-flash-high",
+        "thinking": "low"
       }
     }
   },

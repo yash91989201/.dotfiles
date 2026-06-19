@@ -86,7 +86,7 @@ Discovery: `mcp({ search: "term" })` · `mcp({ server: "name" })` ·
 | - | - | - |
 | `researcher` | fresh | Autonomous research. Calls tavily/context7/firecrawl. Returns `research.md`. |
 | `designer` | fork | UI/UX + visual implementation. Hierarchy, color, spacing, motion, accessibility. |
-| `observer` | fork | Read-only visual analysis — images, screenshots, PDFs, diagrams. |
+| `vision` | fork | Read-only visual analysis — images, screenshots, PDFs, diagrams. |
 | `code-reviewer` | fresh | Code quality, security vulnerabilities, consistency, best practices. |
 | `backend-architect` | fresh | Scalable API architectures, auth systems, database schemas, microservices, API docs. |
 | `database-engineer` | fresh | Schema design, query optimization, migrations, data integrity, scaling. |
