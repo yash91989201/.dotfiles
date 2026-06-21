@@ -1,6 +1,6 @@
 {
   "packages": [
-    "npm:pi-subagents@0.25.0",
+    "npm:pi-subagents",
     "npm:pi-morphllm-plugin",
     "npm:@juicesharp/rpiv-todo",
     "npm:@juicesharp/rpiv-ask-user-question",
@@ -12,8 +12,7 @@
     "npm:@samfp/pi-memory",
     "npm:context-mode",
     "npm:pi-context-usage",
-    "git:github.com/DietrichGebert/ponytail",
-    "npm:@raquezha/noagy"
+    "git:github.com/DietrichGebert/ponytail"
   ],
   "skills": [
     "~/.agents/skills"
@@ -21,42 +20,33 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.8",
+  "lastChangelogVersion": "0.79.9",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi-token-plan-sgp",
   "defaultModel": "mimo-v2.5",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "enabledModels": [
+    "cursor/auto",
     "xiaomi-token-plan-sgp/mimo-v2.5",
     "xiaomi-token-plan-sgp/mimo-v2.5-pro",
-    "opencode-go/minimax-m3",
-    "opencode-go/kimi-k2.7-code",
     "opencode-go/glm-5.2",
-    "cursor/auto",
-    "cursor/composer-latest:slow",
-    "cursor/grok-build@1m",
-    "cursor/gpt-5.3-codex",
-    "cursor/sonnet-latest@1m",
-    "cursor/grok-latest@1m",
-    "cursor/opus-4.8@1m",
-    "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.5",
-    "fireworks/accounts/fireworks/models/minimax-m3",
-    "fireworks/accounts/fireworks/routers/kimi-k2p7-code-fast"
+    "opencode-go/kimi-k2.7-code",
+    "opencode-go/qwen3.7-plus",
+    "opencode-go/minimax-m3",
+    "github-copilot/gpt-5.3-codex",
+    "github-copilot/gpt-5.5",
+    "github-copilot/claude-sonnet-4.6"
   ],
   "subagents": {
     "agentOverrides": {
       "oracle": {
-        "model": "openai-codex/gpt-5.5",
+        "model": "github-copilot/gpt-5.5",
         "thinking": "high"
       },
-      "researcher": {
-        "disabled": true
-      },
       "scout": {
-        "model": "fireworks/accounts/fireworks/routers/kimi-k2p6-turbo",
+        "model": "opencode-go/qwen3.7-plus",
         "thinking": "low"
       },
       "worker": {
@@ -66,46 +56,6 @@
       "reviewer": {
         "model": "openai-codex/gpt-5.4-mini",
         "thinking": "medium"
-      },
-      "backend-architect": {
-        "model": "openai-codex/gpt-5.5",
-        "thinking": "high"
-      },
-      "database-engineer": {
-        "model": "cursor/gpt-5.3-codex",
-        "thinking": "high"
-      },
-      "docker-expert": {
-        "model": "cursor/grok-build@1m",
-        "thinking": "medium"
-      },
-      "rabbitmq-expert": {
-        "model": "fireworks/accounts/fireworks/models/minimax-m3",
-        "thinking": "medium"
-      },
-      "refactoring-expert": {
-        "model": "xiaomi-token-plan-sgp/mimo-v2.5-pro",
-        "thinking": "high"
-      },
-      "frontend-specialist": {
-        "model": "cursor/sonnet-latest@1m",
-        "thinking": "medium"
-      },
-      "ui-ux-designer": {
-        "model": "cursor/sonnet-latest@1m",
-        "thinking": "medium"
-      },
-      "designer": {
-        "model": "cursor/sonnet-latest@1m",
-        "thinking": "medium"
-      },
-      "code-reviewer": {
-        "model": "openai-codex/gpt-5.4-mini",
-        "thinking": "medium"
-      },
-      "vision": {
-        "model": "antigravity/gemini-3.5-flash-high",
-        "thinking": "low"
       }
     }
   },

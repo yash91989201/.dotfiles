@@ -1,6 +1,8 @@
 ---
 name: docker-expert
 description: Expert in all aspects of Docker, including containerization, image creation, and orchestration.
+model: opencode-go/kimi-k2.7-code
+thinking: medium
 ---
 
 ## Focus Areas

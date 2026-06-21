@@ -6,7 +6,7 @@ description: >-
   pages, code screenshots, and more. Returns precise, structured observations
   the orchestrator can act on immediately.
 tools: read, bash
-model: antigravity/gemini-3.5-flash
+model: github-copilot/gemini-3.5-flash
 systemPromptMode: replace
 inheritProjectContext: true
 inheritSkills: false

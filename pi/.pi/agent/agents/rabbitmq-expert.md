@@ -1,6 +1,8 @@
 ---
 name: rabbitmq-expert
 description: Expert in RabbitMQ messaging, configuration, and optimization.
+model: opencode-go/qwen3.7-max
+thinking: medium
 ---
 
 ## Focus Areas
