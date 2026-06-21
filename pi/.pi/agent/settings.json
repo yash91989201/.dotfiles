@@ -56,6 +56,14 @@
       "reviewer": {
         "model": "openai-codex/gpt-5.4-mini",
         "thinking": "medium"
+      },
+      "backend-architect": {
+        "model": "github-copilot/gpt-5.5",
+        "thinking": "high"
+      },
+      "database-engineer": {
+        "model": "github-copilot/gpt-5.5",
+        "thinking": "high"
       }
     }
   },
