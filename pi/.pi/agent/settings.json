@@ -1,6 +1,5 @@
 {
   "packages": [
-    "npm:pi-subagents",
     "npm:pi-morphllm-plugin",
     "npm:@juicesharp/rpiv-todo",
     "npm:@juicesharp/rpiv-ask-user-question",
@@ -12,7 +11,8 @@
     "npm:@samfp/pi-memory",
     "npm:context-mode",
     "npm:pi-context-usage",
-    "git:github.com/DietrichGebert/ponytail"
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:pi-subagents"
   ],
   "skills": [
     "~/.agents/skills"
@@ -26,7 +26,7 @@
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi-token-plan-sgp",
   "defaultModel": "mimo-v2.5",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
     "cursor/auto",
     "xiaomi-token-plan-sgp/mimo-v2.5",
