@@ -20,7 +20,7 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.9",
+  "lastChangelogVersion": "0.79.10",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
@@ -33,7 +33,6 @@
     "xiaomi-token-plan-sgp/mimo-v2.5-pro",
     "opencode-go/glm-5.2",
     "opencode-go/kimi-k2.7-code",
-    "opencode-go/qwen3.7-plus",
     "opencode-go/minimax-m3",
     "github-copilot/gpt-5.3-codex",
     "github-copilot/gpt-5.5",
@@ -47,14 +46,14 @@
       },
       "scout": {
         "model": "opencode-go/qwen3.7-plus",
-        "thinking": "low"
+        "thinking": "medium"
       },
       "worker": {
         "model": "fireworks/accounts/fireworks/models/minimax-m3",
-        "thinking": "low"
+        "thinking": "medium"
       },
       "reviewer": {
-        "model": "openai-codex/gpt-5.4-mini",
+        "model": "github-copilot/gpt-5.4-mini",
         "thinking": "medium"
       },
       "backend-architect": {
