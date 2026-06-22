@@ -117,5 +117,6 @@ each agent's own `.md`.
 - `refactoring-expert` — tech debt reduction, design patterns, code simplification.
 - `docker-expert` — containerization, image builds/optimization, Compose, orchestration.
 - `rabbitmq-expert` — RabbitMQ messaging, configuration, optimization.
+- `fixer` — Fast fire-and-forget implementation. Receives complete context + spec, executes, no research/delegation/escalation. Use over `worker` for well-specified tasks where scout/researcher already gathered context and no decision-gating is needed.
 
 ---
