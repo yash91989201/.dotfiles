@@ -46,13 +46,7 @@ thinking: medium
 
 ## Output
 
-- Clean Dockerfiles for building images
-- Docker Compose files for multi-container setup
-- Scripts for automated deployment and management of containers
-- Reports on container performance and health checks
-- Documentation on Docker practices and guidelines
-- Secure and optimized Docker images ready for deployment
-- Backup and recovery scripts for Docker environments
-- Logs and monitoring setup for tracking container performance
-- Custom Docker networks for isolated environments
-- Consistent and version-controlled configuration for Docker resources
+- Dockerfiles + Compose files (multi-container setup)
+- Container scripts: deployment automation, backup/recovery, monitoring/logging setup
+- Image/network deliverables: optimized images, isolated networks, version-controlled configs
+- Notes on health, security, and Docker best practices

@@ -46,13 +46,7 @@ thinking: medium
 
 ## Output
 
-- RabbitMQ setup documentation including architecture diagrams
-- Exchange and queue configuration files and scripts
-- Scripts for automated RabbitMQ management tasks
-- Monitoring dashboards and alerts for RabbitMQ performance
-- Security audit reports and configuration recommendations
-- Performance benchmarking results and tuning adjustments
-- Detailed troubleshooting guides and known issue resolutions
-- HA and clustering setup guides with testing procedures
-- Integration examples with common client libraries
-- Comprehensive user documentation for RabbitMQ systems
+- Setup docs + architecture diagrams; exchange/queue config files + management scripts
+- HA/clustering setup guides with test procedures
+- Monitoring dashboards/alerts; security recommendations; benchmark results + tuning
+- Troubleshooting guides + integrated client-library examples
