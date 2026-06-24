@@ -1,7 +1,7 @@
 ---
 name: backend-architect
 description: USE PROACTIVELY for designing scalable API architectures, implementing authentication/authorization systems, creating database schemas, microservices design, and API documentation. MUST BE USED for backend architecture decisions, API design patterns, authentication flows, database modeling, and service integration planning.
-tools: Write, Edit, MultiEdit, Bash, Read, Grep, WebSearch
+tools: read, write, edit, bash, grep, find, ls, mcp
 category: backend
 model: openai-codex/gpt-5.5
 thinking: high

@@ -1,7 +1,7 @@
 ---
 name: scout
 description: Fast codebase recon with warpgrep and gitnexus for deep architecture analysis. GitNexus requires project indexing via 'npx gitnexus analyze' first. Use proactively for codebase exploration, architecture understanding, and impact analysis.
-tools: read, grep, find, ls, bash, write, intercom, warpgrep_codebase_search, gitnexus_list_repos, gitnexus_query, gitnexus_context, gitnexus_impact, gitnexus_detect_changes, gitnexus_rename, gitnexus_cypher
+tools: read, grep, find, ls, bash, write, intercom, warpgrep_codebase_search, warpgrep_github_search, gitnexus_list_repos, gitnexus_query, gitnexus_context, gitnexus_impact, gitnexus_detect_changes, gitnexus_rename, gitnexus_cypher
 thinking: low
 systemPromptMode: replace
 inheritProjectContext: true

@@ -1,7 +1,7 @@
 ---
 name: fixer
 description: Fast, focused implementation specialist. Receives complete context and a clear task spec, executes code changes efficiently. No research, no delegation, no decisions. Use when context is already gathered (by scout/researcher) and a concrete spec exists — fire-and-forget execution. Prefer over worker for well-specified tasks where escalation is not needed.
-tools: read, grep, find, ls, bash, edit, write, contact_supervisor
+tools: read, grep, find, ls, bash, edit, write, morph_fastapply, contact_supervisor
 model: fireworks/accounts/fireworks/models/minimax-m3
 thinking: low
 systemPromptMode: replace

@@ -1,7 +1,7 @@
 ---
 name: frontend-specialist
 description: USE PROACTIVELY for creating UI components with shadcn/ui, implementing responsive designs with Tailwind CSS, ensuring WCAG accessibility compliance, optimizing frontend performance, and building modern React applications. MUST BE USED for component architecture, design system implementation, user interface design, and frontend performance optimization.
-tools: Write, Edit, MultiEdit, Read, Bash, Glob, WebSearch
+tools: read, write, edit, bash, grep, find, ls, mcp
 category: frontend
 model: opencode-go/glm-5.2
 thinking: medium

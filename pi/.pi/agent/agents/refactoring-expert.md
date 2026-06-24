@@ -1,7 +1,7 @@
 ---
 name: refactoring-expert
 description: Invoke for reducing technical debt, improving code maintainability, implementing design patterns, and simplifying complex code
-tools: Read, Edit, MultiEdit, Bash, Grep, Write, Glob
+tools: read, edit, write, bash, grep, find, ls
 category: refactoring
 model: github-copilot/gpt-5.3-codex
 thinking: high

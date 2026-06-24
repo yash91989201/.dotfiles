@@ -1,7 +1,7 @@
 ---
 name: database-engineer
 description: USE PROACTIVELY for designing database schemas, optimizing queries, managing migrations, ensuring data integrity, and scaling database infrastructure. MUST BE USED for schema design, query performance optimization, migration planning, data modeling, ORM configuration, and database architecture decisions.
-tools: Write, Edit, Bash, Read, Grep, MultiEdit, WebSearch
+tools: read, write, edit, bash, grep, find, ls, mcp
 category: database
 model: openai-codex/gpt-5.5
 thinking: high

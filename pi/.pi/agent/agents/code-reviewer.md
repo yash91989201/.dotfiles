@@ -1,7 +1,7 @@
 ---
 name: code-reviewer
 description: USE PROACTIVELY for ensuring code quality, identifying security vulnerabilities, enforcing consistency, and promoting best practices through thorough code review. MUST BE USED for pull request reviews, code quality assessments, security reviews, architectural consistency checks, and best practices enforcement.
-tools: Read, Edit, MultiEdit, Bash, Grep, Write, WebSearch
+tools: read, edit, write, bash, grep, find, ls, mcp
 category: other
 model: github-copilot/gpt-5.3-codex
 thinking: medium

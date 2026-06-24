@@ -20,7 +20,7 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.79.10",
+  "lastChangelogVersion": "0.80.2",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
@@ -45,12 +45,23 @@
         "thinking": "high"
       },
       "scout": {
-        "model": "opencode-go/qwen3.7-plus",
+        "model": "opencode-go/minimax-m3",
         "thinking": "medium"
       },
       "worker": {
         "model": "fireworks/accounts/fireworks/models/minimax-m3",
-        "thinking": "medium"
+        "thinking": "medium",
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "bash",
+          "edit",
+          "write",
+          "morph_fastapply",
+          "contact_supervisor"
+        ]
       },
       "reviewer": {
         "model": "github-copilot/gpt-5.4-mini",
