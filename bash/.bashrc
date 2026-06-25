@@ -157,3 +157,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="/home/yash/go/bin:$PATH"
 
 export PATH="$HOME/.bun/bin:$PATH"
+
+# >>> oh-my-opencode-slim background subagents >>>
+export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
+# <<< oh-my-opencode-slim background subagents <<<

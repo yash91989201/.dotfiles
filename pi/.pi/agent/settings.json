@@ -24,9 +24,9 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "xiaomi-token-plan-sgp",
-  "defaultModel": "mimo-v2.5",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "medium",
   "enabledModels": [
     "cursor/auto",
     "xiaomi-token-plan-sgp/mimo-v2.5",
@@ -49,7 +49,7 @@
         "thinking": "medium"
       },
       "worker": {
-        "model": "fireworks/accounts/fireworks/models/minimax-m3",
+        "model": "opencode-go/kimi-k2.7-code",
         "thinking": "medium",
         "tools": [
           "read",

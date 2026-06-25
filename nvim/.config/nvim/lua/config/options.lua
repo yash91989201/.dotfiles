@@ -38,3 +38,6 @@ vim.opt.laststatus = 3
 -- Enable this option to avoid conflicts with Prettier.
 vim.g.lazyvim_prettier_needs_config = true
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
+
+-- Native inline completions don't support being shown as regular completions
+vim.g.ai_cmp = false
