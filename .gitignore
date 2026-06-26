@@ -37,6 +37,13 @@ pi/.pi/memory/*.db-wal
 pi/.pi/session-search/
 pi/.pi/agent/skills/
 
+# === OpenCode: runtime & regenerable state ===
+opencode/.config/opencode/bun.lock
+opencode/.config/opencode/package-lock.json
+opencode/.config/opencode/opencode.json.bak
+opencode/.config/opencode/context-mode/
+opencode/.config/opencode/.gitignore
+
 # === Node modules ===
 node_modules/
 

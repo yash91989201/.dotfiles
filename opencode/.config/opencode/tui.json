@@ -1,0 +1,10 @@
+{
+  "plugin": [
+    "oh-my-opencode-slim"
+  ],
+  "tui": {
+    "scroll_acceleration": {
+      "enabled": true
+    }
+  }
+}
