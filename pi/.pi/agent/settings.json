@@ -24,19 +24,16 @@
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
-  "defaultProvider": "github-copilot",
-  "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "medium",
+  "defaultProvider": "xiaomi-token-plan-sgp",
+  "defaultModel": "mimo-v2.5-pro",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
     "cursor/auto",
     "xiaomi-token-plan-sgp/mimo-v2.5",
     "xiaomi-token-plan-sgp/mimo-v2.5-pro",
     "opencode-go/glm-5.2",
     "opencode-go/kimi-k2.7-code",
-    "opencode-go/minimax-m3",
-    "github-copilot/gpt-5.3-codex",
-    "github-copilot/gpt-5.5",
-    "github-copilot/claude-sonnet-4.6"
+    "opencode-go/minimax-m3"
   ],
   "subagents": {
     "agentOverrides": {
