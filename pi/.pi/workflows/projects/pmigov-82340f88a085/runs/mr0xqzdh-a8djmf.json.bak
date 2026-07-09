@@ -1,0 +1,565 @@
+{
+  "runId": "mr0xqzdh-a8djmf",
+  "workflowName": "research_dynamic_workflows",
+  "script": "export const meta = { name: 'research_dynamic_workflows', description: 'Research pi-dynamic-workflows plugin: docs, examples, usage patterns', phases: [{ title: 'Research' }] }\n\nphase('Research')\n\nconst results = await parallel([\n  () => agent('Read plugin source and README from npm global install. Look in /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/ — read README.md, package.json, and any docs. Summarize: what it does, config options, key APIs, and how it integrates with pi.', { label: 'plugin source', tier: 'small' }),\n  () => agent('Search for examples and skills related to pi-dynamic-workflows in the pi ecosystem. Check /home/yash/.pi/agent/npm/node_modules/ and /home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/ for references. Also check docs/ directories for workflow-related docs.', { label: 'ecosystem docs', tier: 'small' }),\n  () => agent('Read /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/ directory — look for any workflow-related skills or references to dynamic workflows. Also check /home/yash/.pi/agent/ for any config files that reference dynamic workflows.', { label: 'gitnexus and config', tier: 'small' })\n])\n\n// Synthesize\nconst synthesis = await agent(`You are synthesizing research about the @quintinshaw/pi-dynamic-workflows plugin for pi coding agent. Here are the research results:\n\n${JSON.stringify(results, null, 2)}\n\nCreate a comprehensive but concise guide covering:\n1. What the plugin does (core purpose)\n2. How to install and configure it\n3. Key concepts (workflow file format, phases, agent(), parallel(), pipeline())\n4. How to write effective workflows — patterns and anti-patterns\n5. Common use cases with examples\n6. Tips for efficient usage\n7. Any gotchas or limitations found\n\nBe thorough but practical. Include code examples where helpful.`, { label: 'synthesis', tier: 'big', schema: { type: 'object', properties: { summary: { type: 'string' }, guide: { type: 'string' }, examples: { type: 'string' }, tips: { type: 'string' }, gotchas: { type: 'string' } }, required: ['summary', 'guide'] } })\n\nreturn synthesis",
+  "sessionId": "019f19a0-0286-7144-b2e4-6b6e2cee0a6f",
+  "journal": [
+    {
+      "index": 0,
+      "hash": "5a368372c4a6899011015b037604bf2234882b7939dedebb24b061ea1483e105",
+      "result": "## Research Summary: `@quintinshaw/pi-dynamic-workflows` v2.9.0\n\n### What it does\nDynamic workflow orchestration for Pi — fan tasks across subagents with real model routing, token accounting, resume, and interactive TUI. Claude Code-style, production-grade.\n\n### Config options\n| File | Purpose |\n|------|---------|\n| `~/.pi/workflows/settings.json` | Global settings, custom `keywordTriggerWord` |\n| `~/.pi/workflows/model-tiers.json` | Map small/medium/big → real models |\n| `~/.pi/workflows/projects/<project>/` | Per-project run history, saved workflows |\n\nTrigger control: `/workflows-trigger on|off|status|set <word>`\n\n### Key APIs\n\n**Globals for workflow scripts:**\n- `agent(prompt, opts)` — spawn subagent (tier, model, schema, isolation)\n- `parallel(thunks)` — concurrent fan-out\n- `pipeline(items, ...stages)` — sequential stages\n- `phase(title, {budget?})` — group agents, optional token cap\n- `checkpoint(prompt, opts)` — human approval gate\n- `budget` — `{total, spent(), remaining()}` real-time tracker\n\n**Built-in quality patterns:** `verify`, `judgePanel`, `loopUntilDry`, `completenessCheck`\n\n**Agent options:** `tier`, `model`, `agentType`, `isolation: \"worktree\"`, `schema`, `retries`, `label`, `phase`\n\n### Commands\n```\n/workflows                    interactive navigator\n/workflows status <id>        watch live\n/workflows save <name>        save as reusable command\n/workflows run <prompt>       force from prompt\n/workflows-trigger off|on     keyword control\n/workflows-models             map tiers to models\n/deep-research <question>     web research + cross-check\n/adversarial-review <task>    skeptical review\n/multi-perspective \"<topic>\"  multi-angle analysis\n```\n\n### Pi integration\n- Registered via `pi.extensions: [\"extensions/workflow.ts\"]` in package.json\n- Adds `workflow` tool + slash commands to Pi\n- Uses Pi sessions for subagent isolation\n- Hooks Pi TUI for live progress panel\n- Stores state in `~/.pi/workflows/` (not per-project `.pi/`)\n- Respects Pi's model auth for provider routing"
+    },
+    {
+      "index": 2,
+      "hash": "b66bdd6ec1dba3655d83f7e1ed51452d6171a4b4452a793b54eee3ad0fd7cf08",
+      "result": "## Research Summary\n\n### GitNexus Skills\n\n`pi-gitnexus` (v0.6.4) has **5 skills** — all codebase analysis, zero workflow-related:\n\n| Skill | Purpose |\n|-------|---------|\n| `gitnexus-debugging` | Trace errors via `gitnexus_query` → `gitnexus_context` → source files |\n| `gitnexus-exploring` | Codebase exploration via `gitnexus_list_repos` → `gitnexus_query` → `gitnexus_context` |\n| `gitnexus-impact-analysis` | Blast radius via `gitnexus_impact` → `gitnexus_detect_changes` |\n| `gitnexus-pr-review` | PR review combining impact + context |\n| `gitnexus-refactoring` | Safe rename/extract/move using `gitnexus_rename` + Cypher |\n\n**No workflow-related skills in pi-gitnexus.** All use knowledge graph tools (`gitnexus_*`) for code analysis.\n\n---\n\n### Dynamic Workflow Packages (installed)\n\nTwo packages provide dynamic workflow capabilities:\n\n**1. `@quintinshaw/pi-dynamic-workflows` (v2.9.0)**\n- Provides `workflow` tool (JS sandbox with `agent()`/`parallel()`/`pipeline()`/`phase()`)\n- Keywords: `workflow` or `workflows` in any message auto-arms workflow mode\n- Commands: `/workflows`, `/deep-research`, `/adversarial-review`, `/ultracode`\n- Settings: `~/.pi/workflows/settings.json` (keyword trigger, etc.)\n- Extension: `extensions/workflow.ts`\n- Journaled + replayable runs, per-agent model routing\n\n**2. `@mediadatafusion/pi-workflow-suite` (v0.0.23)**\n- Structured orchestration: 4 modes (Idle, Standard, Plan, Mission)\n- Role-specific model routing: planner, executor, reviewer, validator\n- Config: `~/.pi/agent/workflow-settings.json`\n- Skills: `codebase-discovery`, `find-skills`, `git-safe-summary`, `implementation-planning`, `project-rules-audit`, `safe-execution`, `validation-review`\n- Extensions: `workflow-modes.ts` (1.48MB), `workflow-model-router.ts`, `workflow-state.ts`, `workflow-tool-guard.ts`, etc.\n\n---\n\n### Local Config Files\n\n| Path | Content |\n|------|---------|\n| `~/.pi/agent/workflow-settings.json` | Full workflow suite config (models, workflow gates, standard/plan/mission settings) |\n| `~/.pi/agent/workflows/active.json` | Active workflow state: `{\"mode\": \"idle\", \"updatedAt\": \"2026-06-30T17:13:33.976Z\"}` |\n| `~/.pi/workflows/projects/` | Per-project workflow runs (current project: `pmigov-82340f88a085`, run: `mr0xqzdh-a8djmf`) |\n| `~/.pi/agent/morph.json` | Morph plugin config (routing, stats, compaction) |\n\n---\n\n### Key Takeaway\n\nDynamic workflows come from two **installed packages**, not from pi-gitnexus. pi-gitnexus is purely code graph analysis. The workflow tool in this session is powered by `@quintinshaw/pi-dynamic-workflows` (provides the `workflow` tool + `agent()`/`parallel()` API) and `@mediadatafusion/pi-workflow-suite` (adds structured modes, model routing, and plan/execute/review gates)."
+    },
+    {
+      "index": 1,
+      "hash": "64e93c165701c7da325751d7a8e7c052446cad2fba62922849f1d57bbbafc47e",
+      "result": "## Research Complete: pi-dynamic-workflows Ecosystem\n\n**Key Findings:**\n\n1. **pi-dynamic-workflows package** exists at `/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows`\n   - Version 2.9.0, MIT licensed\n   - Claude Code–style dynamic workflows for Pi\n   - npm: `@quintinshaw/pi-dynamic-workflows`\n\n2. **Core concept**: JavaScript orchestration scripts (`.dwf.ts`) that spawn subagents in parallel, keep intermediate results in script variables (not chat context), return only results.\n\n3. **Key APIs**:\n   - `agent(prompt, opts)` - spawn isolated subagent\n   - `parallel(thunks)` - run multiple agents concurrently\n   - `pipeline(items, ...stages)` - multi-stage fan-out\n   - `phase(title)` - group agents in live view\n   - `verify/judgePanel/loopUntilDry/completenessCheck` - quality patterns\n\n4. **Agent options**:\n   - `tier`: \"small\" | \"medium\" | \"big\" - model routing\n   - `model`: exact provider/modelId\n   - `agentType`: named definition from `.pi/agents/`\n   - `isolation: \"worktree\"` - git worktree isolation\n   - `schema`: JSON Schema for structured output\n\n5. **pi-crew dynamic workflows** also found at `/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/docs/dynamic-workflows.md`\n   - Similar concept but part of pi-crew package\n   - Uses `ctx.agent()`, `ctx.fanOut()`, `ctx.pipeline()`\n\n6. **Pi coding agent** has built-in workflow support via extensions (subagent example shows chained workflows)\n\n**Installation**: `pi install npm:@quintinshaw/pi-dynamic-workflows` then `/reload`\n\n**Commands**: `/workflows`, `/deep-research`, `/adversarial-review`, `/ultracode`, `/effort`\n\n**Storage**: `~/.pi/workflows/` (global), project-scoped under `~/.pi/workflows/projects/<project>/`"
+    },
+    {
+      "index": 3,
+      "hash": "6385e46a4e249a8fa5cc8dac550e33e499784ee5ebac7af3a1a656499ab16a3e",
+      "result": {
+        "summary": "`@quintinshaw/pi-dynamic-workflows` is Pi extension for running Claude Code–style dynamic workflows: JavaScript orchestration scripts spawn isolated subagents, route them to model tiers, run them in parallel/pipelines, group work into phases, track tokens, resume/watch runs, and return compact results instead of dumping all intermediate context into chat.",
+        "guide": "## 1. Core purpose\n\nUse plugin when task benefits from fan-out/fan-in:\n\n- parallel repo inspection\n- multi-perspective review\n- research + verification\n- staged implementation planning\n- adversarial review\n- repeatable workflows saved as commands\n\nMain value: orchestration logic lives in script variables. Subagent chatter stays outside main chat context. Final result comes back small.\n\n## 2. Install + configure\n\nInstall:\n\n```bash\npi install npm:@quintinshaw/pi-dynamic-workflows\n```\n\nThen reload Pi:\n\n```text\n/reload\n```\n\nPackage registers extension like:\n\n```json\n{\n  \"pi\": {\n    \"extensions\": [\"extensions/workflow.ts\"]\n  }\n}\n```\n\nImportant paths:\n\n| Path | Purpose |\n|---|---|\n| `~/.pi/workflows/settings.json` | global workflow settings, keyword trigger word |\n| `~/.pi/workflows/model-tiers.json` | maps `small` / `medium` / `big` tiers to real models |\n| `~/.pi/workflows/projects/<project>/` | per-project run history + saved workflows |\n\nUseful commands:\n\n```text\n/workflows                       # interactive navigator\n/workflows status <id>           # watch live run\n/workflows save <name>           # save current/generated workflow\n/workflows run <prompt>          # force workflow from prompt\n/workflows-trigger on|off|status # keyword trigger control\n/workflows-trigger set <word>    # custom keyword\n/workflows-models                # configure tier -> model routing\n/deep-research <question>        # built-in research workflow\n/adversarial-review <task>       # skeptical review workflow\n/multi-perspective \"<topic>\"     # multi-angle analysis\n```\n\n## 3. Key concepts\n\n### Workflow script format\n\nWorkflow scripts are JavaScript orchestration files. In Pi tool form, script must start with metadata:\n\n```js\nexport const meta = {\n  name: 'repo_review',\n  description: 'Review repo with parallel specialists',\n  phases: [{ title: 'Inspect' }, { title: 'Synthesize' }],\n};\n```\n\nThen call workflow globals:\n\n- `agent(prompt, opts)` — spawn subagent\n- `parallel(thunks)` — run thunks concurrently\n- `pipeline(items, ...stages)` — run staged work per item\n- `phase(title, { budget? })` — group agents in live UI, optional token cap\n- `checkpoint(prompt, opts)` — human approval gate\n- `budget` — token tracker: `spent()`, `remaining()`\n\nQuality helpers:\n\n- `verify(item, { reviewers, threshold, lens })`\n- `judgePanel(attempts, { judges, rubric })`\n- `loopUntilDry({ round, key, consecutiveEmpty })`\n- `completenessCheck(args, results)`\n\n### `agent(prompt, opts)`\n\nUse for isolated subtask. Good options:\n\n```js\nawait agent('Inspect auth flow. Return risks only.', {\n  label: 'auth inspect',\n  tier: 'small',\n  agentType: 'researcher',\n  schema: {\n    type: 'object',\n    properties: {\n      risks: { type: 'array', items: { type: 'string' } },\n    },\n    required: ['risks'],\n  },\n});\n```\n\nCommon options:\n\n| Option | Use |\n|---|---|\n| `label` | short unique UI/status name |\n| `tier` | `small`, `medium`, `big` model routing |\n| `model` | exact provider/model ID; overrides tier |\n| `agentType` | named role like planner/researcher/reviewer |\n| `schema` | JSON Schema for machine-readable output |\n| `isolation: \"worktree\"` | separate git worktree for parallel edit work |\n| `retries` | retry recoverable agent failures |\n| `phase` | place agent in phase without separate `phase()` call |\n\n### `parallel(thunks)`\n\nTakes functions, not promises.\n\nCorrect:\n\n```js\nconst results = await parallel(\n  areas.map((area) => () =>\n    agent(`Inspect ${area}. Return concise findings.`, {\n      label: `${area} inspect`,\n      tier: 'small',\n    })\n  )\n);\n```\n\nWrong:\n\n```js\nawait parallel(areas.map((area) => agent(`Inspect ${area}`)));\n```\n\n### `pipeline(items, ...stages)`\n\nUse when each item needs ordered stages, while items can still run concurrently.\n\n```js\nconst reviewed = await pipeline(\n  files,\n  async (file) => agent(`Summarize ${file}`, { label: `sum ${file}`, tier: 'small' }),\n  async (summary, file) => agent(`Review summary for ${file}: ${summary}`, { label: `review ${file}`, tier: 'medium' })\n);\n```\n\n### `phase(title)`\n\nUse phases for live TUI grouping and budgets.\n\n```js\nphase('Inspect');\nconst findings = await parallel([...]);\n\nphase('Synthesize', { budget: 20_000 });\nconst final = await agent(`Synthesize: ${JSON.stringify(findings)}`, {\n  label: 'final synth',\n  tier: 'big',\n});\n```\n\nIf `meta.phases` declares phases, call `phase('Exact Title')` before work in each phase.",
+        "examples": "## Example 1: minimal fan-out repo review\n\n```js\nexport const meta = {\n  name: 'quick_repo_review',\n  description: 'Parallel repo review with synthesis',\n  phases: [{ title: 'Inspect' }, { title: 'Synthesize' }],\n};\n\nphase('Inspect');\nconst areas = ['auth', 'data flow', 'UI', 'tests'];\n\nconst findings = await parallel(\n  areas.map((area) => () =>\n    agent(`Inspect ${area}. Return top 3 concrete findings with file paths.`, {\n      label: `${area} review`,\n      tier: 'small',\n      agentType: 'reviewer',\n      schema: {\n        type: 'object',\n        properties: {\n          findings: { type: 'array', items: { type: 'string' } },\n        },\n        required: ['findings'],\n      },\n    })\n  )\n);\n\nphase('Synthesize');\nreturn await agent(`Merge findings, dedupe, rank by risk: ${JSON.stringify(findings)}`, {\n  label: 'risk synth',\n  tier: 'big',\n});\n```\n\n## Example 2: research + adversarial verification\n\n```js\nexport const meta = {\n  name: 'verified_research',\n  description: 'Research question, cross-check claims, return grounded answer',\n  phases: [{ title: 'Research' }, { title: 'Verify' }, { title: 'Answer' }],\n};\n\nphase('Research');\nconst angles = ['official docs', 'source code', 'known issues'];\nconst notes = await parallel(\n  angles.map((angle) => () =>\n    agent(`Research ${angle} for: ${args.question}. Cite sources.`, {\n      label: angle,\n      tier: 'medium',\n      agentType: 'researcher',\n    })\n  )\n);\n\nphase('Verify');\nconst checked = await verify(notes, {\n  reviewers: 3,\n  threshold: 2,\n  lens: 'Find unsupported claims, version mismatches, and contradictions.',\n});\n\nphase('Answer');\nreturn await agent(`Write concise practical answer from verified notes: ${JSON.stringify(checked)}`, {\n  label: 'final answer',\n  tier: 'big',\n});\n```\n\n## Example 3: staged file analysis with `pipeline`\n\n```js\nexport const meta = {\n  name: 'file_pipeline',\n  description: 'Summarize then review files',\n  phases: [{ title: 'Analyze' }],\n};\n\nphase('Analyze');\nreturn await pipeline(\n  args.files,\n  async (file) =>\n    agent(`Read ${file}. Summarize responsibilities and exports.`, {\n      label: `summ ${file}`,\n      tier: 'small',\n    }),\n  async (summary, file) =>\n    agent(`Review ${file} using this summary: ${summary}. Return only actionable issues.`, {\n      label: `review ${file}`,\n      tier: 'medium',\n      agentType: 'reviewer',\n    })\n);\n```\n\n## Example 4: human approval gate\n\n```js\nexport const meta = {\n  name: 'plan_then_execute',\n  description: 'Create plan, wait for approval, then implement',\n  phases: [{ title: 'Plan' }, { title: 'Execute' }],\n};\n\nphase('Plan');\nconst plan = await agent(`Plan minimal implementation for: ${args.task}`, {\n  label: 'impl plan',\n  tier: 'medium',\n  agentType: 'planner',\n});\n\nawait checkpoint(`Approve this plan?\\n\\n${plan}`, { label: 'approval' });\n\nphase('Execute');\nreturn await agent(`Implement approved plan:\\n${plan}`, {\n  label: 'implement',\n  tier: 'medium',\n  isolation: 'worktree',\n});\n```",
+        "tips": "## Effective workflow patterns\n\n- Use workflows only when parallelism or repeatability pays. One quick edit does not need workflow.\n- Give every agent narrow scope and exact output shape.\n- Use `schema` for anything consumed by later steps.\n- Tag every agent with `tier`: `small` for inspection, `medium` for analysis, `big` for synthesis/judgment.\n- Keep prompts self-contained. Subagents do not automatically know parent context unless prompt gives it.\n- Use `parallel()` for independent branches. Use `pipeline()` for ordered stages per item.\n- Use final synthesis agent after fan-out. Raw arrays of subagent notes are rarely final output.\n- Use `verify` or adversarial reviewer for research, security, migration, or high-risk conclusions.\n- Use `checkpoint()` before destructive edits, expensive runs, or scope changes.\n- Use `isolation: \"worktree\"` when multiple agents may edit same repo in parallel.\n- Keep returned data compact. Store intermediate detail in variables, summarize at end.\n- Save repeated workflows with `/workflows save <name>`.\n- Watch long runs with `/workflows status <id>`.\n- Configure `/workflows-models` once so tiers route correctly.\n\n## Anti-patterns\n\n- Workflow for one file read or one simple bug fix.\n- Giant vague agent prompt: “analyze everything”. Split into narrow branches.\n- Passing promises to `parallel()` instead of thunks.\n- Declaring phases but never calling `phase()`.\n- No unique `label`; live UI becomes unreadable.\n- No `schema` while later code expects structured fields.\n- Using `big` tier for every branch. Wasteful.\n- Parallel edit agents without worktree isolation.\n- Assuming subagents share full chat/repo context. They need explicit instructions and paths.\n- Returning all intermediate notes directly to user. Synthesize and prune.",
+        "gotchas": "## Gotchas + limitations\n\n- Dynamic workflows are from `@quintinshaw/pi-dynamic-workflows`, not `pi-gitnexus`. GitNexus provides code graph analysis skills/tools, not workflow orchestration.\n- Another installed package, `@mediadatafusion/pi-workflow-suite`, may add structured modes and gates. Do not confuse its `~/.pi/agent/workflow-settings.json` with dynamic workflow config in `~/.pi/workflows/`.\n- Storage is global under `~/.pi/workflows/`, with project-scoped subdirectories. It is not stored inside each repo by default.\n- Keyword trigger can auto-arm workflow mode when messages include `workflow` / `workflows`; disable or change via `/workflows-trigger` if annoying.\n- `parallel()` requires functions: `() => agent(...)`, not direct `agent(...)` calls.\n- Workflow scripts run in constrained JS environment. Avoid Node imports/FS assumptions unless plugin docs/runtime explicitly allow them.\n- `opts.model` overrides `opts.tier`; use exact model IDs only when needed.\n- Failed branches may return `null`; synthesis must tolerate missing results.\n- Token budgets help, but they are caps; over-tight budgets can kill useful branches.\n- Worktree isolation helps parallel edits but adds merge/reconciliation overhead.\n- Long workflows need labels and phases, otherwise status/debugging becomes painful.\n- Built-in commands like `/deep-research` and `/adversarial-review` are good defaults. Write custom workflow only when built-ins do not fit."
+      }
+    }
+  ],
+  "status": "completed",
+  "phases": [
+    "Research"
+  ],
+  "currentPhase": "Research",
+  "agents": [
+    {
+      "id": 1,
+      "label": "plugin source",
+      "phase": "Research",
+      "prompt": "Read plugin source and README from npm global install. Look in /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/ — read README.md, package.json, and any docs. Summarize: what it does, config options, key APIs, and how it integrates with pi.",
+      "status": "done",
+      "model": "xiaomi-token-plan-sgp/mimo-v2.5",
+      "history": [
+        {
+          "role": "user",
+          "kind": "text",
+          "text": "Workflow phase: Research\n\nTask label: plugin source\n\nRead plugin source and README from npm global install. Look in /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/ — read README.md, package.json, and any docs. Summarize: what it does, config options, key APIs, and how it integrates with pi.",
+          "timestamp": 1782841419568
+        },
+        {
+          "role": "assistant",
+          "kind": "text",
+          "text": "Looking for plugin source at `/home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/`.",
+          "timestamp": 1782841420018
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"concurrency\":1,\"queries\":[\"what this plugin does\",\"config options\",\"key APIs\",\"how it integrates with pi\",\"README content\",\"package.json content\"],\"commands\":[{\"label\":\"Directory listing\",\"command\":\"ls -la /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/\"},{\"label\":\"package.json\",\"command\":\"cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/package.json\"},{\"label\":\"README.md\",\"command\":\"cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/README.md\"},{\"label\":\"Source files\",\"command\":\"find /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/ -name '*.ts' -o -name '*.js' -o -name '*.json' | head -20\"},{\"label\":\"Docs directory\",\"command\":\"ls -la /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/docs/ 2>/dev/null || echo 'No docs directory'\"}]}",
+          "timestamp": 1782841420018
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 5 commands (35 lines, 1.1KB). Indexed 5 sections. Searched 6 queries.\n\n## Commands\n\n- Directory listing: `ls -la /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/`\n- package.json: `cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/package.json`\n- README.md: `cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/README.md`\n- Source files: `find /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/ -name '*.ts' -o -name '*.js' -o -name '*.json' | head -20`\n- Docs directory: `ls -la /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/docs/ 2>/dev/null || echo 'No docs directory'`\n\n## Indexed Sections\n\n- Directory listing (0.2KB)\n- package.json (0.2KB)\n- README.md (0.2KB)\n- Source files (0.3KB)\n- Docs directory (0.2KB)\n\n## what this plugin does\n\nNo matching sections found.\n\n## config options\n\nNo matching sections found.\n\n## key APIs\n\nNo matching sections found.\n\n## how it integrates with pi\n\n### Directory listing\n# Directory listing\n\n$ ls -la /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/\n\nls: cannot access '/home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/': No such file or directory\n\n### package.json\n# package.json\n\n$ cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/package.json\n\ncat: /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/package.json: No such file or directory\n\n### README.md\n# README.md\n\n$ cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/README.md\n\ncat: /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/README.md: No such file or directory\n\n## README content\n\n### README.md\n# README.md\n\n$ cat /home/yash/.bun/install/global/node_modules/@quintinshaw/pi-dynamic-workflows/README.md\n\ncat: /home/yash/.bun/install/glo... [truncated]",
+          "isError": false,
+          "timestamp": 1782841452852
+        },
+        {
+          "role": "assistant",
+          "kind": "text",
+          "text": "Plugin directory doesn't exist at expected path. Searching for it:",
+          "timestamp": 1782841452854
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_execute",
+          "text": "{\"language\":\"shell\",\"code\":\"echo \\\"=== Searching for pi-dynamic-workflows ===\\\" && find /home/yash/.bun/install/global/node_modules/ -type d -name \\\"*dynamic*workflow*\\\" 2>/dev/null && echo \\\"=== Searching in pi agent ===\\\" && find /home/yash/.pi/agent/ -type d -name \\\"*dynamic*workflow*\\\" 2>/dev/null && echo \\\"=== Searching npm global ===\\\" && ls /home/yash/.bun/install/global/node_modules/ 2>/dev/null | grep -i \\\"quint\\\\|dynamic\\\\|workflow\\\" && echo \\\"=== Checking pi plugins ===\\\" && find /home/yash/.pi/ -name \\\"*.md\\\" -path \\\"*plugin*\\\" 2>/dev/null | head -5\"}",
+          "timestamp": 1782841452854
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_execute",
+          "text": "```shell\necho \"=== Searching for pi-dynamic-workflows ===\" && find /home/yash/.bun/install/global/node_modules/ -type d -name \"*dynamic*workflow*\" 2>/dev/null && echo \"=== Searching in pi agent ===\" && find /home/yash/.pi/agent/ -type d -name \"*dynamic*workflow*\" 2>/dev/null && echo \"=== Searching npm global ===\" && ls /home/yash/.bun/install/global/node_modules/ 2>/dev/null | grep -i \"quint\\|dynamic\\|workflow\" && echo \"=== Checking pi plugins ===\" && find /home/yash/.pi/ -name \"*.md\" -path \"*plugin*\" 2>/dev/null | head -5\n```\n\n=== Searching for pi-dynamic-workflows ===\n=== Searching in pi agent ===\n/home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows\n=== Searching npm global ===\n",
+          "isError": false,
+          "timestamp": 1782841459272
+        },
+        {
+          "role": "assistant",
+          "kind": "text",
+          "text": "Found at `/home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows`. Reading files:",
+          "timestamp": 1782841459273
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"Directory structure\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/\"},{\"label\":\"package.json\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/package.json\"},{\"label\":\"README.md\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/README.md\"},{\"label\":\"Source files\",\"command\":\"find /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/ -name '*.ts' -o -name '*.js' -o -name '*.json' -o -name '*.md' | head -20\"}],\"queries\":[\"what this plugin does\",\"config options\",\"key APIs\",\"how it integrates with pi\",\"README content\",\"package.json content\"],\"concurrency\":1}",
+          "timestamp": 1782841459273
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 4 commands (338 lines, 20.1KB). Indexed 16 sections. Searched 6 queries.\n\n## Commands\n\n- Directory structure: `ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/`\n- package.json: `cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/package.json`\n- README.md: `cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/README.md`\n- Source files: `find /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/ -name '*.ts' -o -name '*.js' -o -name '*.json' -o -name '*.md' | head -20`\n\n## Indexed Sections\n\n- Directory structure (0.5KB)\n- package.json (2.1KB)\n- README.md (0.1KB)\n- pi-dynamic-workflows (1.5KB)\n- pi-dynamic-workflows > Install (0.2KB)\n- pi-dynamic-workflows > Try it (1.8KB)\n- pi-dynamic-workflows > What a workflow looks like (0.9KB)\n- pi-dynamic-workflows > Highlights (2.1KB)\n- pi-dynamic-workflows > How it maps to Claude Code dynamic workflows (1.1KB)\n- pi-dynamic-workflows > Commands (2.7KB)\n- pi-dynamic-workflows > Storage (0.9KB)\n- pi-dynamic-workflows > Reference (3.6KB)\n- pi-dynamic-workflows > Development (0.2KB)\n- pi-dynamic-workflows > Credits (0.4KB)\n- pi-dynamic-workflows > License (0.0KB)\n- Source files (1.9KB)\n\n## what this plugin does\n\nNo matching sections found.\n\n## config options\n\n### pi-dynamic-workflows > Reference\n## Reference\n\nThe full guide — every global, agent option, `agentType` definitions, structured output, and determinism — lives on the **[website](https://quintinshaw.github.io/pi-dynamic-workflows/)**. The essentials:\n\n| Global | What it does |\n| --- | --- |\n| `agent(prompt, opts)` | Spawn an isolated subagent. Returns its final text, or a validated…\n\n…rn `null` with diagnostics in `/workflows`. |\n| `parallel(thunks)` | Run `() => agent(...)` thunks concurrently; results in input order. |\n| `pipeline(items, ...stages)` | Fan items through sequential stages `(prev, original, index)`. |\n| `phase(title, { budget? })` | ... [truncated]",
+          "isError": false,
+          "timestamp": 1782841466071
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_execute_file",
+          "text": "{\"path\":\"/home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/extensions/workflow.ts\",\"language\":\"javascript\",\"code\":\"console.log(FILE_CONTENT.substring(0, 2000));\",\"intent\":\"extension registration\"}",
+          "timestamp": 1782841466073
+        },
+        {
+          "role": "tool",
+          "kind": "error",
+          "toolName": "ctx_execute_file",
+          "text": "File access blocked: \"/home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/extensions/workflow.ts\" resolves outside the project root (/home/yash/projects/pmigov). context-mode confines ctx_execute_file to the workspace so it cannot be used to bypass the host's sandbox/permission controls (issue #852). To intentionally process a file outside the project, add a host allow rule, e.g. \"permissions\": { \"allow\": [\"Read(/home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/extensions/workflow.ts)\"] } in your settings.",
+          "isError": true,
+          "timestamp": 1782841470084
+        },
+        {
+          "role": "assistant",
+          "kind": "text",
+          "text": "## Research Summary: `@quintinshaw/pi-dynamic-workflows` v2.9.0\n\n### What it does\nDynamic workflow orchestration for Pi — fan tasks across subagents with real model routing, token accounting, resume, and interactive TUI. Claude Code-style, production-grade.\n\n### Config options\n| File | Purpose |\n|------|---------|\n| `~/.pi/workflows/settings.json` | Global settings, custom `keywordTriggerWord` |\n| `~/.pi/workflows/model-tiers.json` | Map small/medium/big → real models |\n| `~/.pi/workflows/projects/<project>/` | Per-project run history, saved workflows |\n\nTrigger control: `/workflows-trigger on|off|status|set <word>`\n\n### Key APIs\n\n**Globals for workflow scripts:**\n- `agent(prompt, opts)` — spawn subagent (tier, model, schema, isolation)\n- `parallel(thunks)` — concurrent fan-out\n- `pipeline(items, ...stages)` — sequential stages\n- `phase(title, {budget?})` — group agents, optional token cap\n- `checkpoint(prompt, opts)` — human approval gate\n- `budget` — `{total, spent(), remaining()}` real-time tracker\n\n**Built-in quality patterns:** `verify`, `judgePanel`, `loopUntilDry`, `completenessCheck`\n\n**Agent options:** `tier`, `model`, `agentType`, `isolation: \"worktree\"`, `schema`, `retries`, `label`, `phase`\n\n### Commands\n```\n/workflows                    interactive navigator\n/workflows status <id>        watch live\n/workflows save <name>        save as reusable command\n/workflows run <prompt>       force from prompt\n/workflows-trigger off|on     keyword control\n/workflows-models             map tiers to models\n/deep-research <question>     web research + cross-check\n/adversarial-review <task>    skeptical review\n/multi-perspective \"<topic>\"  multi-angle analysis\n```\n\n### Pi integration\n- Registered via `pi.extensions: [\"extensions/workflow.ts\"]` in package.json\n- Adds `workflow` tool + slash commands to Pi\n- Uses Pi sessions for subagent isolation\n- Hooks Pi TUI for live progress panel\n- Stores state in `~/.pi/workflows/` (not per-project `.pi/`)\n- R... [truncated]",
+          "timestamp": 1782841470086
+        }
+      ],
+      "resultPreview": "## Research Summary: `@quintinshaw/pi-dynamic-workflows` v2.9.0\n\n### What it do…",
+      "tokens": 155173,
+      "startedAt": "2026-06-30T17:43:39.413Z",
+      "endedAt": "2026-06-30T17:48:10.787Z"
+    },
+    {
+      "id": 2,
+      "label": "ecosystem docs",
+      "phase": "Research",
+      "prompt": "Search for examples and skills related to pi-dynamic-workflows in the pi ecosystem. Check /home/yash/.pi/agent/npm/node_modules/ and /home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/ for references. Also check docs/ directories for workflow-related docs.",
+      "status": "done",
+      "model": "xiaomi-token-plan-sgp/mimo-v2.5",
+      "history": [
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "---\nd",
+          "isError": false,
+          "timestamp": 1782841493623
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "bash",
+          "text": "{... [truncated]",
+          "timestamp": 1782841493625
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "bash",
+          "text": "/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/prompt-customizer.ts:This prompt includes tool guidance and skill information loaded dynamically.\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/README.md:| `dynamic-tools.ts` | Register tools after startup (`session_start`) and at runtime via command, with prompt snippets and tool-specific prompt guidelines |\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/README.md:| `pirate.ts` | Demonstrates `systemPromptAppend` to dynamically modify system prompt |\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/README.md:| `dynamic-resources/` | Loads skills, prompts, and themes using `resources_discover` |\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dynamic-resources/SKILL.md:name: dynamic-resources\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dynamic-resources/SKILL.md:This skill is provided by the dynamic-resources extension.\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dynamic-resources/index.ts:\t\t\tpromptPaths: [join(baseDir, \"dynamic.md\")],\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dynamic-resources/index.ts:\t\t\tthemePaths: [join(baseDir, \"dynamic.json\")],\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/pirate.ts: * Demonstrates modifying the system prompt in before_agent_start to dynamically\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dynamic-tools.ts:export default function dynamicToolsExtension(pi: ExtensionAPI) {\n/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dyn... [truncated]",
+          "isError": false,
+          "timestamp": 1782841496990
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/examples/extensions/dynamic-tools.ts\"}",
+          "timestamp": 1782841496991
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "/**\n * Dynamic Tools Extension\n *\n * Demonstrates registering tools after session initialization.\n *\n * - Registers one tool during session_start\n * - Registers additional tools at runtime via /add-echo-tool <name>\n */\n\nimport type { ExtensionAPI } from \"@earendil-works/pi-coding-agent\";\nimport { Type } from \"typebox\";\n\nconst ECHO_PARAMS = Type.Object({\n\tmessage: Type.String({ description: \"Message to echo\" }),\n});\n\nfunction normalizeToolName(input: string): string | undefined {\n\tconst trimmed = input.trim().toLowerCase();\n\tif (!trimmed) return undefined;\n\tif (!/^[a-z0-9_]+$/.test(trimmed)) return undefined;\n\treturn trimmed;\n}\n\nexport default function dynamicToolsExtension(pi: ExtensionAPI) {\n\tconst registeredToolNames = new Set<string>();\n\n\tconst registerEchoTool = (name: string, label: string, prefix: string): boolean => {\n\t\tif (registeredToolNames.has(name)) {\n\t\t\treturn false;\n\t\t}\n\n\t\tregisteredToolNames.add(name);\n\t\tpi.registerTool({\n\t\t\tname,\n\t\t\tlabel,\n\t\t\tdescription: `Echo a message with prefix: ${prefix}`,\n\t\t\tpromptSnippet: `Echo back user-provided text with ${prefix.trim()} prefix`,\n\t\t\tpromptGuidelines: [\"Use echo_session when the user asks for exact echo output.\"],\n\t\t\tparameters: ECHO_PARAMS,\n\t\t\tasync execute(_toolCallId, params) {\n\t\t\t\treturn {\n\t\t\t\t\tcontent: [{ type: \"text\", text: `${prefix}${params.message}` }],\n\t\t\t\t\tdetails: { tool: name, prefix },\n\t\t\t\t};\n\t\t\t},\n\t\t});\n\n\t\treturn true;\n\t};\n\n\tpi.on(\"session_start\", (_event, ctx) => {\n\t\tregisterEchoTool(\"echo_session\", \"Echo Session\", \"[session] \");\n\t\tctx.ui.notify(\"Registered dynamic tool: echo_session\", \"info\");\n\t});\n\n\tpi.registerCommand(\"add-echo-tool\", {\n\t\tdescription: \"Register a new echo tool dynamically: /add-echo-tool <tool_name>\",\n\t\thandler: async (args, ctx) => {\n\t\t\tconst toolName = normalizeToolName(args);\n\t\t\tif (!toolName) {\n\t\t\t\tctx.ui.notify(\"Usage: /add-echo-tool <tool_name> (lowercase, numbers, underscores)\", \"warning\");\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\tconst created = registerEchoTool(too... [truncated]",
+          "isError": false,
+          "timestamp": 1782841499565
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "bash",
+          "text": "{\"command\":\"find /home/yash -name \\\"*pi-dynamic*\\\" -o -name \\\"*dynamic-workflow*\\\" 2>/dev/null | head -20\"}",
+          "timestamp": 1782841499565
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "bash",
+          "text": "/home/yash/.cache/pi-worker/docs-modules/node_modules/pi-crew/docs/dynamic-workflows.md\n/home/yash/.cache/pi-worker/docs-modules/node_modules/pi-crew/src/runtime/dynamic-workflow-context.ts\n/home/yash/.cache/pi-worker/docs-modules/node_modules/pi-crew/src/runtime/dynamic-workflow-runner.ts\n/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows\n/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/docs/dynamic-workflows.md\n/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/src/runtime/dynamic-workflow-context.ts\n/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/src/runtime/dynamic-workflow-runner.ts\n",
+          "isError": false,
+          "timestamp": 1782841514657
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/docs/dynamic-workflows.md\"}",
+          "timestamp": 1782841514658
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "# Dynamic Workflows (`.dwf.ts`)\n\npi-crew v0.9.0 introduces dynamic workflows, modeled on Claude Code's Dynamic Workflows.\n\n## What it does\n\nA dynamic workflow is a `.dwf.ts` script whose default export orchestrates subagents\nwith normal JavaScript (`for`/`while`/`if`/`switch`). It runs in the background, calls\nsubagents per phase via `ctx.agent()` / `ctx.fanOut()`, holds intermediate results in\nJS variables, and only `ctx.setResult()` reaches the main context — keeping the plan\nand intermediate data out of the main context window.\n\n```ts\n// .crew/workflows/security-audit.dwf.ts\nexport default async function (ctx) {\n  const endpoints = [/* ... */];\n  const shards = chunk(endpoints, 3);\n\n  ctx.phase(\"Scan\");  // round-12: mark the start of a logical phase\n  const reports = await ctx.fanOut(shards, 3, (s) =>\n    ctx.agent({ role: \"explorer\", prompt: `Audit ${s.join(\",\")} for auth + input validation` })\n  );\n\n  ctx.phase(\"Synthesize\");\n  const synth = await ctx.agent({ role: \"analyst\", prompt: \"Merge + dedupe findings\", inputs: reports.map(r => r.artifactPath) });\n\n  ctx.phase(\"Review\");\n  for (let i = 0; i < 3; i++) {\n    const review = await ctx.review(synth.taskId, \"reviewer\");\n    if (review.outcome === \"accept\") break;\n    await ctx.retry(synth.taskId, { feedback: review.feedback });\n  }\n\n  ctx.setResult(synth.artifactPath, { summary: \"security audit complete\" });\n}\n```\n\n## Usage\n\nPlace the script under `.crew/workflows/<name>.dwf.ts`, then:\n\n```\nteam action='run', workflow='security-audit', goal='Audit src/routes'\n```\n\nSlash command: `/workflows` lists all workflows (static + dynamic).\n\n## WorkflowCtx API\n\n| Method | Purpose |\n|---|---|\n| `ctx.agent({role, prompt, model?, skill?, maxTurns?, inputs?, schema?, worktree?})` | Spawn one agent, await `{ok, text, structured, artifactPath, usage}`. Concurrency enforced by `ctx.semaphore`. `schema?` (round-13) is a TypeBox schema — when set, output is validated and mismatch yields `ok:false`. `worktree... [truncated]",
+          "isError": false,
+          "timestamp": 1782841518434
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows\"}",
+          "timestamp": 1782841518435
+        },
+        {
+          "role": "tool",
+          "kind": "error",
+          "toolName": "read",
+          "text": "EISDIR: illegal operation on a directory, read",
+          "isError": true,
+          "timestamp": 1782841523492
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "bash",
+          "text": "{\"command\":\"ls -la /home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/\"}",
+          "timestamp": 1782841523493
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "bash",
+          "text": "total 44\ndrwxrwxr-x 5 yash yash  4096 Jun 30 23:11 .\ndrwxrwxr-x 3 yash yash  4096 Jun 30 23:11 ..\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 dist\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 extensions\n-rw-rw-r-- 1 yash yash  1127 Jun 30 23:11 LICENSE\n-rw-rw-r-- 1 yash yash  2004 Jun 30 23:11 package.json\n-rw-rw-r-- 1 yash yash 15889 Jun 30 23:11 README.md\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 src\n",
+          "isError": false,
+          "timestamp": 1782841527922
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/README.md\"}",
+          "timestamp": 1782841527924
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "# pi-dynamic-workflows\n\n[![npm](https://img.shields.io/npm/v/@quintinshaw/pi-dynamic-workflows?color=cb3837&logo=npm)](https://www.npmjs.com/package/@quintinshaw/pi-dynamic-workflows)\n[![license](https://img.shields.io/badge/license-MIT-blue)](#license)\n[![for Pi](https://img.shields.io/badge/for-Pi-7c3aed)](https://pi.dev)\n[![tests](https://img.shields.io/badge/tests-679%20passing-success)](#development)\n\n> **Claude Code–style dynamic workflows for [Pi](https://pi.dev).**\n> Turn one prompt into a fleet of subagents that fan out in parallel, cross-check each other, and hand back a single synthesized answer.\n\n**[Website](https://quintinshaw.github.io/pi-dynamic-workflows/) · [npm](https://www.npmjs.com/package/@quintinshaw/pi-dynamic-workflows) · [Pi package](https://pi.dev/packages/@quintinshaw/pi-dynamic-workflows) · [GitHub](https://github.com/QuintinShaw/pi-dynamic-workflows)**\n\n![pi-dynamic-workflows demo](https://raw.githubusercontent.com/QuintinShaw/pi-dynamic-workflows/main/docs/media/demo.gif)\n\nInstead of one model grinding a task step by step, Pi writes a small JavaScript **orchestration script** that spawns many subagents at once, keeps the intermediate work in script variables (not your chat context), and returns only the result. It's the \"code mode for subagents\" from Claude Code — on any model Pi can reach.\n\nBuilt for **codebase-wide audits, multi-perspective review, large refactors, and cross-checked research** — anything one context window can't hold.\n\n## Install\n\n```bash\npi install npm:@quintinshaw/pi-dynamic-workflows\n```\n\nThen `/reload` in Pi. You get the `workflow` tool plus the `/workflows`, `/deep-research`, and `/adversarial-review` commands.\n\n## Try it\n\nAsk in plain language:\n\n```text\nRun a workflow to audit every route under src/routes/ for missing auth checks.\n```\n\nPi writes the script and runs it in the background — your turn ends immediately and a live panel tracks progress while you keep working. Or just type **workflo... [truncated]",
+          "isError": false,
+          "timestamp": 1782841531943
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/src\"}",
+          "timestamp": 1782841531945
+        },
+        {
+          "role": "tool",
+          "kind": "error",
+          "toolName": "read",
+          "text": "EISDIR: illegal operation on a directory, read",
+          "isError": true,
+          "timestamp": 1782841536034
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "bash",
+          "text": "{\"command\":\"ls -la /home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/src/\"}",
+          "timestamp": 1782841536035
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "bash",
+          "text": "total 368\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 .\ndrwxrwxr-x 5 yash yash  4096 Jun 30 23:11 ..\n-rw-rw-r-- 1 yash yash  3887 Jun 30 23:11 adversarial-review.ts\n-rw-rw-r-- 1 yash yash  4357 Jun 30 23:11 agent-history.ts\n-rw-rw-r-- 1 yash yash  6362 Jun 30 23:11 agent-registry.ts\n-rw-rw-r-- 1 yash yash 20540 Jun 30 23:11 agent.ts\n-rw-rw-r-- 1 yash yash  6887 Jun 30 23:11 builtin-commands.ts\n-rw-rw-r-- 1 yash yash  2072 Jun 30 23:11 config.ts\n-rw-rw-r-- 1 yash yash  4920 Jun 30 23:11 deep-research.ts\n-rw-rw-r-- 1 yash yash  9746 Jun 30 23:11 display.ts\n-rw-rw-r-- 1 yash yash  4134 Jun 30 23:11 effort-command.ts\n-rw-rw-r-- 1 yash yash  5464 Jun 30 23:11 errors.ts\n-rw-rw-r-- 1 yash yash  4781 Jun 30 23:11 index.ts\n-rw-rw-r-- 1 yash yash  2237 Jun 30 23:11 logger.ts\n-rw-rw-r-- 1 yash yash  1958 Jun 30 23:11 model-routing.ts\n-rw-rw-r-- 1 yash yash  4482 Jun 30 23:11 model-tier-config.ts\n-rw-rw-r-- 1 yash yash 10090 Jun 30 23:11 run-persistence.ts\n-rw-rw-r-- 1 yash yash  4698 Jun 30 23:11 saved-commands.ts\n-rw-rw-r-- 1 yash yash  1610 Jun 30 23:11 structured-output.ts\n-rw-rw-r-- 1 yash yash 17975 Jun 30 23:11 task-panel.ts\n-rw-rw-r-- 1 yash yash  4930 Jun 30 23:11 web-tools.ts\n-rw-rw-r-- 1 yash yash 11492 Jun 30 23:11 workflow-commands.ts\n-rw-rw-r-- 1 yash yash 22924 Jun 30 23:11 workflow-editor.ts\n-rw-rw-r-- 1 yash yash 21564 Jun 30 23:11 workflow-manager.ts\n-rw-rw-r-- 1 yash yash  1913 Jun 30 23:11 workflow-paths.ts\n-rw-rw-r-- 1 yash yash  5324 Jun 30 23:11 workflow-saved.ts\n-rw-rw-r-- 1 yash yash  6504 Jun 30 23:11 workflow-settings.ts\n-rw-rw-r-- 1 yash yash  6016 Jun 30 23:11 workflows-models-command.ts\n-rw-rw-r-- 1 yash yash 20586 Jun 30 23:11 workflow-tool.ts\n-rw-rw-r-- 1 yash yash 45562 Jun 30 23:11 workflow.ts\n-rw-rw-r-- 1 yash yash 25840 Jun 30 23:11 workflow-ui.ts\n-rw-rw-r-- 1 yash yash  2637 Jun 30 23:11 worktree.ts\n",
+          "isError": false,
+          "timestamp": 1782841541425
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/src/workflow.ts\",\"limit\":100}",
+          "timestamp": 1782841541428
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "import { createHash } from \"node:crypto\";\nimport vm from \"node:vm\";\nimport type { Node } from \"acorn\";\nimport { parse } from \"acorn\";\nimport type { TSchema } from \"typebox\";\nimport type { AgentUsage } from \"./agent.js\";\nimport { WorkflowAgent, type WorkflowAgentOptions } from \"./agent.js\";\nimport type { AgentHistoryEntry } from \"./agent-history.js\";\nimport {\n  type AgentDefinition,\n  type AgentRegistry,\n  agentDefinitionKey,\n  loadAgentRegistry,\n  resolveAgentType,\n} from \"./agent-registry.js\";\nimport { DEFAULT_AGENT_TIMEOUT_MS, MAX_AGENT_RETRIES, MAX_AGENTS_PER_RUN, MAX_CONCURRENCY } from \"./config.js\";\nimport { WorkflowError, WorkflowErrorCode, wrapError } from \"./errors.js\";\nimport { createWorkflowLogger } from \"./logger.js\";\nimport { parseModelRoutingFromMeta, resolveModelForPhase } from \"./model-routing.js\";\nimport { createWorktree, removeWorktree, type Worktree } from \"./worktree.js\";\n\nexport interface WorkflowMetaPhase {\n  title: string;\n  detail?: string;\n  model?: string;\n}\n\nexport interface WorkflowMeta {\n  name: string;\n  description: string;\n  phases?: WorkflowMetaPhase[];\n  /** Default model for agents whose phase has no route and that set no model/tier. */\n  model?: string;\n}\n\n/** One cached agent() result, keyed by its deterministic call index. */\nexport interface JournalEntry {\n  index: number;\n  /** sha256 of the call's identity (prompt + model + phase + agentType + schema). */\n  hash: string;\n  result: unknown;\n}\n\n/**\n * Global resources shared across a run and any workflow() nested inside it, so\n * the 16-concurrent / 1000-total caps and the token budget hold across nesting\n * instead of each level getting its own limiter and counters.\n */\nexport interface SharedRuntime {\n  limiter: <T>(fn: () => Promise<T>) => Promise<T>;\n  agentCount: number;\n  spent: number;\n  tokenUsage: { input: number; output: number; total: number; cost: number; cacheRead: number; cacheWrite: number };\n  depth: number;\n}\n\nexport interface WorkflowRunOpti... [truncated]",
+          "isError": false,
+          "timestamp": 1782841547487
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/package.json\"}",
+          "timestamp": 1782841547488
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "{\n  \"name\": \"@quintinshaw/pi-dynamic-workflows\",\n  \"version\": \"2.9.0\",\n  \"description\": \"Claude-Code-style dynamic workflows for Pi — fan a task out across 100s of subagents with real model routing, token/cost accounting, resume, git-worktree isolation, an interactive /workflows TUI, and a real /deep-research.\",\n  \"type\": \"module\",\n  \"main\": \"./dist/index.js\",\n  \"types\": \"./dist/index.d.ts\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  },\n  \"exports\": {\n    \".\": {\n      \"types\": \"./dist/index.d.ts\",\n      \"import\": \"./dist/index.js\"\n    }\n  },\n  \"files\": [\n    \"dist/\",\n    \"extensions/\",\n    \"src/\",\n    \"README.md\"\n  ],\n  \"scripts\": {\n    \"test\": \"npm run check && npm run build && npm run test:unit\",\n    \"test:unit\": \"tsx --test tests/**/*.test.ts\",\n    \"check\": \"biome check .\",\n    \"format\": \"biome format --write .\",\n    \"lint\": \"biome lint .\",\n    \"build\": \"tsc\",\n    \"dev\": \"tsx src/index.ts\",\n    \"prepublishOnly\": \"npm run build\"\n  },\n  \"keywords\": [\n    \"pi-package\",\n    \"pi\",\n    \"pi-coding-agent\",\n    \"workflow\",\n    \"workflows\",\n    \"dynamic-workflows\",\n    \"orchestration\",\n    \"subagents\",\n    \"multi-agent\",\n    \"agents\",\n    \"ai-agents\",\n    \"parallel\",\n    \"fan-out\",\n    \"claude-code\",\n    \"deep-research\",\n    \"code-review\",\n    \"llm\"\n  ],\n  \"pi\": {\n    \"extensions\": [\n      \"extensions/workflow.ts\"\n    ]\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/QuintinShaw/pi-dynamic-workflows.git\"\n  },\n  \"author\": \"QuintinShaw\",\n  \"contributors\": [\n    \"michaelliv (original author)\"\n  ],\n  \"license\": \"MIT\",\n  \"dependencies\": {\n    \"acorn\": \"^8.16.0\"\n  },\n  \"peerDependencies\": {\n    \"@earendil-works/pi-coding-agent\": \"*\",\n    \"@earendil-works/pi-tui\": \"*\",\n    \"typebox\": \"*\"\n  },\n  \"devDependencies\": {\n    \"@biomejs/biome\": \"2.4.16\",\n    \"@earendil-works/pi-ai\": \"latest\",\n    \"@earendil-works/pi-coding-agent\": \"latest\",\n    \"@earendil-works/pi-tui\": \"latest\",\n    \"tsx\": \"latest\",\n    \"typebox\": \"latest\",\n    \"typesc... [truncated]",
+          "isError": false,
+          "timestamp": 1782841550653
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "read",
+          "text": "{\"path\":\"/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/extensions/workflow.ts\"}",
+          "timestamp": 1782841550655
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "read",
+          "text": "import type { ExtensionAPI, ExtensionContext } from \"@earendil-works/pi-coding-agent\";\nimport {\n  createEffortState,\n  createWorkflowStorage,\n  createWorkflowTool,\n  installResultDelivery,\n  installTaskPanel,\n  installWorkflowEditor,\n  loadWorkflowSettings,\n  registerAllSavedWorkflows,\n  registerBuiltinWorkflows,\n  registerEffortCommand,\n  registerWorkflowCommands,\n  registerWorkflowModelsCommand,\n  saveWorkflowSettingsForCwd,\n  WorkflowManager,\n} from \"../src/index.js\";\n\nexport default function extension(pi: ExtensionAPI) {\n  // Single manager/storage shared by the workflow tool and the /workflows command,\n  // so background runs started by the tool are reachable from the command.\n  const cwd = process.cwd();\n  const storage = createWorkflowStorage(cwd);\n  const settings = loadWorkflowSettings({ cwd });\n  const manager = new WorkflowManager({\n    cwd,\n    loadSavedWorkflow: (name) => storage.load(name)?.script,\n    defaultAgentTimeoutMs: settings.defaultAgentTimeoutMs ?? null,\n    concurrency: settings.defaultConcurrency,\n    defaultAgentRetries: settings.defaultAgentRetries,\n  });\n\n  const workflowTool = createWorkflowTool({ cwd, manager, storage });\n  pi.registerTool(workflowTool);\n  // Standing /effort opt-in (off|high|ultra): auto-arms a workflow for substantive\n  // messages, like CC's ultracode. Shared with the editor's input hook below and\n  // with the explicit /workflows run <prompt> manual trigger.\n  const effort = createEffortState();\n  registerWorkflowCommands(pi, manager, { storage, cwd, effort });\n  registerWorkflowModelsCommand(pi);\n  registerBuiltinWorkflows(pi, { cwd });\n  registerAllSavedWorkflows(pi, cwd, storage, manager);\n  registerEffortCommand(pi, effort);\n  // \"Workflows mode\": type `workflow(s)` to arm a forced workflow (animated),\n  // Backspace right after the word disarms it. Registers the `input` hook now;\n  // the editor itself is installed once the UI is available (session_start).\n  let editorInstalled = false;\n\n  ... [truncated]",
+          "isError": false,
+          "timestamp": 1782841557236
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "todo",
+          "text": "{\"action\":\"update\",\"id\":1,\"status\":\"completed\"}",
+          "timestamp": 1782841557238
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "todo",
+          "text": "Updated #1 (in_progress → completed)",
+          "isError": false,
+          "timestamp": 1782841562678
+        },
+        {
+          "role": "assistant",
+          "kind": "text",
+          "text": "## Research Complete: pi-dynamic-workflows Ecosystem\n\n**Key Findings:**\n\n1. **pi-dynamic-workflows package** exists at `/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows`\n   - Version 2.9.0, MIT licensed\n   - Claude Code–style dynamic workflows for Pi\n   - npm: `@quintinshaw/pi-dynamic-workflows`\n\n2. **Core concept**: JavaScript orchestration scripts (`.dwf.ts`) that spawn subagents in parallel, keep intermediate results in script variables (not chat context), return only results.\n\n3. **Key APIs**:\n   - `agent(prompt, opts)` - spawn isolated subagent\n   - `parallel(thunks)` - run multiple agents concurrently\n   - `pipeline(items, ...stages)` - multi-stage fan-out\n   - `phase(title)` - group agents in live view\n   - `verify/judgePanel/loopUntilDry/completenessCheck` - quality patterns\n\n4. **Agent options**:\n   - `tier`: \"small\" | \"medium\" | \"big\" - model routing\n   - `model`: exact provider/modelId\n   - `agentType`: named definition from `.pi/agents/`\n   - `isolation: \"worktree\"` - git worktree isolation\n   - `schema`: JSON Schema for structured output\n\n5. **pi-crew dynamic workflows** also found at `/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/docs/dynamic-workflows.md`\n   - Similar concept but part of pi-crew package\n   - Uses `ctx.agent()`, `ctx.fanOut()`, `ctx.pipeline()`\n\n6. **Pi coding agent** has built-in workflow support via extensions (subagent example shows chained workflows)\n\n**Installation**: `pi install npm:@quintinshaw/pi-dynamic-workflows` then `/reload`\n\n**Commands**: `/workflows`, `/deep-research`, `/adversarial-review`, `/ultracode`, `/effort`\n\n**Storage**: `~/.pi/workflows/` (global), project-scoped under `~/.pi/workflows/projects/<project>/`",
+          "timestamp": 1782841562680
+        }
+      ],
+      "resultPreview": "## Research Complete: pi-dynamic-workflows Ecosystem\n\n**Key Findings:**\n\n1. **p…",
+      "tokens": 1222956,
+      "startedAt": "2026-06-30T17:43:39.413Z",
+      "endedAt": "2026-06-30T17:48:10.787Z"
+    },
+    {
+      "id": 3,
+      "label": "gitnexus and config",
+      "phase": "Research",
+      "prompt": "Read /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/ directory — look for any workflow-related skills or references to dynamic workflows. Also check /home/yash/.pi/agent/ for any config files that reference dynamic workflows.",
+      "status": "done",
+      "model": "xiaomi-token-plan-sgp/mimo-v2.5",
+      "history": [
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"com",
+          "timestamp": 1782841452976
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 3 commands (70 lines, 6.0KB). Indexed 3 sections. Searched 7 queries.\n\n## Commands\n\n- read-skill-files: `for dir in /home/yash/.pi/a... [truncated]",
+          "isError": false,
+          "timestamp": 1782841461716
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"skill-debugging\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-debugging/SKILL.md\"},{\"label\":\"skill-exploring\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-exploring/SKILL.md\"},{\"label\":\"skill-impact\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-impact-analysis/SKILL.md\"},{\"label\":\"skill-pr-review\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-pr-review/SKILL.md\"},{\"label\":\"skill-refactoring\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-refactoring/SKILL.md\"}],\"queries\":[\"workflow\",\"dynamic workflow\",\"gitnexus\",\"skill instructions\"],\"concurrency\":4}",
+          "timestamp": 1782841461717
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 5 commands (474 lines, 15.1KB). Indexed 48 sections. Searched 4 queries.\n\n## Commands\n\n- skill-debugging: `cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-debugging/SKILL.md`\n- skill-exploring: `cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-exploring/SKILL.md`\n- skill-impact: `cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-impact-analysis/SKILL.md`\n- skill-pr-review: `cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-pr-review/SKILL.md`\n- skill-refactoring: `cat /home/yash/.pi/agent/npm/node_modules/pi-gitnexus/skills/gitnexus-refactoring/SKILL.md`\n\n## Indexed Sections\n\n- skill-debugging (0.1KB)\n- skill-debugging (0.2KB)\n- Debugging with GitNexus (0.0KB)\n- Debugging with GitNexus > When to Use (0.2KB)\n- Debugging with GitNexus > Workflow (0.4KB)\n- Debugging with GitNexus > Debugging Patterns (0.6KB)\n- Debugging with GitNexus > Checklist (0.3KB)\n- Debugging with GitNexus > Tools (0.7KB)\n- Debugging with GitNexus > Example: \"Payment endpoint returns 500 intermittently\" (0.4KB)\n- skill-exploring (0.1KB)\n- skill-exploring (0.3KB)\n- Exploring Codebases with GitNexus (0.0KB)\n- Exploring Codebases with GitNexus > When to Use (0.2KB)\n- Exploring Codebases with GitNexus > Workflow (0.4KB)\n- Exploring Codebases with GitNexus > Checklist (0.2KB)\n- Exploring Codebases with GitNexus > Tools (0.7KB)\n- Exploring Codebases with GitNexus > Example: \"How does payment processing work?\" (0.5KB)\n- skill-impact (0.1KB)\n- skill-impact (0.2KB)\n- Impact Analysis with GitNexus (0.0KB)\n- Impact Analysis with GitNexus > When to Use (0.2KB)\n- Impact Analysis with GitNexus > Workflow (0.3KB)\n- Impact Analysis with GitNexus > Understanding Output (0.3KB)\n- Impact Analysis with GitNexus > Risk Assessment (0.3KB)\n- Impact Analysis with GitNexus > Checklist (0.3KB)\n- Impact Analysis with GitNexus > Tools (0.6KB)\n- Impact Analysis with GitNexus > Example: \"What breaks if I change vali... [truncated]",
+          "isError": false,
+          "timestamp": 1782841467696
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"package-json\",\"command\":\"cat /home/yash/.pi/agent/npm/package.json\"},{\"label\":\"dynamic-workflows-pkg\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/ 2>/dev/null || echo 'Not found'\"},{\"label\":\"workflow-suite-pkg\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/ 2>/dev/null || echo 'Not found'\"}],\"queries\":[\"dependencies\",\"workflow\",\"dynamic\",\"pi-dynamic-workflows\",\"pi-workflow-suite\"],\"concurrency\":2}",
+          "timestamp": 1782841467697
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 3 commands (69 lines, 2.3KB). Indexed 3 sections. Searched 5 queries.\n\n## Commands\n\n- package-json: `cat /home/yash/.pi/agent/npm/package.json`\n- dynamic-workflows-pkg: `ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/ 2>/dev/null || echo 'Not found'`\n- workflow-suite-pkg: `ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/ 2>/dev/null || echo 'Not found'`\n\n## Indexed Sections\n\n- package-json (0.7KB)\n- dynamic-workflows-pkg (0.5KB)\n- workflow-suite-pkg (1.0KB)\n\n## dependencies\n\n### package-json\n# package-json\n\n$ cat /home/yash/.pi/agent/npm/package.json\n\n{\n  \"name\": \"pi-extensions\",\n  \"private\": true,\n  \"dependencies\": {\n    \"@juicesharp/rpiv-ask-user-question\": \"^1.20.0\",\n    \"@juicesharp/rpiv-todo\": \"^1.20.0\",\n    \"@mediadatafusion/pi-workflow-suite\": \"^0.0.23\",\n    \"@mjasnikovs/pi-task\": \"^0.17.3\",\n    \"@quintinshaw/pi-dynamic-workflows\": \"^2.9.0\",\n    \"@samfp/pi-memory\": \"^1.5.0\",\n    \"@tintinweb/pi-subagents\": \"^0.12.0\",\n    \"context-mode\": \"^1.0.169\",\n    \"pi-caveman\": \"^1.0.7\",\n    \"pi-context-usage\": \"^1.0.2\",\n    \"pi-crew\": \"^0.9.16\",\n    \"pi-cursor-sdk\": \"^0.1.53\",\n    \"pi-gitnexus\": \"^0.6.4\",\n    \"pi-mcp-adapter\": \"^2.10.0\",\n    \"pi-morphllm-plugin\": \"^0.1.9\",\n    \"pi-powerline-footer\": \"^0.6.1\",\n    \"pi-subagents\": \"^0.31.0\"\n  }\n}\n\n## workflow\n\n### dynamic-workflows-pkg\n# dynamic-workflows-pkg\n\n$ ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/ 2>/dev/null || echo 'Not found'\n\ntotal 44\ndrwxrwxr-x 5 yash yash  4096 Jun 30 23:11 .\ndrwxrwxr-x 3 yash yash  4096 Jun 30 23:11 ..\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 dist\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 extensions\n-rw-rw-r-- 1 yash yash  1127 Jun 30 23:11 LICENSE\n-rw-rw-r-- 1 yash yash  2004 Jun 30 23:11 package.json\n-rw-rw-r-- 1 yash yash 15889 Jun 30 23:11 README.md\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:11 src\n\n### workflow-suite-pkg\n# workflow-suite-pkg\n\n$ ls -la /home/yash/... [truncated]",
+          "isError": false,
+          "timestamp": 1782841474726
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"dynamic-workflows-readme\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/README.md | head -100\"},{\"label\":\"dynamic-workflows-pkgjson\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/package.json\"},{\"label\":\"workflow-suite-readme\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/README.md | head -100\"},{\"label\":\"workflow-suite-config\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/config/\"},{\"label\":\"workflow-suite-skills\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/skills/\"}],\"queries\":[\"workflow\",\"dynamic workflow\",\"configuration\",\"skills\",\"extensions\",\"README\"],\"concurrency\":4}",
+          "timestamp": 1782841474727
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 5 commands (328 lines, 17.4KB). Indexed 10 sections. Searched 6 queries.\n\n## Commands\n\n- dynamic-workflows-readme: `cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/README.md | head -100`\n- dynamic-workflows-pkgjson: `cat /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/package.json`\n- workflow-suite-readme: `cat /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/README.md | head -100`\n- workflow-suite-config: `ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/config/`\n- workflow-suite-skills: `ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/skills/`\n\n## Indexed Sections\n\n- dynamic-workflows-readme (0.1KB)\n- pi-dynamic-workflows (1.5KB)\n- pi-dynamic-workflows > Install (0.2KB)\n- pi-dynamic-workflows > Try it (1.8KB)\n- pi-dynamic-workflows > What a workflow looks like (0.9KB)\n- pi-dynamic-workflows > Highlights (2.1KB)\n- pi-dynamic-workflows > How it maps to Claude Code dynamic workflows (1.1KB)\n- pi-dynamic-workflows > Commands (1) (3.9KB)\n- pi-dynamic-workflows > Commands (2) (3.6KB)\n- pi-dynamic-workflows > Commands (3) (2.2KB)\n\n## workflow\n\n### pi-dynamic-workflows > Install\n## Install\n\n```bash\npi install npm:@quintinshaw/pi-dynamic-workflows\n```\n\nThen `/reload` in Pi. You get the `workflow` tool plus the `/workflows`, `/deep-research`, and `/adversarial-review` commands.\n\n### pi-dynamic-workflows > Try it\n## Try it\n\nAsk in plain language:\n\n```text\nRun a workflow to audit every route under src/routes/ for missing auth checks.\n```\n\nPi writes the script and runs it in the background — your turn ends immediately and a live panel tracks progress while you keep working. Or just type **workflow** or **workflows** in any message to force one. To force one explicitly — even with the keyword trigger off — run `/workflows run <prompt>`. If that causes false triggers, set a custom trigger such as `pi-workflow` wit... [truncated]",
+          "isError": false,
+          "timestamp": 1782841481089
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"workflow-settings-example\",\"command\":\"cat /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/config/workflow-settings.example.json | head -80\"},{\"label\":\"workflow-suite-extensions\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/extensions/\"},{\"label\":\"dynamic-workflows-extensions\",\"command\":\"ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/extensions/\"},{\"label\":\"check-local-config\",\"command\":\"ls -la ~/.pi/agent/ 2>/dev/null | head -20\"}],\"queries\":[\"workflow settings\",\"extensions\",\"configuration\",\"config\",\"local config\"],\"concurrency\":4}",
+          "timestamp": 1782841481091
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 4 commands (143 lines, 4.9KB). Indexed 4 sections. Searched 5 queries.\n\n## Commands\n\n- workflow-settings-example: `cat /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/config/workflow-settings.example.json | head -80`\n- workflow-suite-extensions: `ls -la /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/extensions/`\n- dynamic-workflows-extensions: `ls -la /home/yash/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows/extensions/`\n- check-local-config: `ls -la ~/.pi/agent/ 2>/dev/null | head -20`\n\n## Indexed Sections\n\n- workflow-settings-example (2.5KB)\n- workflow-suite-extensions (1.0KB)\n- dynamic-workflows-extensions (0.3KB)\n- check-local-config (1.1KB)\n\n## workflow settings\n\n### workflow-settings-example\n# workflow-settings-example\n\n$ cat /home/yash/.pi/agent/npm/node_modules/@mediadatafusion/pi-workflow-suite/config/workflow-settings.example.json | head -80\n\n{\n  \"models\": {\n    \"planner\": {\n      \"enabled\": true,\n      \"provider\": null,\n      \"model\": null,\n      \"thinkingLevel\": \"high\"\n    },\n    \"executor\": {\n      \"enabled\": true,\n      \"provider\": null,\n      \"model\": null,\n      \"thinkingLevel\": \"high\"\n    },\n    \"validator\": {\n      \"enabled\": true,\n      \"provider\": null,\n      \"model\": null,\n      \"thinkingLevel\": \"xhigh\",\n      \"askBeforeRun\": false\n    },\n    \"reviewer\": {\n      \"enabled\": true,\n      \"provider\": null,\n      \"model\": null,\n      \"thinkingLevel\": \"xhigh\",\n      \"askBeforeRun\": false\n    }\n  },\n  \"workflow\": {\n    \"requirePlanApprovalBeforeExecute\": true,\n    \"offerValidationAfterExecute\": true,\n    \"autoRunValidationAfterExecute\": true,\n    \"offerReviewerBeforeExecute\": false,\n    \"autoRunReviewerBeforeExecute\": false,\n    \"allowPlanRevisionBeforeExecute\": true,\n    \"autoRepairReviewFailures\": true,\n    \"maxReviewRetriesPerPlan\": 2,\n    \"reviewRetryMode\": \"safe_only\",\n    \"pauseAfterReviewFailure\": false,\n    \"autoRepairValidationFailures\": true,\n    \"va... [truncated]",
+          "isError": false,
+          "timestamp": 1782841486167
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"command\":\"ls -la ~/.pi/agent/extensions/\",\"label\":\"local-extensions\"},{\"command\":\"cat ~/.pi/agent/keybindings.json 2>/dev/null\",\"label\":\"keybindings\"},{\"command\":\"find ~/.pi/ -maxdepth 3 -name '*workflow*' 2>/dev/null\",\"label\":\"find-workflow-files\"},{\"command\":\"cat ~/.pi/agent/morph.json 2>/dev/null\",\"label\":\"morph-config\"}],\"queries\":[\"workflow\",\"extensions\",\"config\",\"local\",\"keybindings\"],\"concurrency\":3}",
+          "timestamp": 1782841486168
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 4 commands (68 lines, 1.4KB). Indexed 4 sections. Searched 5 queries.\n\n## Commands\n\n- local-extensions: `ls -la ~/.pi/agent/extensions/`\n- keybindings: `cat ~/.pi/agent/keybindings.json 2>/dev/null`\n- find-workflow-files: `find ~/.pi/ -maxdepth 3 -name '*workflow*' 2>/dev/null`\n- morph-config: `cat ~/.pi/agent/morph.json 2>/dev/null`\n\n## Indexed Sections\n\n- local-extensions (0.2KB)\n- keybindings (0.1KB)\n- find-workflow-files (0.2KB)\n- morph-config (0.8KB)\n\n## workflow\n\n### find-workflow-files\n# find-workflow-files\n\n$ find ~/.pi/ -maxdepth 3 -name '*workflow*' 2>/dev/null\n\n/home/yash/.pi/workflows\n/home/yash/.pi/agent/workflows\n/home/yash/.pi/agent/workflow-settings.json\n\n## extensions\n\n### local-extensions\n# local-extensions\n\n$ ls -la ~/.pi/agent/extensions/\n\ntotal 12\ndrwxrwxr-x  3 yash yash 4096 Jun 30 19:29 .\ndrwxrwxr-x 12 yash yash 4096 Jun 30 23:14 ..\ndrwxrwxr-x  2 yash yash 4096 Jun  7 11:57 image-placeholders\n\n## config\n\n### morph-config\n# morph-config\n\n$ cat ~/.pi/agent/morph.json 2>/dev/null\n\n{\n  \"apiKey\": \"\",\n  \"apiKeyFile\": \"/home/yash/.pi/agent/morph.env\",\n  \"apiKeyStrategy\": \"round-robin\",\n  \"editEnabled\": true,\n  \"warpgrepEnabled\": true,\n  \"warpgrepGithubEnabled\": true,\n  \"autoCompactEnabled\": true,\n  \"allowReadonlyAgents\": false,\n  \"routing\": {\n    \"editMode\": \"strong\",\n    \"codebaseSearchMode\": \"prefer\",\n    \"githubSearchMode\": \"prefer\",\n    \"fallbackToNativeTools\": true\n  },\n  \"statsDashboard\": {\n    \"enabled\": false,\n    \"host\": \"127.0.0.1\",\n    \"port\": 47631,\n    \"token\": \"3657f38c57472ed7de31107a5ecf4dac9676\",\n    \"autoOpen\": true,\n    \"storagePath\": \"~/.pi/agent/morph-stats.jsonl\",\n    \"retentionDays\": 30\n  },\n  \"compactContextThreshold\": 0.7,\n  \"compactPreserveRecent\": 2,\n  \"compactRatio\": 0.3,\n  \"timeoutMs\": 30000,\n  \"warpGrepTimeoutMs\": 60000,\n  \"compactTimeoutMs\": 60000\n}\n\n## local\n\n### local-extensions\n# local-extensions\n\n$ ls -la ~/.pi/agent/extensions/\n\ntotal 12\ndrwxrwxr-x  3 yash yash 4096 Jun 30 19:29 .\ndrwxr... [truncated]",
+          "isError": false,
+          "timestamp": 1782841493174
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"workflow-settings-local\",\"command\":\"cat ~/.pi/agent/workflow-settings.json 2>/dev/null\"},{\"label\":\"workflows-dir\",\"command\":\"ls -la ~/.pi/agent/workflows/ 2>/dev/null\"},{\"label\":\"workflows-global-dir\",\"command\":\"ls -la ~/.pi/workflows/ 2>/dev/null\"},{\"label\":\"workflows-global-dir-files\",\"command\":\"ls ~/.pi/workflows/ 2>/dev/null\"}],\"queries\":[\"workflow settings\",\"workflows\",\"config\",\"local config\",\"saved workflows\"],\"concurrency\":3}",
+          "timestamp": 1782841493175
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 4 commands (376 lines, 10.9KB). Indexed 5 sections. Searched 5 queries.\n\n## Commands\n\n- workflow-settings-local: `cat ~/.pi/agent/workflow-settings.json 2>/dev/null`\n- workflows-dir: `ls -la ~/.pi/agent/workflows/ 2>/dev/null`\n- workflows-global-dir: `ls -la ~/.pi/workflows/ 2>/dev/null`\n- workflows-global-dir-files: `ls ~/.pi/workflows/ 2>/dev/null`\n\n## Indexed Sections\n\n- workflow-settings-local (1) (0.1KB)\n- workflow-settings-local (2) (10.4KB)\n- workflows-dir (0.2KB)\n- workflows-global-dir (0.2KB)\n- workflows-global-dir-files (0.1KB)\n\n## workflow settings\n\n### workflow-settings-local (1)\n# workflow-settings-local\n\n$ cat ~/.pi/agent/workflow-settings.json 2>/dev/null\n\n### workflow-settings-local (2)\n…\": {\n      \"enabled\": true,\n      \"provider\": null,\n      \"model\": null,\n      \"thinkingLevel\": \"xhigh\",\n      \"askBeforeRun\": false\n    },\n    \"reviewer\": {\n      \"enabled\": true,\n      \"provider\": null,\n      \"model\": null,\n      \"thinkingLevel\": \"xhigh\",\n      \"askBeforeRun\": false\n    }\n  },\n  \"workflow\": {\n    \"requirePlanApprovalBeforeExecute\": true,\n    \"offerValidationAfterExecute\": true,\n    \"autoRunValidationAfterExecute\": true,\n    \"offerReviewerBeforeExecute\": false,\n    \"autoRunReviewerBeforeExecute\": false,\n    \"allowPlanRevisionBeforeExecute\": true,\n    \"autoRepairReviewFailures…\n\n### workflows-global-dir-files\n# workflows-global-dir-files\n\n$ ls ~/.pi/workflows/ 2>/dev/null\n\nprojects\n\n## workflows\n\n### workflows-global-dir-files\n# workflows-global-dir-files\n\n$ ls ~/.pi/workflows/ 2>/dev/null\n\nprojects\n\n### workflows-dir\n# workflows-dir\n\n$ ls -la ~/.pi/agent/workflows/ 2>/dev/null\n\ntotal 12\ndrwxrwxr-x  2 yash yash 4096 Jun 30 22:43 .\ndrwxrwxr-x 12 yash yash 4096 Jun 30 23:14 ..\n-rw-rw-r--  1 yash yash   80 Jun 30 22:43 active.json\n\n### workflows-global-dir\n# workflows-global-dir\n\n$ ls -la ~/.pi/workflows/ 2>/dev/null\n\ntotal 12\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 .\ndrwxrwxr-x 9 yash yash 4096 Jun 30 23:13 ..\ndrwxrwxr-x 3... [truncated]",
+          "isError": false,
+          "timestamp": 1782841501854
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "ctx_batch_execute",
+          "text": "{\"commands\":[{\"label\":\"active-workflow\",\"command\":\"cat ~/.pi/agent/workflows/active.json\"},{\"label\":\"projects-workflows\",\"command\":\"ls -laR ~/.pi/workflows/projects/\"}],\"queries\":[\"active workflow\",\"projects\",\"saved workflows\"],\"concurrency\":2}",
+          "timestamp": 1782841501855
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "ctx_batch_execute",
+          "text": "Executed 2 commands (36 lines, 0.9KB). Indexed 2 sections. Searched 3 queries.\n\n## Commands\n\n- active-workflow: `cat ~/.pi/agent/workflows/active.json`\n- projects-workflows: `ls -laR ~/.pi/workflows/projects/`\n\n## Indexed Sections\n\n- active-workflow (0.1KB)\n- projects-workflows (0.8KB)\n\n## active workflow\n\n### active-workflow\n# active-workflow\n\n$ cat ~/.pi/agent/workflows/active.json\n\n{\n  \"version\": 1,\n  \"mode\": \"idle\",\n  \"updatedAt\": \"2026-06-30T17:13:33.976Z\"\n}\n\n### projects-workflows\n# projects-workflows\n\n$ ls -laR ~/.pi/workflows/projects/\n\n/home/yash/.pi/workflows/projects/:\ntotal 12\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 .\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 ..\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 pmigov-82340f88a085\n\n/home/yash/.pi/workflows/projects/pmigov-82340f88a085:\ntotal 12\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 .\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 ..\ndrwxrwxr-x 2 yash yash 4096 Jun 30 23:14 runs\n\n/home/yash/.pi/workflows/projects/pmigov-82340f88a085/runs:\ntotal 140\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:14 .\ndrwxrwxr-x 3 yash yash  4096 Jun 30 23:13 ..\n-rw-rw-r-- 1 yash yash 64491 Jun 30 23:14 mr0xqzdh-a8djmf.json\n-rw-rw-r-- 1 yash yash 64491 Jun 30 23:14 mr0xqzdh-a8djmf.json.bak\n-rw-rw-r-- 1 yash yash   229 Jun 30 23:13 mr0xqzdh-a8djmf.lock\n\n## projects\n\n### projects-workflows\n# projects-workflows\n\n$ ls -laR ~/.pi/workflows/projects/\n\n/home/yash/.pi/workflows/projects/:\ntotal 12\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 .\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 ..\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 pmigov-82340f88a085\n\n/home/yash/.pi/workflows/projects/pmigov-82340f88a085:\ntotal 12\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 .\ndrwxrwxr-x 3 yash yash 4096 Jun 30 23:13 ..\ndrwxrwxr-x 2 yash yash 4096 Jun 30 23:14 runs\n\n/home/yash/.pi/workflows/projects/pmigov-82340f88a085/runs:\ntotal 140\ndrwxrwxr-x 2 yash yash  4096 Jun 30 23:14 .\ndrwxrwxr-x 3 yash yash  4096 Jun 30 23:13 ..\n-rw-rw-r-- 1 yash yash 64491 Jun 30 23... [truncated]",
+          "isError": false,
+          "timestamp": 1782841507324
+        },
+        {
+          "role": "assistant",
+          "kind": "text",
+          "text": "## Research Summary\n\n### GitNexus Skills\n\n`pi-gitnexus` (v0.6.4) has **5 skills** — all codebase analysis, zero workflow-related:\n\n| Skill | Purpose |\n|-------|---------|\n| `gitnexus-debugging` | Trace errors via `gitnexus_query` → `gitnexus_context` → source files |\n| `gitnexus-exploring` | Codebase exploration via `gitnexus_list_repos` → `gitnexus_query` → `gitnexus_context` |\n| `gitnexus-impact-analysis` | Blast radius via `gitnexus_impact` → `gitnexus_detect_changes` |\n| `gitnexus-pr-review` | PR review combining impact + context |\n| `gitnexus-refactoring` | Safe rename/extract/move using `gitnexus_rename` + Cypher |\n\n**No workflow-related skills in pi-gitnexus.** All use knowledge graph tools (`gitnexus_*`) for code analysis.\n\n---\n\n### Dynamic Workflow Packages (installed)\n\nTwo packages provide dynamic workflow capabilities:\n\n**1. `@quintinshaw/pi-dynamic-workflows` (v2.9.0)**\n- Provides `workflow` tool (JS sandbox with `agent()`/`parallel()`/`pipeline()`/`phase()`)\n- Keywords: `workflow` or `workflows` in any message auto-arms workflow mode\n- Commands: `/workflows`, `/deep-research`, `/adversarial-review`, `/ultracode`\n- Settings: `~/.pi/workflows/settings.json` (keyword trigger, etc.)\n- Extension: `extensions/workflow.ts`\n- Journaled + replayable runs, per-agent model routing\n\n**2. `@mediadatafusion/pi-workflow-suite` (v0.0.23)**\n- Structured orchestration: 4 modes (Idle, Standard, Plan, Mission)\n- Role-specific model routing: planner, executor, reviewer, validator\n- Config: `~/.pi/agent/workflow-settings.json`\n- Skills: `codebase-discovery`, `find-skills`, `git-safe-summary`, `implementation-planning`, `project-rules-audit`, `safe-execution`, `validation-review`\n- Extensions: `workflow-modes.ts` (1.48MB), `workflow-model-router.ts`, `workflow-state.ts`, `workflow-tool-guard.ts`, etc.\n\n---\n\n### Local Config Files\n\n| Path | Content |\n|------|---------|\n| `~/.pi/agent/workflow-settings.json` | Full workflow suite config (models, workflow gat... [truncated]",
+          "timestamp": 1782841507325
+        }
+      ],
+      "resultPreview": "## Research Summary\n\n### GitNexus Skills\n\n`pi-gitnexus` (v0.6.4) has **5 skills…",
+      "tokens": 430272,
+      "startedAt": "2026-06-30T17:43:39.413Z",
+      "endedAt": "2026-06-30T17:48:10.787Z"
+    },
+    {
+      "id": 4,
+      "label": "synthesis",
+      "phase": "Research",
+      "prompt": "You are synthesizing research about the @quintinshaw/pi-dynamic-workflows plugin for pi coding agent. Here are the research results:\n\n[\n  \"## Research Summary: `@quintinshaw/pi-dynamic-workflows` v2.9.0\\n\\n### What it does\\nDynamic workflow orchestration for Pi — fan tasks across subagents with real model routing, token accounting, resume, and interactive TUI. Claude Code-style, production-grade.\\n\\n### Config options\\n| File | Purpose |\\n|------|---------|\\n| `~/.pi/workflows/settings.json` | Global settings, custom `keywordTriggerWord` |\\n| `~/.pi/workflows/model-tiers.json` | Map small/medium/big → real models |\\n| `~/.pi/workflows/projects/<project>/` | Per-project run history, saved workflows |\\n\\nTrigger control: `/workflows-trigger on|off|status|set <word>`\\n\\n### Key APIs\\n\\n**Globals for workflow scripts:**\\n- `agent(prompt, opts)` — spawn subagent (tier, model, schema, isolation)\\n- `parallel(thunks)` — concurrent fan-out\\n- `pipeline(items, ...stages)` — sequential stages\\n- `phase(title, {budget?})` — group agents, optional token cap\\n- `checkpoint(prompt, opts)` — human approval gate\\n- `budget` — `{total, spent(), remaining()}` real-time tracker\\n\\n**Built-in quality patterns:** `verify`, `judgePanel`, `loopUntilDry`, `completenessCheck`\\n\\n**Agent options:** `tier`, `model`, `agentType`, `isolation: \\\"worktree\\\"`, `schema`, `retries`, `label`, `phase`\\n\\n### Commands\\n```\\n/workflows                    interactive navigator\\n/workflows status <id>        watch live\\n/workflows save <name>        save as reusable command\\n/workflows run <prompt>       force from prompt\\n/workflows-trigger off|on     keyword control\\n/workflows-models             map tiers to models\\n/deep-research <question>     web research + cross-check\\n/adversarial-review <task>    skeptical review\\n/multi-perspective \\\"<topic>\\\"  multi-angle analysis\\n```\\n\\n### Pi integration\\n- Registered via `pi.extensions: [\\\"extensions/workflow.ts\\\"]` in package.json\\n- Adds `workflow` tool + slash commands to Pi\\n- Uses Pi sessions for subagent isolation\\n- Hooks Pi TUI for live progress panel\\n- Stores state in `~/.pi/workflows/` (not per-project `.pi/`)\\n- Respects Pi's model auth for provider routing\",\n  \"## Research Complete: pi-dynamic-workflows Ecosystem\\n\\n**Key Findings:**\\n\\n1. **pi-dynamic-workflows package** exists at `/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/@quintinshaw/pi-dynamic-workflows`\\n   - Version 2.9.0, MIT licensed\\n   - Claude Code–style dynamic workflows for Pi\\n   - npm: `@quintinshaw/pi-dynamic-workflows`\\n\\n2. **Core concept**: JavaScript orchestration scripts (`.dwf.ts`) that spawn subagents in parallel, keep intermediate results in script variables (not chat context), return only results.\\n\\n3. **Key APIs**:\\n   - `agent(prompt, opts)` - spawn isolated subagent\\n   - `parallel(thunks)` - run multiple agents concurrently\\n   - `pipeline(items, ...stages)` - multi-stage fan-out\\n   - `phase(title)` - group agents in live view\\n   - `verify/judgePanel/loopUntilDry/completenessCheck` - quality patterns\\n\\n4. **Agent options**:\\n   - `tier`: \\\"small\\\" | \\\"medium\\\" | \\\"big\\\" - model routing\\n   - `model`: exact provider/modelId\\n   - `agentType`: named definition from `.pi/agents/`\\n   - `isolation: \\\"worktree\\\"` - git worktree isolation\\n   - `schema`: JSON Schema for structured output\\n\\n5. **pi-crew dynamic workflows** also found at `/home/yash/.dotfiles/pi/.pi/agent/npm/node_modules/pi-crew/docs/dynamic-workflows.md`\\n   - Similar concept but part of pi-crew package\\n   - Uses `ctx.agent()`, `ctx.fanOut()`, `ctx.pipeline()`\\n\\n6. **Pi coding agent** has built-in workflow support via extensions (subagent example shows chained workflows)\\n\\n**Installation**: `pi install npm:@quintinshaw/pi-dynamic-workflows` then `/reload`\\n\\n**Commands**: `/workflows`, `/deep-research`, `/adversarial-review`, `/ultracode`, `/effort`\\n\\n**Storage**: `~/.pi/workflows/` (global), project-scoped under `~/.pi/workflows/projects/<project>/`\",\n  \"## Research Summary\\n\\n### GitNexus Skills\\n\\n`pi-gitnexus` (v0.6.4) has **5 skills** — all codebase analysis, zero workflow-related:\\n\\n| Skill | Purpose |\\n|-------|---------|\\n| `gitnexus-debugging` | Trace errors via `gitnexus_query` → `gitnexus_context` → source files |\\n| `gitnexus-exploring` | Codebase exploration via `gitnexus_list_repos` → `gitnexus_query` → `gitnexus_context` |\\n| `gitnexus-impact-analysis` | Blast radius via `gitnexus_impact` → `gitnexus_detect_changes` |\\n| `gitnexus-pr-review` | PR review combining impact + context |\\n| `gitnexus-refactoring` | Safe rename/extract/move using `gitnexus_rename` + Cypher |\\n\\n**No workflow-related skills in pi-gitnexus.** All use knowledge graph tools (`gitnexus_*`) for code analysis.\\n\\n---\\n\\n### Dynamic Workflow Packages (installed)\\n\\nTwo packages provide dynamic workflow capabilities:\\n\\n**1. `@quintinshaw/pi-dynamic-workflows` (v2.9.0)**\\n- Provides `workflow` tool (JS sandbox with `agent()`/`parallel()`/`pipeline()`/`phase()`)\\n- Keywords: `workflow` or `workflows` in any message auto-arms workflow mode\\n- Commands: `/workflows`, `/deep-research`, `/adversarial-review`, `/ultracode`\\n- Settings: `~/.pi/workflows/settings.json` (keyword trigger, etc.)\\n- Extension: `extensions/workflow.ts`\\n- Journaled + replayable runs, per-agent model routing\\n\\n**2. `@mediadatafusion/pi-workflow-suite` (v0.0.23)**\\n- Structured orchestration: 4 modes (Idle, Standard, Plan, Mission)\\n- Role-specific model routing: planner, executor, reviewer, validator\\n- Config: `~/.pi/agent/workflow-settings.json`\\n- Skills: `codebase-discovery`, `find-skills`, `git-safe-summary`, `implementation-planning`, `project-rules-audit`, `safe-execution`, `validation-review`\\n- Extensions: `workflow-modes.ts` (1.48MB), `workflow-model-router.ts`, `workflow-state.ts`, `workflow-tool-guard.ts`, etc.\\n\\n---\\n\\n### Local Config Files\\n\\n| Path | Content |\\n|------|---------|\\n| `~/.pi/agent/workflow-settings.json` | Full workflow suite config (models, workflow gates, standard/plan/mission settings) |\\n| `~/.pi/agent/workflows/active.json` | Active workflow state: `{\\\"mode\\\": \\\"idle\\\", \\\"updatedAt\\\": \\\"2026-06-30T17:13:33.976Z\\\"}` |\\n| `~/.pi/workflows/projects/` | Per-project workflow runs (current project: `pmigov-82340f88a085`, run: `mr0xqzdh-a8djmf`) |\\n| `~/.pi/agent/morph.json` | Morph plugin config (routing, stats, compaction) |\\n\\n---\\n\\n### Key Takeaway\\n\\nDynamic workflows come from two **installed packages**, not from pi-gitnexus. pi-gitnexus is purely code graph analysis. The workflow tool in this session is powered by `@quintinshaw/pi-dynamic-workflows` (provides the `workflow` tool + `agent()`/`parallel()` API) and `@mediadatafusion/pi-workflow-suite` (adds structured modes, model routing, and plan/execute/review gates).\"\n]\n\nCreate a comprehensive but concise guide covering:\n1. What the plugin does (core purpose)\n2. How to install and configure it\n3. Key concepts (workflow file format, phases, agent(), parallel(), pipeline())\n4. How to write effective workflows — patterns and anti-patterns\n5. Common use cases with examples\n6. Tips for efficient usage\n7. Any gotchas or limitations found\n\nBe thorough but practical. Include code examples where helpful.",
+      "status": "done",
+      "model": "openai-codex/gpt-5.5",
+      "history": [
+        {
+          "role": "user",
+          "kind": "text",
+          "text": "Workflow phase: Research\n\nTask label: synthesis\n\nYou are synthesizing research about the @quintinshaw/pi-dynamic-workflows plugin for pi coding agent. Here are the research results:\n\n[\n  \"## Research Summary: `@quintinshaw/pi-dynamic-workflows` v2.9.0\\n\\n### What it does\\nDynamic workflow orchestration for Pi — fan tasks across subagents with real model routing, token accounting, resume, and interactive TUI. Claude Code-style, production-grade.\\n\\n### Config options\\n| File | Purpose |\\n|------|---------|\\n| `~/.pi/workflows/settings.json` | Global settings, custom `keywordTriggerWord` |\\n| `~/.pi/workflows/model-tiers.json` | Map small/medium/big → real models |\\n| `~/.pi/workflows/projects/<project>/` | Per-project run history, saved workflows |\\n\\nTrigger control: `/workflows-trigger on|off|status|set <word>`\\n\\n### Key APIs\\n\\n**Globals for workflow scripts:**\\n- `agent(prompt, opts)` — spawn subagent (tier, model, schema, isolation)\\n- `parallel(thunks)` — concurrent fan-out\\n- `pipeline(items, ...stages)` — sequential stages\\n- `phase(title, {budget?})` — group agents, optional token cap\\n- `checkpoint(prompt, opts)` — human approval gate\\n- `budget` — `{total, spent(), remaining()}` real-time tracker\\n\\n**Built-in quality patterns:** `verify`, `judgePanel`, `loopUntilDry`, `completenessCheck`\\n\\n**Agent options:** `tier`, `model`, `agentType`, `isolation: \\\"worktree\\\"`, `schema`, `retries`, `label`, `phase`\\n\\n### Commands\\n```\\n/workflows                    interactive navigator\\n/workflows status <id>        watch live\\n/workflows save <name>        save as reusable command\\n/workflows run <prompt>       force from prompt\\n/workflows-trigger off|on     keyword control\\n/workflows-models             map tiers to models\\n/deep-research <question>     web research + cross-check\\n/adversarial-review <task>    skeptical review\\n/multi-perspective \\\"<topic>\\\"  multi-angle analysis\\n```\\n\\n### Pi integration\\n- Registered via `pi.extensions: [\\... [truncated]",
+          "timestamp": 1782841571524
+        },
+        {
+          "role": "assistant",
+          "kind": "toolCall",
+          "toolName": "structured_output",
+          "text": "{\"summary\":\"`@quintinshaw/pi-dynamic-workflows` is Pi extension for running Claude Code–style dynamic workflows: JavaScript orchestration scripts spawn isolated subagents, route them to model tiers, run them in parallel/pipelines, group work into phases, track tokens, resume/watch runs, and return compact results instead of dumping all intermediate context into chat.\",\"guide\":\"## 1. Core purpose\\n\\nUse plugin when task benefits from fan-out/fan-in:\\n\\n- parallel repo inspection\\n- multi-perspective review\\n- research + verification\\n- staged implementation planning\\n- adversarial review\\n- repeatable workflows saved as commands\\n\\nMain value: orchestration logic lives in script variables. Subagent chatter stays outside main chat context. Final result comes back small.\\n\\n## 2. Install + configure\\n\\nInstall:\\n\\n```bash\\npi install npm:@quintinshaw/pi-dynamic-workflows\\n```\\n\\nThen reload Pi:\\n\\n```text\\n/reload\\n```\\n\\nPackage registers extension like:\\n\\n```json\\n{\\n  \\\"pi\\\": {\\n    \\\"extensions\\\": [\\\"extensions/workflow.ts\\\"]\\n  }\\n}\\n```\\n\\nImportant paths:\\n\\n| Path | Purpose |\\n|---|---|\\n| `~/.pi/workflows/settings.json` | global workflow settings, keyword trigger word |\\n| `~/.pi/workflows/model-tiers.json` | maps `small` / `medium` / `big` tiers to real models |\\n| `~/.pi/workflows/projects/<project>/` | per-project run history + saved workflows |\\n\\nUseful commands:\\n\\n```text\\n/workflows                       # interactive navigator\\n/workflows status <id>           # watch live run\\n/workflows save <name>           # save current/generated workflow\\n/workflows run <prompt>          # force workflow from prompt\\n/workflows-trigger on|off|status # keyword trigger control\\n/workflows-trigger set <word>    # custom keyword\\n/workflows-models                # configure tier -> model routing\\n/deep-research <question>        # built-in research workflow\\n/adversarial-review <task>       # skeptical review workflow\\n/multi-perspective \\\"<topi... [truncated]",
+          "timestamp": 1782841572934
+        },
+        {
+          "role": "tool",
+          "kind": "toolResult",
+          "toolName": "structured_output",
+          "text": "Structured output received.",
+          "isError": false,
+          "timestamp": 1782841690778
+        }
+      ],
+      "resultPreview": "{\"summary\":\"`@quintinshaw/pi-dynamic-workflows` is Pi extension for running Cla…",
+      "tokens": 26123,
+      "startedAt": "2026-06-30T17:43:39.413Z",
+      "endedAt": "2026-06-30T17:48:10.787Z"
+    }
+  ],
+  "logs": [
+    "Logs persisted to /home/yash/.pi/workflows/projects/pmigov-82340f88a085/runs/run-mr0xqzdk.log"
+  ],
+  "result": {
+    "summary": "`@quintinshaw/pi-dynamic-workflows` is Pi extension for running Claude Code–style dynamic workflows: JavaScript orchestration scripts spawn isolated subagents, route them to model tiers, run them in parallel/pipelines, group work into phases, track tokens, resume/watch runs, and return compact results instead of dumping all intermediate context into chat.",
+    "guide": "## 1. Core purpose\n\nUse plugin when task benefits from fan-out/fan-in:\n\n- parallel repo inspection\n- multi-perspective review\n- research + verification\n- staged implementation planning\n- adversarial review\n- repeatable workflows saved as commands\n\nMain value: orchestration logic lives in script variables. Subagent chatter stays outside main chat context. Final result comes back small.\n\n## 2. Install + configure\n\nInstall:\n\n```bash\npi install npm:@quintinshaw/pi-dynamic-workflows\n```\n\nThen reload Pi:\n\n```text\n/reload\n```\n\nPackage registers extension like:\n\n```json\n{\n  \"pi\": {\n    \"extensions\": [\"extensions/workflow.ts\"]\n  }\n}\n```\n\nImportant paths:\n\n| Path | Purpose |\n|---|---|\n| `~/.pi/workflows/settings.json` | global workflow settings, keyword trigger word |\n| `~/.pi/workflows/model-tiers.json` | maps `small` / `medium` / `big` tiers to real models |\n| `~/.pi/workflows/projects/<project>/` | per-project run history + saved workflows |\n\nUseful commands:\n\n```text\n/workflows                       # interactive navigator\n/workflows status <id>           # watch live run\n/workflows save <name>           # save current/generated workflow\n/workflows run <prompt>          # force workflow from prompt\n/workflows-trigger on|off|status # keyword trigger control\n/workflows-trigger set <word>    # custom keyword\n/workflows-models                # configure tier -> model routing\n/deep-research <question>        # built-in research workflow\n/adversarial-review <task>       # skeptical review workflow\n/multi-perspective \"<topic>\"     # multi-angle analysis\n```\n\n## 3. Key concepts\n\n### Workflow script format\n\nWorkflow scripts are JavaScript orchestration files. In Pi tool form, script must start with metadata:\n\n```js\nexport const meta = {\n  name: 'repo_review',\n  description: 'Review repo with parallel specialists',\n  phases: [{ title: 'Inspect' }, { title: 'Synthesize' }],\n};\n```\n\nThen call workflow globals:\n\n- `agent(prompt, opts)` — spawn subagent\n- `parallel(thunks)` — run thunks concurrently\n- `pipeline(items, ...stages)` — run staged work per item\n- `phase(title, { budget? })` — group agents in live UI, optional token cap\n- `checkpoint(prompt, opts)` — human approval gate\n- `budget` — token tracker: `spent()`, `remaining()`\n\nQuality helpers:\n\n- `verify(item, { reviewers, threshold, lens })`\n- `judgePanel(attempts, { judges, rubric })`\n- `loopUntilDry({ round, key, consecutiveEmpty })`\n- `completenessCheck(args, results)`\n\n### `agent(prompt, opts)`\n\nUse for isolated subtask. Good options:\n\n```js\nawait agent('Inspect auth flow. Return risks only.', {\n  label: 'auth inspect',\n  tier: 'small',\n  agentType: 'researcher',\n  schema: {\n    type: 'object',\n    properties: {\n      risks: { type: 'array', items: { type: 'string' } },\n    },\n    required: ['risks'],\n  },\n});\n```\n\nCommon options:\n\n| Option | Use |\n|---|---|\n| `label` | short unique UI/status name |\n| `tier` | `small`, `medium`, `big` model routing |\n| `model` | exact provider/model ID; overrides tier |\n| `agentType` | named role like planner/researcher/reviewer |\n| `schema` | JSON Schema for machine-readable output |\n| `isolation: \"worktree\"` | separate git worktree for parallel edit work |\n| `retries` | retry recoverable agent failures |\n| `phase` | place agent in phase without separate `phase()` call |\n\n### `parallel(thunks)`\n\nTakes functions, not promises.\n\nCorrect:\n\n```js\nconst results = await parallel(\n  areas.map((area) => () =>\n    agent(`Inspect ${area}. Return concise findings.`, {\n      label: `${area} inspect`,\n      tier: 'small',\n    })\n  )\n);\n```\n\nWrong:\n\n```js\nawait parallel(areas.map((area) => agent(`Inspect ${area}`)));\n```\n\n### `pipeline(items, ...stages)`\n\nUse when each item needs ordered stages, while items can still run concurrently.\n\n```js\nconst reviewed = await pipeline(\n  files,\n  async (file) => agent(`Summarize ${file}`, { label: `sum ${file}`, tier: 'small' }),\n  async (summary, file) => agent(`Review summary for ${file}: ${summary}`, { label: `review ${file}`, tier: 'medium' })\n);\n```\n\n### `phase(title)`\n\nUse phases for live TUI grouping and budgets.\n\n```js\nphase('Inspect');\nconst findings = await parallel([...]);\n\nphase('Synthesize', { budget: 20_000 });\nconst final = await agent(`Synthesize: ${JSON.stringify(findings)}`, {\n  label: 'final synth',\n  tier: 'big',\n});\n```\n\nIf `meta.phases` declares phases, call `phase('Exact Title')` before work in each phase.",
+    "examples": "## Example 1: minimal fan-out repo review\n\n```js\nexport const meta = {\n  name: 'quick_repo_review',\n  description: 'Parallel repo review with synthesis',\n  phases: [{ title: 'Inspect' }, { title: 'Synthesize' }],\n};\n\nphase('Inspect');\nconst areas = ['auth', 'data flow', 'UI', 'tests'];\n\nconst findings = await parallel(\n  areas.map((area) => () =>\n    agent(`Inspect ${area}. Return top 3 concrete findings with file paths.`, {\n      label: `${area} review`,\n      tier: 'small',\n      agentType: 'reviewer',\n      schema: {\n        type: 'object',\n        properties: {\n          findings: { type: 'array', items: { type: 'string' } },\n        },\n        required: ['findings'],\n      },\n    })\n  )\n);\n\nphase('Synthesize');\nreturn await agent(`Merge findings, dedupe, rank by risk: ${JSON.stringify(findings)}`, {\n  label: 'risk synth',\n  tier: 'big',\n});\n```\n\n## Example 2: research + adversarial verification\n\n```js\nexport const meta = {\n  name: 'verified_research',\n  description: 'Research question, cross-check claims, return grounded answer',\n  phases: [{ title: 'Research' }, { title: 'Verify' }, { title: 'Answer' }],\n};\n\nphase('Research');\nconst angles = ['official docs', 'source code', 'known issues'];\nconst notes = await parallel(\n  angles.map((angle) => () =>\n    agent(`Research ${angle} for: ${args.question}. Cite sources.`, {\n      label: angle,\n      tier: 'medium',\n      agentType: 'researcher',\n    })\n  )\n);\n\nphase('Verify');\nconst checked = await verify(notes, {\n  reviewers: 3,\n  threshold: 2,\n  lens: 'Find unsupported claims, version mismatches, and contradictions.',\n});\n\nphase('Answer');\nreturn await agent(`Write concise practical answer from verified notes: ${JSON.stringify(checked)}`, {\n  label: 'final answer',\n  tier: 'big',\n});\n```\n\n## Example 3: staged file analysis with `pipeline`\n\n```js\nexport const meta = {\n  name: 'file_pipeline',\n  description: 'Summarize then review files',\n  phases: [{ title: 'Analyze' }],\n};\n\nphase('Analyze');\nreturn await pipeline(\n  args.files,\n  async (file) =>\n    agent(`Read ${file}. Summarize responsibilities and exports.`, {\n      label: `summ ${file}`,\n      tier: 'small',\n    }),\n  async (summary, file) =>\n    agent(`Review ${file} using this summary: ${summary}. Return only actionable issues.`, {\n      label: `review ${file}`,\n      tier: 'medium',\n      agentType: 'reviewer',\n    })\n);\n```\n\n## Example 4: human approval gate\n\n```js\nexport const meta = {\n  name: 'plan_then_execute',\n  description: 'Create plan, wait for approval, then implement',\n  phases: [{ title: 'Plan' }, { title: 'Execute' }],\n};\n\nphase('Plan');\nconst plan = await agent(`Plan minimal implementation for: ${args.task}`, {\n  label: 'impl plan',\n  tier: 'medium',\n  agentType: 'planner',\n});\n\nawait checkpoint(`Approve this plan?\\n\\n${plan}`, { label: 'approval' });\n\nphase('Execute');\nreturn await agent(`Implement approved plan:\\n${plan}`, {\n  label: 'implement',\n  tier: 'medium',\n  isolation: 'worktree',\n});\n```",
+    "tips": "## Effective workflow patterns\n\n- Use workflows only when parallelism or repeatability pays. One quick edit does not need workflow.\n- Give every agent narrow scope and exact output shape.\n- Use `schema` for anything consumed by later steps.\n- Tag every agent with `tier`: `small` for inspection, `medium` for analysis, `big` for synthesis/judgment.\n- Keep prompts self-contained. Subagents do not automatically know parent context unless prompt gives it.\n- Use `parallel()` for independent branches. Use `pipeline()` for ordered stages per item.\n- Use final synthesis agent after fan-out. Raw arrays of subagent notes are rarely final output.\n- Use `verify` or adversarial reviewer for research, security, migration, or high-risk conclusions.\n- Use `checkpoint()` before destructive edits, expensive runs, or scope changes.\n- Use `isolation: \"worktree\"` when multiple agents may edit same repo in parallel.\n- Keep returned data compact. Store intermediate detail in variables, summarize at end.\n- Save repeated workflows with `/workflows save <name>`.\n- Watch long runs with `/workflows status <id>`.\n- Configure `/workflows-models` once so tiers route correctly.\n\n## Anti-patterns\n\n- Workflow for one file read or one simple bug fix.\n- Giant vague agent prompt: “analyze everything”. Split into narrow branches.\n- Passing promises to `parallel()` instead of thunks.\n- Declaring phases but never calling `phase()`.\n- No unique `label`; live UI becomes unreadable.\n- No `schema` while later code expects structured fields.\n- Using `big` tier for every branch. Wasteful.\n- Parallel edit agents without worktree isolation.\n- Assuming subagents share full chat/repo context. They need explicit instructions and paths.\n- Returning all intermediate notes directly to user. Synthesize and prune.",
+    "gotchas": "## Gotchas + limitations\n\n- Dynamic workflows are from `@quintinshaw/pi-dynamic-workflows`, not `pi-gitnexus`. GitNexus provides code graph analysis skills/tools, not workflow orchestration.\n- Another installed package, `@mediadatafusion/pi-workflow-suite`, may add structured modes and gates. Do not confuse its `~/.pi/agent/workflow-settings.json` with dynamic workflow config in `~/.pi/workflows/`.\n- Storage is global under `~/.pi/workflows/`, with project-scoped subdirectories. It is not stored inside each repo by default.\n- Keyword trigger can auto-arm workflow mode when messages include `workflow` / `workflows`; disable or change via `/workflows-trigger` if annoying.\n- `parallel()` requires functions: `() => agent(...)`, not direct `agent(...)` calls.\n- Workflow scripts run in constrained JS environment. Avoid Node imports/FS assumptions unless plugin docs/runtime explicitly allow them.\n- `opts.model` overrides `opts.tier`; use exact model IDs only when needed.\n- Failed branches may return `null`; synthesis must tolerate missing results.\n- Token budgets help, but they are caps; over-tight budgets can kill useful branches.\n- Worktree isolation helps parallel edits but adds merge/reconciliation overhead.\n- Long workflows need labels and phases, otherwise status/debugging becomes painful.\n- Built-in commands like `/deep-research` and `/adversarial-review` are good defaults. Write custom workflow only when built-ins do not fit."
+  },
+  "tokenUsage": {
+    "input": 125873,
+    "output": 14251,
+    "total": 1834524,
+    "cost": 0.40865340000000006,
+    "cacheRead": 1694400,
+    "cacheWrite": 0
+  },
+  "startedAt": "2026-06-30T17:43:39.413Z",
+  "updatedAt": "2026-06-30T17:48:10.787Z",
+  "completedAt": "2026-06-30T17:48:10.787Z",
+  "durationMs": 271370
+}

@@ -3,6 +3,7 @@ return {
   opts = {
     inlay_hints = {
       enabled = false,
+      exclude = { "vue" },
     },
     servers = {
       bacon_ls = {

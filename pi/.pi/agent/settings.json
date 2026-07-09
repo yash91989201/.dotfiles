@@ -8,11 +8,9 @@
     "npm:pi-caveman",
     "npm:pi-cursor-sdk",
     "npm:pi-powerline-footer",
-    "npm:@samfp/pi-memory",
     "npm:context-mode",
     "npm:pi-context-usage",
-    "git:github.com/DietrichGebert/ponytail",
-    "npm:pi-subagents"
+    "git:github.com/DietrichGebert/ponytail"
   ],
   "skills": [
     "~/.agents/skills"
@@ -20,12 +18,12 @@
   "prompts": [
     "~/.pi/agent/prompts"
   ],
-  "lastChangelogVersion": "0.80.2",
+  "lastChangelogVersion": "0.80.3",
   "quietStartup": true,
   "theme": "tokyonight-night",
   "enableInstallTelemetry": false,
   "defaultProvider": "xiaomi-token-plan-sgp",
-  "defaultModel": "mimo-v2.5-pro",
+  "defaultModel": "mimo-v2.5",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "cursor/auto",

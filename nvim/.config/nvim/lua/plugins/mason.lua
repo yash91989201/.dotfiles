@@ -2,6 +2,8 @@ return {
   "mason-org/mason.nvim",
   opts = {
     ensure_installed = {
+      "gopls",
+      "delve",
       "biome",
       "luacheck",
       "shellcheck",
@@ -17,6 +19,11 @@ return {
       "ruff",
       "emmet-language-server",
       "bacon-ls",
+      "goimports",
+      "gofumpt",
+      "gomodifytags",
+      "impl",
+      "golangci-lint",
     },
   },
 }

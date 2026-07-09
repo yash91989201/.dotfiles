@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@dietrichgebert/ponytail": "^4.8.3",
-    "@morphllm/opencode-morph-plugin": "^2.0.15",
-    "@opencode-ai/plugin": "1.17.11",
-    "caveman-opencode-plugin": "^0.1.5",
-    "context-mode": "^1.0.166"
-  }
-}

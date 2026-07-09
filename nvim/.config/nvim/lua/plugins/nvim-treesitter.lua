@@ -25,6 +25,10 @@ return {
       "helm",
       "rust",
       "ron",
+      "go",
+      "gomod",
+      "gowork",
+      "gosum",
     },
     query_linter = {
       enable = true,
