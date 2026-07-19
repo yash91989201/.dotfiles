@@ -1,6 +1,5 @@
 # === Secrets ===
 .bash_secrets
-auth.json
 
 # === Neovim ===
 nvim/.config/nvim/lazy-lock.json
@@ -9,49 +8,5 @@ nvim/.config/nvim/lazy-lock.json
 *.log
 btop.log
 
-# === Pi: runtime & session data ===
-pi/.pi/agent/sessions/
-pi/.pi/agent/run-history.jsonl
-pi/.pi/agent/mcp-cache.json
-pi/.pi/agent/mcp-npx-cache.json
-pi/.pi/agent/mcp-onboarding.json
-pi/.pi/agent/morph.env
-pi/.pi/agent/cursor-model-cache.json
-pi/.pi/agent/cursor-sdk-model-list.json
-pi/.pi/agent/cursor-sdk-context-windows.json
-pi/.pi/agent/cursor-proxy.json
-pi/.pi/agent/trust.json
-
-pi/.pi/context-mode/sessions/*.db
-pi/.pi/context-mode/sessions/*.db-shm
-pi/.pi/context-mode/sessions/*.db-wal
-pi/.pi/context-mode/sessions/stats-pid-*.json
-pi/.pi/context-mode/content/*.db
-pi/.pi/context-mode/content/*.db-shm
-pi/.pi/context-mode/content/*.db-wal
-
-pi/.pi/memory/*.db
-pi/.pi/memory/*.db-shm
-pi/.pi/memory/*.db-wal
-
-pi/.pi/session-search/
-pi/.pi/agent/skills/
-
-# === OpenCode: runtime & regenerable state ===
-opencode/.config/opencode/bun.lock
-opencode/.config/opencode/package-lock.json
-opencode/.config/opencode/opencode.json.bak
-opencode/.config/opencode/context-mode/
-opencode/.config/opencode/.gitignore
-
 # === Node modules ===
 node_modules/
-
-# === Gemini config overrides ===
-/gemini/.gemini/*
-!/gemini/.gemini/commands/
-!/gemini/.gemini/commands/**
-!/gemini/.gemini/settings.json
-!/gemini/.gemini/.gitignore
-
-.scratch
