@@ -1,0 +1,11 @@
+onboarding = false
+
+[ui.sound]
+enabled = true
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui]
+agent_panel_sort = "spaces"

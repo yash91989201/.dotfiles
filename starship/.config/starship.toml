@@ -1,3 +1,6 @@
+[bun]
+symbol = " "
+
 [aws]
 symbol = "  "
 
