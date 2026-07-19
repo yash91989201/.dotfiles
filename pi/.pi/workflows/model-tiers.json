@@ -1,7 +1,0 @@
-{
-  "tiers": {
-    "small": "opencode-go/minimax-m3",
-    "medium": "opencode-go/kimi-k2.7-code",
-    "big": "openai-codex/gpt-5.5"
-  }
-}
