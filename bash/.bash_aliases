@@ -16,11 +16,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias wezterm='flatpak run org.wezfurlong.wezterm'
-
-# Add an "alert" alias for long running commands.
-# Use like so:
-# sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias e='nvim'
@@ -31,32 +26,4 @@ alias ee='cd ~/.dotfiles/nvim/.config/nvim && nvim'
 alias lg="lazygit"
 
 alias ld="lazydocker"
-
-cnvm() {
-  local path="/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
-  local current
-  current=$(cat "$path")
-  local new=$((1 - current))
-  sudo sh -c "echo $new > $path"
-
-  local old_state
-  local new_state
-
-  old_state=$([ "$current" -eq 1 ] && echo "on" || echo "off")
-  new_state=$([ "$new" -eq 1 ] && echo "on" || echo "off")
-
-  echo "Conservation mode: $old_state → $new_state"
-}
-
-alias kc="kimi-cli --yolo"
-
-oc() {
-  if [ "$#" -eq 0 ]; then
-    local port
-    port=$(shuf -i 49152-65535 -n 1)
-
-    OPENCODE_PORT="$port" opencode --port "$port"
-  else
-    opencode "$@"
-  fi
-}
+alias cd="z"

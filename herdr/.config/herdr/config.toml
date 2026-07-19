@@ -1,11 +1,122 @@
-onboarding = false
+# ══════════════════════════════════════════════════════════════
+#  Herdr Configuration
+#  TokyoNight theme · wezterm-like prefix workflow
+# ══════════════════════════════════════════════════════════════
+#
+# ┌────────────────────────────────────────────────────────────┐
+# │                    KEYMAP QUICK REFERENCE                   │
+# ├────────────────────────────────────────────────────────────┤
+# │  Prefix = `  (backtick)                                     │
+# │  In-app help: prefix+?                                      │
+# ├──────────────┬─────────────────────────────────────────────┤
+# │  PREFIX      │  Action                                     │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  r           │  Reload config                              │
+# │  ?           │  Keybind help                               │
+# │  s           │  Settings                                   │
+# │  d           │  Detach session                             │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  c / n       │  New tab                                    │
+# │  q           │  Close pane                                 │
+# │  Q           │  Close tab                                  │
+# │  , / e       │  Rename tab                                 │
+# │  Ctrl+h / l  │  Prev / next tab                            │
+# │  1–9         │  Switch to tab N                            │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  - / V       │  Split down (horizontal divider)            │
+# │  v / H       │  Split right (vertical divider)             │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  h/j/k/l     │  Focus pane                                 │
+# │  o           │  Next pane                                  │
+# │  Tab / S-Tab │  Cycle pane next / prev                     │
+# │  z           │  Zoom pane                                  │
+# │  R           │  Resize mode (then hjkl / arrows)           │
+# │  P           │  Rename pane                                │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  w           │  Workspace picker                           │
+# │  W           │  New workspace                              │
+# │  ( / )       │  Prev / next workspace                      │
+# │  $           │  Rename workspace                           │
+# │  D           │  Close workspace                            │
+# │  g           │  Goto picker                                │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  [           │  Copy / scrollback mode (herdr default)     │
+# │  E           │  Edit scrollback in $EDITOR                 │
+# │  b           │  Toggle sidebar                             │
+# │  S           │  Toggle sidebar (wez S muscle memory)       │
+# │  G           │  New git worktree                           │
+# ├──────────────┼─────────────────────────────────────────────┤
+# │  NOT IN HERDR│  (wez-only / terminal-owned)                │
+# │  pick/swap   │  No pane-select / swap binding              │
+# │  last tab    │  No last-tab action                         │
+# │  move tab    │  No { } tab reorder                         │
+# │  font/full   │  Outer terminal (kitty/wez/…)               │
+# │  copy/paste  │  Outer terminal / mouse select              │
+# │  vim-aware   │  Prefix always owned by herdr               │
+# └──────────────┴─────────────────────────────────────────────┘
 
-[ui.sound]
-enabled = true
+onboarding = false
 
 [theme]
 name = "tokyo-night"
 auto_switch = false
 
+[terminal]
+# New panes/tabs inherit source pane/workspace cwd.
+new_cwd = "follow"
+
 [ui]
 agent_panel_sort = "spaces"
+# Match wez: spawn tabs immediately, no confirm spam on close.
+prompt_new_tab_name = false
+confirm_close = false
+
+[ui.sound]
+enabled = true
+
+[keys]
+# WezTerm leader = backtick
+prefix = "backtick"
+
+# Misc
+help = "prefix+?"
+settings = "prefix+s"
+detach = "prefix+d"
+reload_config = "prefix+r"
+open_notification_target = "prefix+shift+o"
+
+# Tabs (wez: c/n new, q/Q close, ,/e rename, ctrl-h/l prev/next, 1-9 jump)
+new_tab = ["prefix+c", "prefix+n"]
+close_tab = "prefix+shift+q"
+rename_tab = ["prefix+comma", "prefix+e"]
+previous_tab = "prefix+ctrl+h"
+next_tab = "prefix+ctrl+l"
+switch_tab = "prefix+1..9"
+
+# Panes (wez: -/V split down, H/v split right, hjkl focus, z zoom, o next, q close)
+# Herdr names: split_horizontal = down, split_vertical = right
+split_horizontal = ["prefix+minus", "prefix+shift+v"]
+split_vertical = ["prefix+v", "prefix+shift+h"]
+close_pane = "prefix+q"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+cycle_pane_next = ["prefix+o", "prefix+tab"]
+cycle_pane_previous = "prefix+shift+tab"
+zoom = "prefix+z"
+# wez uses leader+arrows for resize; herdr is modal only
+resize_mode = "prefix+shift+r"
+rename_pane = "prefix+shift+p"
+edit_scrollback = "prefix+shift+e"
+
+# Workspaces (wez: w picker, W new, () prev/next, $ rename)
+workspace_picker = "prefix+w"
+goto = "prefix+g"
+new_workspace = "prefix+shift+w"
+rename_workspace = "prefix+shift+4"
+close_workspace = "prefix+shift+d"
+previous_workspace = "prefix+shift+9"
+next_workspace = "prefix+shift+0"
+new_worktree = "prefix+shift+g"
+toggle_sidebar = ["prefix+b", "prefix+shift+s"]

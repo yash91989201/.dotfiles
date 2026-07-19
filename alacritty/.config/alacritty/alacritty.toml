@@ -1,4 +1,5 @@
 general.import = ["~/.config/alacritty/themes/tokyonight/night.toml"]
+general.working_directory = "~"
 
 [font]
 size = 12.0
@@ -6,19 +7,19 @@ offset = { x = 0, y = 0 }
 builtin_box_drawing = true
 
 [font.normal]
-family = "JetBrainsMono Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
 [window]
@@ -40,3 +41,6 @@ bindings = [{ mouse = "Right", action = "Paste" }]
 [[keyboard.bindings]]
 key = "F11"
 action = "ToggleFullscreen"
+
+[terminal.shell]
+program = "/home/yash/.local/bin/herdr"
