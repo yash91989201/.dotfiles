@@ -42,5 +42,10 @@ bindings = [{ mouse = "Right", action = "Paste" }]
 key = "F11"
 action = "ToggleFullscreen"
 
+[[keyboard.bindings]]
+key = "W"
+mods = "Control|Shift"
+action = "Quit"
+
 [terminal.shell]
 program = "/home/yash/.local/bin/herdr"

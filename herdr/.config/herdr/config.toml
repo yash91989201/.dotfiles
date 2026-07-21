@@ -16,7 +16,7 @@
 # │  s           │  Settings                                   │
 # │  d           │  Detach session                             │
 # ├──────────────┼─────────────────────────────────────────────┤
-# │  c / n       │  New tab                                    │
+# │  c / n       │  New tab (pane cwd; ignores omp worker cwd) │
 # │  q           │  Close pane                                 │
 # │  Q           │  Close tab                                  │
 # │  , / e       │  Rename tab                                 │
@@ -34,7 +34,7 @@
 # │  P           │  Rename pane                                │
 # ├──────────────┼─────────────────────────────────────────────┤
 # │  w           │  Workspace picker                           │
-# │  W           │  New workspace                              │
+# │  W           │  New workspace (always $HOME)               │
 # │  ( / )       │  Prev / next workspace                      │
 # │  $           │  Rename workspace                           │
 # │  D           │  Close workspace                            │
@@ -62,7 +62,9 @@ name = "tokyo-night"
 auto_switch = false
 
 [terminal]
-# New panes/tabs inherit source pane/workspace cwd.
+# Keep follow for splits. New-tab / new-workspace keys are overridden below.
+# With omp focused, follow can inherit the worker's foreground_cwd
+# (.../pi-coding-agent/dist) instead of the pane/project cwd.
 new_cwd = "follow"
 
 [ui]
@@ -71,11 +73,11 @@ agent_panel_sort = "spaces"
 prompt_new_tab_name = false
 confirm_close = false
 
+show_agent_labels_on_pane_borders = true
 [ui.sound]
 enabled = true
 
 [keys]
-# WezTerm leader = backtick
 prefix = "backtick"
 
 # Misc
@@ -86,7 +88,8 @@ reload_config = "prefix+r"
 open_notification_target = "prefix+shift+o"
 
 # Tabs (wez: c/n new, q/Q close, ,/e rename, ctrl-h/l prev/next, 1-9 jump)
-new_tab = ["prefix+c", "prefix+n"]
+# Built-in new_tab unbound; prefix+c/n handled by [[keys.command]] below.
+new_tab = []
 close_tab = "prefix+shift+q"
 rename_tab = ["prefix+comma", "prefix+e"]
 previous_tab = "prefix+ctrl+h"
@@ -111,12 +114,37 @@ rename_pane = "prefix+shift+p"
 edit_scrollback = "prefix+shift+e"
 
 # Workspaces (wez: w picker, W new, () prev/next, $ rename)
+# Built-in new_workspace unbound; prefix+shift+w handled by [[keys.command]] below.
 workspace_picker = "prefix+w"
 goto = "prefix+g"
-new_workspace = "prefix+shift+w"
+new_workspace = []
 rename_workspace = "prefix+shift+4"
 close_workspace = "prefix+shift+d"
 previous_workspace = "prefix+shift+9"
 next_workspace = "prefix+shift+0"
 new_worktree = "prefix+shift+g"
 toggle_sidebar = ["prefix+b", "prefix+shift+s"]
+
+# Docs: explicit --cwd on create beats new_cwd=follow.
+# Use pane.cwd from `herdr pane current` (not foreground_cwd, which omp pollutes).
+[[keys.command]]
+key = ["prefix+c", "prefix+n"]
+type = "shell"
+description = "New tab in pane cwd"
+command = "cwd=$(herdr pane current | python3 -c 'import json,sys; print(json.load(sys.stdin)[\"result\"][\"pane\"][\"cwd\"])') && herdr tab create --cwd \"$cwd\" --focus"
+
+[[keys.command]]
+key = "prefix+shift+w"
+type = "shell"
+description = "New workspace in $HOME"
+command = "herdr workspace create --cwd \"${HOME}\" --focus"
+
+[[keys.command]] # open in a split beside your work
+key = "prefix+f"
+type = "shell"
+command = "herdr plugin action invoke open-file-viewer --plugin herdr-file-viewer"
+
+[[keys.command]] # …or in its own tab
+key = "prefix+shift+f"
+type = "shell"
+command = "herdr plugin action invoke open-file-viewer-tab --plugin herdr-file-viewer"
