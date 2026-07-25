@@ -3,12 +3,14 @@ return {
   opts = {
     ensure_installed = {
       "gopls",
+      "templ",
       "delve",
       "biome",
       "luacheck",
       "shellcheck",
       "shfmt",
       "tailwindcss-language-server",
+      "html-lsp",
       "css-lsp",
       "pyright",
       "json-lsp",

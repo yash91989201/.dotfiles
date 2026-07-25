@@ -29,6 +29,7 @@ return {
       "gomod",
       "gowork",
       "gosum",
+      "templ",
     },
     query_linter = {
       enable = true,

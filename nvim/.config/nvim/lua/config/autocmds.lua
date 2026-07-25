@@ -7,13 +7,21 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- Templ filetype detection (needed for LSP / treesitter / conform)
+vim.filetype.add({
+  extension = {
+    templ = "templ",
+  },
+})
+
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "go", "gomod", "gowork", "gotmpl" },
+  pattern = { "go", "gomod", "gowork", "gotmpl", "templ" },
   callback = function()
+    -- Tabs for gofmt/templ compatibility; display width 2 columns.
     vim.opt_local.expandtab = false
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.softtabstop = 4
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
   end,
 })
 
