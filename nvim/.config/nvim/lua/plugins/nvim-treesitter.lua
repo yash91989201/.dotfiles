@@ -20,8 +20,6 @@ return {
       "sql",
       "terraform",
       "nginx",
-      "rust",
-      "ron",
       "go",
       "gomod",
       "gowork",

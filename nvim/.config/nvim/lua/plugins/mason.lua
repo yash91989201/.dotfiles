@@ -20,7 +20,6 @@ return {
       "black",
       "ruff",
       "emmet-language-server",
-      "bacon-ls",
       "goimports",
       "gofumpt",
       "gomodifytags",

@@ -7,9 +7,6 @@ return {
     }
 
     opts.servers = opts.servers or {}
-    opts.servers.bacon_ls = { enabled = true }
-    opts.servers.rust_analyzer = { enabled = false }
-
     -- Official templ LSP (`templ lsp`); see https://templ.guide/developer-tools/cli/
     -- and LazyVim discussion #3735 for the community LazyVim wiring.
     opts.servers.templ = {
