@@ -36,6 +36,7 @@
 11. zen browser
 12. android studio
 13. git
+14. docker
 
 ## Global npm packages
 
