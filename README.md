@@ -18,6 +18,7 @@
 3. starship
 4. zoxide
 5. ripgrep, fd-find, fzf
+6. eza
 
 ## Softwares and Packages
 
@@ -40,3 +41,4 @@
 1. neovim@5.4.0
 2. tree-sitter-cli@0.25.10
 3. typescript-language-server@5.0.1
+4. firecrawl mcp
