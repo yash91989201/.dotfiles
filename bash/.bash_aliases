@@ -27,3 +27,4 @@ alias lg="lazygit"
 
 alias ld="lazydocker"
 alias cd="z"
+alias ls="eza"
