@@ -147,11 +147,6 @@ export VISUAL=/usr/bin/nvim
 # set nvim as man page viewer
 export MANPAGER="nvim +Man!"
 
-export PATH="$HOME/.local/bin:$PATH"
-
-# opencode
-export PATH=/home/yash/.opencode/bin:$PATH
-
 export GOROOT="$HOME/.local/go"
 export PATH="$GOROOT/bin:$PATH"
 export GOPATH="$HOME/go"
@@ -159,13 +154,4 @@ export PATH="$GOPATH/bin:$PATH"
 
 export PATH="$HOME/.bun/bin:$PATH"
 
-# >>> oh-my-opencode-slim background subagents >>>
-export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
-# <<< oh-my-opencode-slim background subagents <<<
-
-# >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
-[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
-# <<< grok installer <<<
-export PATH="$HOME/.local/android/platform-tools:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init bash)"
