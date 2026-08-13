@@ -147,11 +147,10 @@ export VISUAL=/usr/bin/nvim
 # set nvim as man page viewer
 export MANPAGER="nvim +Man!"
 
-export GOROOT="$HOME/.local/go"
-export PATH="$GOROOT/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 export PATH="$HOME/.bun/bin:$PATH"
 
+export PATH="/home/yash/.local/bin:$PATH"
 eval "$(zoxide init bash)"
