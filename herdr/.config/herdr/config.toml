@@ -77,12 +77,16 @@ confirm_close = false
 # Clean shared pane dividers and minimal pane chrome.
 pane_borders = true
 pane_gaps = false
-pane_scrollbars = true
-show_agent_labels_on_pane_borders = true
+pane_scrollbars = false
+show_agent_labels_on_pane_borders = false
+
+# Keep the tab bar visible at the top.
+hide_tab_bar_when_single_tab = false
+tab_bar_position = "top"
 
 # Sidebar sizing.
 sidebar_width = 30
-sidebar_min_width = 30
+sidebar_min_width = 20
 sidebar_max_width = 30
 sidebar_collapsed_mode = "hidden"
 

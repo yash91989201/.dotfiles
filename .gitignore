@@ -10,3 +10,9 @@ btop.log
 
 # === Node modules ===
 node_modules/
+
+# === Herdr generated plugin state ===
+herdr/.config/herdr/.plugins.lock
+herdr/.config/herdr/plugins.json
+herdr/.config/herdr/plugins/
+herdr/.config/herdr/session.json
