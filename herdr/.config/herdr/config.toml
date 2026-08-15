@@ -74,7 +74,20 @@ agent_panel_sort = "spaces"
 prompt_new_tab_name = false
 confirm_close = false
 
+# Clean shared pane dividers and minimal pane chrome.
+pane_borders = true
+pane_gaps = false
+pane_scrollbars = true
 show_agent_labels_on_pane_borders = true
+
+# Sidebar sizing.
+sidebar_width = 30
+sidebar_min_width = 30
+sidebar_max_width = 30
+sidebar_collapsed_mode = "hidden"
+
+# Catppuccin Mocha Sapphire.
+accent = "#74c7ec"
 [ui.sound]
 enabled = true
 
