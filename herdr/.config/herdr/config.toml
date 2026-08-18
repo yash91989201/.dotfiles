@@ -109,7 +109,7 @@ open_notification_target = "prefix+shift+o"
 # Built-in new_tab unbound; prefix+c/n handled by [[keys.command]] below.
 new_tab = []
 close_tab = "prefix+shift+q"
-rename_tab = ["prefix+comma", "prefix+e"]
+rename_tab = ["prefix+comma"]
 previous_tab = "prefix+ctrl+h"
 next_tab = "prefix+ctrl+l"
 switch_tab = "prefix+1..9"
@@ -123,9 +123,8 @@ focus_pane_left = "prefix+h"
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
-cycle_pane_next = ["prefix+o", "prefix+tab"]
+cycle_pane_next = ["prefix+tab"]
 cycle_pane_previous = "prefix+shift+tab"
-zoom = "prefix+z"
 # wez uses leader+arrows for resize; herdr is modal only
 resize_mode = "prefix+shift+r"
 rename_pane = "prefix+shift+p"
