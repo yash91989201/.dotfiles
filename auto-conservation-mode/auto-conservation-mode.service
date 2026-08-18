@@ -1,0 +1,25 @@
+[Unit]
+Description=Automatically toggle Lenovo conservation mode at 95%
+Documentation=file:///usr/local/share/doc/auto-conservation-mode/README.md
+After=systemd-modules-load.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bash /usr/local/bin/auto-conservation-mode
+Environment=THRESHOLD=95
+Environment=INTERVAL=30
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+PrivateNetwork=yes
+PrivateTmp=yes
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectKernelLogs=yes
+ProtectSystem=full
+LockPersonality=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+[Install]
+WantedBy=multi-user.target
