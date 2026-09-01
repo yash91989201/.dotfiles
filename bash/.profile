@@ -25,7 +25,3 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
-
-export LANG=en_IN.UTF-8
-export LANGUAGE=en_IN.UTF-8
-export LC_ALL=en_IN.UTF-8
