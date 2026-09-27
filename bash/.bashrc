@@ -1,3 +1,12 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+if [ -d "/home/yash/.local/share/bash-completion/completions" ]; then
+  for f in "/home/yash/.local/share/bash-completion/completions"/*; do
+    [ -f "$f" ] && . "$f"
+  done
+fi
+# OPENSPEC:END
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples

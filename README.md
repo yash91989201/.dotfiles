@@ -1,16 +1,20 @@
 # System tools
 
-## Agent Harness and related tools
+## Agent Harnesses
 
 1. cursor cli
-2. oh my pi
-3. context mode
-4. openspec
-5. caveman
-6. ponytail
-7. codegraph
-8. gitnexus
-9. impeccable
+2. cursor
+3. chat gpt app
+4. oh my pi
+
+## Harness Tools
+
+1. context mode
+2. openspec
+3. caveman
+4. ponytail
+5. gitnexus
+6. impeccable
 
 ## Terminal and related tools
 
