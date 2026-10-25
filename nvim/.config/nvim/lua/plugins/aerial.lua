@@ -1,6 +1,10 @@
 return {
   "stevearc/aerial.nvim",
-  event = "LspAttach",
+  event = function()
+    return {}
+  end,
+  cmd = { "AerialToggle", "AerialOpen", "AerialClose", "AerialNavToggle", "AerialNext", "AerialPrev" },
+  lazy = true,
   opts = {
     layout = {
       max_width = 42,
@@ -12,9 +16,9 @@ return {
     filter_kind = false,
     show_guides = true,
     highlight_on_hover = true,
-    manage_folds = true,
-    link_folds_to_tree = true,
-    link_tree_to_folds = true,
+    manage_folds = false,
+    link_folds_to_tree = false,
+    link_tree_to_folds = false,
     autojump = true,
   },
   keys = {
