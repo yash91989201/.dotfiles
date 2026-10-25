@@ -1,6 +1,6 @@
 # ══════════════════════════════════════════════════════════════
 #  Herdr Configuration
-#  Catppuccin Mocha theme · wezterm-like prefix workflow
+#  Omarchy terminal theme · wezterm-like prefix workflow
 # ══════════════════════════════════════════════════════════════
 #
 # ┌────────────────────────────────────────────────────────────┐
@@ -58,9 +58,12 @@
 onboarding = false
 
 [theme]
-# Built-in dark Catppuccin is Mocha; sibling light theme is catppuccin-latte.
-name = "catppuccin"
+# Follow the terminal palette, as in Omarchy's Herdr config.
+name = "terminal"
 auto_switch = false
+
+[theme.custom]
+panel_bg = "black"
 
 [terminal]
 # Keep follow for splits. New-tab / new-workspace keys are overridden below.
@@ -69,6 +72,7 @@ auto_switch = false
 new_cwd = "follow"
 
 [ui]
+accent = "blue"
 agent_panel_sort = "spaces"
 # Match wez: spawn tabs immediately, no confirm spam on close.
 prompt_new_tab_name = false
@@ -90,8 +94,6 @@ sidebar_min_width = 20
 sidebar_max_width = 30
 sidebar_collapsed_mode = "hidden"
 
-# Catppuccin Mocha Sapphire.
-accent = "#74c7ec"
 [ui.sound]
 enabled = true
 
