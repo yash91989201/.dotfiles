@@ -3,8 +3,12 @@ return {
   opts = {
     picker = {
       sources = {
+        files = {
+          exclude = { "*_templ.go" },
+        },
         explorer = {
           include = { "*.env*" },
+          exclude = { "*_templ.go" },
           win = {
             list = {
               wo = {
