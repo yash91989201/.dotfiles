@@ -25,7 +25,8 @@ return {
       win = {
         position = "float",
         wo = {
-          winbar = "",
+          -- winbar is left unset: snacks gives floats "" and splits a title
+          -- ("1: bash") that tells the right/bottom terminals apart.
           number = true,
           relativenumber = true,
         },
