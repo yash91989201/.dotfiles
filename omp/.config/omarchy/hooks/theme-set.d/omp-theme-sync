@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""Adapt Omarchy's generated Pi theme for Oh My Pi."""
+import json
+from pathlib import Path
+
+source = Path.home() / ".local/state/omarchy/current/theme/pi.json"
+theme = json.loads(source.read_text())
+theme["colors"].update({
+    "pythonMode": "color5",
+    "statusLineBg": "background",
+    "statusLineSep": "borderMuted",
+    "statusLineModel": "color5",
+    "statusLinePath": "accent",
+    "statusLineGitClean": "color2",
+    "statusLineGitDirty": "color3",
+    "statusLineContext": "color15",
+    "statusLineSpend": "color6",
+    "statusLineStaged": "color2",
+    "statusLineDirty": "color3",
+    "statusLineUntracked": "color1",
+    "statusLineOutput": "foreground",
+    "statusLineCost": "color1",
+    "statusLineSubagents": "color5",
+})
+destination = Path.home() / ".omp/agent/themes/omarchy-system.json"
+temporary = destination.with_suffix(".json.tmp")
+temporary.write_text(json.dumps(theme, indent=2) + "\n")
+temporary.replace(destination)
