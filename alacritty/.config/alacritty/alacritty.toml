@@ -1,8 +1,8 @@
-general.import = ["~/.config/alacritty/themes/catpuccin/mocha.toml"]
+general.import = ["~/.local/state/omarchy/current/theme/alacritty.toml"]
 general.working_directory = "~"
 
 [font]
-size = 12.0
+size = 11
 offset = { x = 0, y = 0 }
 builtin_box_drawing = true
 
