@@ -33,7 +33,7 @@ run_case() {
   timeout 0.2 env \
     POWER_SUPPLY_ROOT="$case_root/power" \
     IDEAPAD_DRIVER_ROOT="$case_root/driver" \
-    INTERVAL=30 \
+    INTERVAL=300 \
     bash "$SCRIPT_DIR/script.sh" >/dev/null 2>&1 || {
       status=$?
       [[ "$status" == "124" ]]
@@ -63,4 +63,3 @@ else
   [[ "$status" == "2" ]]
   echo 'PASS: invalid threshold rejected'
 fi
-

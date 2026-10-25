@@ -2,7 +2,7 @@
 set -euo pipefail
 
 THRESHOLD="${THRESHOLD:-95}"
-INTERVAL="${INTERVAL:-30}"
+INTERVAL="${INTERVAL:-300}"
 POWER_SUPPLY_ROOT="${POWER_SUPPLY_ROOT:-/sys/class/power_supply}"
 IDEAPAD_DRIVER_ROOT="${IDEAPAD_DRIVER_ROOT:-/sys/bus/platform/drivers/ideapad_acpi}"
 

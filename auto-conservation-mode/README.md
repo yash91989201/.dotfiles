@@ -19,6 +19,9 @@ When the battery drops below 95%, Conservation Mode is automatically disabled so
 
 The script only toggles the state when necessary and avoids unnecessary writes.
 
+Battery status is checked every **5 minutes (300 seconds)** by default. This
+means enabling or disabling Conservation Mode can be delayed by up to 5 minutes.
+
 ---
 
 ## Requirements
@@ -217,7 +220,7 @@ Edit these service environment values to change the defaults:
 
 ```ini
 Environment=THRESHOLD=95
-Environment=INTERVAL=30
+Environment=INTERVAL=300
 ```
 
 After editing the installed service, run:
