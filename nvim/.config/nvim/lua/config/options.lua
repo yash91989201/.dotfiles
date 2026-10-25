@@ -37,3 +37,6 @@ vim.opt.laststatus = 3
 
 -- Enable this option to avoid conflicts with Prettier.
 vim.g.lazyvim_prettier_needs_config = true
+
+-- Keep interface updates immediate.
+vim.g.snacks_animate = false
