@@ -72,13 +72,8 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm* | rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  ;;
-*) ;;
-esac
+# Terminal title is handled by osc_title() further below (this PS1-based
+# variant never renders: starship_precmd rewrites PS1 before every prompt).
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -140,6 +135,22 @@ wezterm_osc7() {
   printf $'\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD"
 }
 
+# Terminal/tab title: current git repo name instead of the full path
+# (~-relative path outside a repo). Replaces Debian's /etc/bash.bashrc entry
+# (user@host:fullpath), which `starship init` stashes in STARSHIP_PROMPT_COMMAND
+# and re-evaluates before every prompt.
+osc_title() {
+  local dir
+  dir=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [ -n "$dir" ]; then
+    dir=${dir##*/}
+  else
+    dir=${PWD/#$HOME/\~}
+  fi
+  printf '\033]0;%s@%s:%s\007' "$USER" "${HOSTNAME%%.*}" "$dir"
+}
+STARSHIP_PROMPT_COMMAND="osc_title"
+
 PROMPT_COMMAND="wezterm_osc7;$PROMPT_COMMAND"
 
 # Neovim
@@ -163,3 +174,6 @@ export PATH="$HOME/.bun/bin:$PATH"
 
 export PATH="/home/yash/.local/bin:$PATH"
 eval "$(zoxide init bash)"
+
+. "$HOME/.local/share/../bin/env"
+. "$HOME/.cargo/env"
