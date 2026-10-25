@@ -7,9 +7,13 @@ return {
     }
 
     opts.servers = opts.servers or {}
+    opts.servers.gopls = vim.tbl_deep_extend("force", opts.servers.gopls or {}, {
+      settings = { gopls = { gofumpt = false } },
+    })
     -- Official templ LSP (`templ lsp`); see https://templ.guide/developer-tools/cli/
     -- and LazyVim discussion #3735 for the community LazyVim wiring.
     opts.servers.templ = {
+      cmd = { "go", "tool", "templ", "lsp" },
       filetypes = { "templ" },
       settings = {
         templ = {

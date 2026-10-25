@@ -2,8 +2,11 @@ return {
   "stevearc/conform.nvim",
   opts = {
     formatters_by_ft = {
-      -- Uses `templ fmt` from the Mason `templ` package
+      go = { "gofmt" },
       templ = { "templ" },
+    },
+    formatters = {
+      templ = { command = "go", prepend_args = { "tool", "templ" } },
     },
   },
 }
