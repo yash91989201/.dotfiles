@@ -177,3 +177,4 @@ eval "$(zoxide init bash)"
 
 . "$HOME/.local/share/../bin/env"
 . "$HOME/.cargo/env"
+

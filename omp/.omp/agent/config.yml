@@ -1,0 +1,154 @@
+setupVersion: 2
+modelRoles:
+  default: cursor/cursor-grok-4.6:medium
+  smol: openai-codex/gpt-6-luna:medium
+  slow: openai-codex/gpt-6.1-sol:high
+  vision: google-antigravity/gemini-3.8-flash:medium
+  plan: openai-codex/gpt-6.1-sol:high
+  commit: cursor/composer-2.5:low
+  task: opencode-go/mimo-v2.6-flash:medium
+  tiny: opencode-go/minimax-m3.1-flash:low
+  memory: google-antigravity/gemini-3.8-flash:low
+  advisor: opencode-go/deepseek-v4-pro:high
+  web: web/firecrawl
+  image: google-antigravity/gemini-3-pro-image
+  judge: google-antigravity/gemini-3.1-flash-lite
+  speech: local/kokoro
+  dictation: local/whisper-base
+  widget: opencode-go/mimo-v2.6-flash:low
+theme:
+  dark: omarchy-system
+symbolPreset: nerd
+composer:
+  shape: pi
+  tokenRate: true
+statusLine:
+  preset: default
+  separator: slash
+tui:
+  resizeScrollback: rebuild
+  titleSpinner: braille
+display:
+  hideToolActivity: true
+  showTokenUsage: false
+  subagentLivePreview: true
+  cacheMissMarker: false
+  showTurnTime: true
+memory:
+  backend: mnemopi
+task:
+  eager: preferred
+  maxConcurrency: 2
+  maxRecursionDepth: 1
+hideThinkingBlock: true
+title:
+  icons: nf+emoji
+browser:
+  headless: true
+dev:
+  autoqaConsent: granted
+defaultThinkingLevel: medium
+modelPresets:
+  PLUS-premium-GO:
+    modelRoles:
+      default: opencode-go/deepseek-v4.1-flash:high
+      smol: openai-codex/gpt-6-luna:medium
+      slow: openai-codex/gpt-6.1-sol:high
+      vision: google-antigravity/gemini-3.8-flash:medium
+      plan: openai-codex/gpt-6.1-sol:high
+      commit: opencode-go/mimo-v2.6-flash:low
+      task: opencode-go/mimo-v2.6-flash:medium
+      tiny: opencode-go/minimax-m3.1-flash:low
+      memory: google-antigravity/gemini-3.8-flash:low
+      advisor: opencode-go/deepseek-v4-pro:high
+      web: web/firecrawl
+      image: google-antigravity/gemini-3-pro-image
+      judge: google-antigravity/gemini-3.1-flash-lite
+      speech: local/kokoro
+      dictation: local/whisper-base
+      widget: opencode-go/mimo-v2.6-flash:low
+    defaultThinkingLevel: medium
+  PLUS-PREMIUM-GO:
+    modelRoles:
+      default: cursor/grok-4.7:medium
+      smol: openai-codex/gpt-6-luna:medium
+      slow: openai-codex/gpt-6.1-sol:high
+      vision: google-antigravity/gemini-3.8-flash:medium
+      plan: openai-codex/gpt-6.1-sol:high
+      commit: cursor/composer-2.5:low
+      task: opencode-go/mimo-v2.6-flash:medium
+      tiny: opencode-go/minimax-m3.1-flash:low
+      memory: google-antigravity/gemini-3.8-flash:low
+      advisor: opencode-go/deepseek-v4-pro:high
+      web: web/firecrawl
+      image: google-antigravity/gemini-3-pro-image
+      judge: google-antigravity/gemini-3.1-flash-lite
+      speech: local/kokoro
+      dictation: local/whisper-base
+      widget: opencode-go/mimo-v2.6-flash:low
+    defaultThinkingLevel: medium
+retry:
+  fallbackChains:
+    default:
+      - openai-codex/gpt-6-luna:medium
+      - opencode-go/mimo-v2.6-flash:medium
+    smol:
+      - opencode-go/mimo-v2.6-flash:medium
+      - google-antigravity/gemini-3.8-flash:medium
+    slow:
+      - opencode-go/deepseek-v4-pro:high
+      - openai-codex/gpt-6-luna:high
+    plan:
+      - opencode-go/deepseek-v4-pro:high
+      - openai-codex/gpt-6-luna:high
+    task:
+      - openai-codex/gpt-6-luna:medium
+      - opencode-go/minimax-m3.1-flash:medium
+    vision:
+      - openai-codex/gpt-6-luna:medium
+    commit:
+      - opencode-go/minimax-m3.1-flash:low
+      - openai-codex/gpt-6-luna:low
+    tiny:
+      - google-antigravity/gemini-3.1-flash-lite:low
+      - opencode-go/mimo-v2.6-flash:low
+    memory:
+      - opencode-go/minimax-m3.1-flash:low
+      - google-antigravity/gemini-3.1-flash-lite:low
+    advisor:
+      - opencode-go/deepseek-v4.1-flash:high
+      - openai-codex/gpt-6-luna:medium
+    widget:
+      - opencode-go/minimax-m3.1-flash:low
+      - google-antigravity/gemini-3.1-flash-lite:low
+    judge:
+      - google-antigravity/gemini-3.8-flash
+      - opencode-go/minimax-m3.1-flash
+    image: []
+    web:
+      - web/duckduckgo
+    speech: []
+    dictation: []
+mnemopi:
+  injectionTokenLimit: 2000
+tools:
+  artifactSpillThreshold: 10
+  artifactHeadBytes: 2
+  artifactTailBytes: 2
+recap:
+  enabled: false
+astGrep:
+  enabled: true
+computer:
+  enabled: false
+todo:
+  eager: preferred
+providers:
+  fetch: firecrawl
+prewalk:
+  enabled: false
+  auto: "on"
+  autoTarget: "@smol"
+startup:
+  quiet: false
+doubleEscapeAction: rewind
