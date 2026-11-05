@@ -3,7 +3,7 @@
   "sounds": {
     "enabled": true
   },
-  "font_size": 14,
+  "font_size": 12,
   "ui_font": "JetBrainsMono Nerd Font",
   "minimum_contrast": 1,
   "theme": "omarchy",
