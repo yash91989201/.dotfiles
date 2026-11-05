@@ -1,6 +1,6 @@
 setupVersion: 2
 modelRoles:
-  default: deepseek/deepseek-v4-flash:max
+  default: deepseek/deepseek-v4-flash:high
   smol: openai-codex/gpt-6.1-terra:low
   slow: anthropic/claude-opus-5-5:medium
   plan: openai-codex/gpt-6.1-sol:high
