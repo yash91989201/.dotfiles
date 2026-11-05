@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/bin/bash
+exec python3 - "$@" <<'OMP_THEME_SYNC_PY'
 """Adapt Omarchy's generated Pi theme for Oh My Pi."""
 import json
 from pathlib import Path
@@ -26,3 +27,4 @@ destination = Path.home() / ".omp/agent/themes/omarchy-system.json"
 temporary = destination.with_suffix(".json.tmp")
 temporary.write_text(json.dumps(theme, indent=2) + "\n")
 temporary.replace(destination)
+OMP_THEME_SYNC_PY
