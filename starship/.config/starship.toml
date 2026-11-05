@@ -1,3 +1,5 @@
+palette = "omarchy"
+
 [bun]
 symbol = " "
 
@@ -176,3 +178,24 @@ symbol = " "
 
 [gradle]
 symbol = " "
+
+# Omarchy palette: maintained by 20-herdr-starship
+[palettes.omarchy]
+black = "#2c2525"
+red = "#fd6883"
+green = "#adda78"
+yellow = "#f9cc6c"
+blue = "#f38d70"
+magenta = "#a8a9eb"
+cyan = "#85dacc"
+white = "#e6d9db"
+purple = "#a8a9eb"
+bright-black = "#72696a"
+bright-red = "#ff8297"
+bright-green = "#c8e292"
+bright-yellow = "#fcd675"
+bright-blue = "#f8a788"
+bright-magenta = "#bebffd"
+bright-cyan = "#9bf1e1"
+bright-white = "#e6d9db"
+bright-purple = "#bebffd"
