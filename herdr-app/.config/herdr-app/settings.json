@@ -1,11 +1,12 @@
 {
-  "zoom": 1,
+  "zoom": 1.0,
   "sounds": {
     "enabled": true
   },
-  "font_size": 12,
+  "font_size": 11.0,
+  "font_ligatures": false,
   "ui_font": "JetBrainsMono Nerd Font",
-  "minimum_contrast": 1,
-  "theme": "omarchy",
-  "appearance": "dark"
+  "minimum_contrast": 1.0,
+  "appearance": "dark",
+  "theme": "omarchy"
 }
