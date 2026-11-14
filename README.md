@@ -9,12 +9,15 @@
 
 ## Harness Tools
 
-1. context mode
-2. openspec
-3. caveman
-4. ponytail
-5. gitnexus
-6. impeccable
+1. context mode - global
+2. openspec - project
+3. caveman - global
+4. ponytail - global
+5. gitnexus - project
+6. impeccable - project
+7. codegraph - project
+8. tokeneconomizer - project
+9. context mode gateway - global
 
 ## Terminal and related tools
 
