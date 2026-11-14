@@ -1,13 +1,14 @@
-setupVersion: 2
+setupVersion: 3
 modelRoles:
-  default: deepseek/deepseek-v4-flash:high
-  smol: openai-codex/gpt-6.1-terra:low
+  default: opencode-go/deepseek-v4.1-flash:high
+  smol: openai-codex/gpt-6-luna:medium
   slow: anthropic/claude-opus-5-5:medium
   plan: openai-codex/gpt-6.1-sol:high
   vision: google-antigravity/gemini-3.8-flash:high
   memory: google-antigravity/gemini-3.8-flash:low
   commit: opencode-go/mimo-v2.6-flash:low
   task: opencode-go/deepseek-v4.1-flash:high
+  writer: anthropic/claude-sonnet-5-5:medium
   advisor: deepseek/deepseek-v4-pro:high
   tiny: opencode-go/glm-5.3-flash:low
   widget: opencode-go/glm-5.3-flash:low
@@ -59,6 +60,7 @@ modelPresets:
       memory: google-antigravity/gemini-3.8-flash:low
       commit: opencode-go/mimo-v2.6-flash:low
       task: opencode-go/deepseek-v4.1-flash:high
+      writer: anthropic/claude-sonnet-5-5:medium
       advisor: opencode-go/deepseek-v4.1-flash:high
       tiny: opencode-go/glm-5.3-flash:low
       widget: opencode-go/glm-5.3-flash:low
@@ -93,6 +95,7 @@ tools:
   artifactSpillThreshold: 10
   artifactHeadBytes: 2
   artifactTailBytes: 2
+  approvalMode: yolo
 recap:
   enabled: false
 astGrep:
@@ -109,4 +112,13 @@ prewalk:
   autoTarget: "@smol"
 startup:
   quiet: false
+  setupWizard: false
 doubleEscapeAction: rewind
+update:
+  auto: false
+goal:
+  continuationModes:
+    - interactive
+    - rpc
+speech:
+  enabled: false
