@@ -72,7 +72,7 @@ panel_bg = "black"
 new_cwd = "follow"
 
 [ui]
-accent = "blue"
+accent = "green"
 agent_panel_sort = "spaces"
 # Match wez: spawn tabs immediately, no confirm spam on close.
 prompt_new_tab_name = false
