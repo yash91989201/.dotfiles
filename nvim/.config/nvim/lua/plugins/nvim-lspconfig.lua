@@ -10,6 +10,9 @@ return {
     opts.servers.gopls = vim.tbl_deep_extend("force", opts.servers.gopls or {}, {
       settings = { gopls = { gofumpt = false } },
     })
+    opts.servers.buf_ls = {
+      root_markers = { "buf.yaml", "go.mod", ".git" },
+    }
     -- Official templ LSP (`templ lsp`); see https://templ.guide/developer-tools/cli/
     -- and LazyVim discussion #3735 for the community LazyVim wiring.
     opts.servers.templ = {

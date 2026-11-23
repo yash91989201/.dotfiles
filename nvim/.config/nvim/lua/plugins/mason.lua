@@ -4,6 +4,7 @@ return {
     PATH = "append",
     ensure_installed = {
       "gopls",
+      "buf",
       "templ",
       "delve",
       "biome",

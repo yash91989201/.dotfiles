@@ -21,6 +21,7 @@ return {
       "terraform",
       "nginx",
       "go",
+      "proto",
       "gomod",
       "gowork",
       "gosum",
