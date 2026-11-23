@@ -98,7 +98,7 @@ sidebar_collapsed_mode = "hidden"
 enabled = true
 
 [keys]
-prefix = "backtick"
+prefix = ["shift+f13", "f13"]
 
 # Misc
 help = "prefix+?"
