@@ -153,9 +153,6 @@ STARSHIP_PROMPT_COMMAND="osc_title"
 
 PROMPT_COMMAND="wezterm_osc7;$PROMPT_COMMAND"
 
-# Neovim
-export PATH="$PATH:/usr/bin/nvim"
-
 # -----------------------------------------------------------------------------
 # Default Applications
 # -----------------------------------------------------------------------------
